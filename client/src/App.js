@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import HomePage from "./pages/HomePage";
-import BreadCrumbsNav from "./BreadCrumbsNav";
+import BreadCrumbsNav from "./components/BreadCrumbsNav";
 import SearchResults from "./pages/SearchResultsPage";
 import ArticlePage from "./pages/ArticlePage";
+import NotFoundPage from "./pages/NotFoundPage";
 import "./App.css";
 
 class App extends Component {
@@ -34,12 +35,12 @@ class App extends Component {
       <Router>
         <div className="App">
           <BreadCrumbsNav />
-          <Route path="/" component={HomePage} exact />
-          <Route path="/searchresults" component={SearchResults} />
-          <Route path="/article/:id" component={ArticlePage} />
-
-          {/* <h1>{this.state.message}</h1>
-          <button onClick={this.fetchData}>Fetch Data</button> */}
+          <Switch>
+            <Route path="/" component={HomePage} exact />
+            <Route path="/searchresults" component={SearchResults} />
+            <Route path="/article/:id" component={ArticlePage} />
+            <Route component={NotFoundPage} />
+          </Switch>
         </div>
       </Router>
     );
