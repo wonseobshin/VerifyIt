@@ -1,7 +1,7 @@
 import React from "react";
-import ArticleList from "../components/articleList";
+import MediaCard from "../components/articleCard";
 
-const SearchResults = () => (
+const SearchResults = ({ match }) => (
   <>
     <h1>Search Results</h1>
   </>

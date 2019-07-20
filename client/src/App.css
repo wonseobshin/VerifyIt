@@ -1,8 +1,49 @@
-a {
-  text-decoration: none;
+* {
+  box-sizing: border-box;
 }
 
-.bread-crumb-nav li {
-  display: inline-block;
-  padding: 5px;
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ==== Nav ==== */
+
+.nav-bar {
+  background-color: #379392;
+  color: #c4dfe6;
+  overflow: hidden;
+  height: auto;
+  padding: 15px;
+}
+
+.nav-bar h1 {
+  font-size: 3em;
+  float: left;
+}
+
+.nav-bar .search-container {
+  float: right;
+}
+
+.nav-bar .search-container input {
+  background-color: #c4dfe6;
+}
+
+.nav-bar button {
+  float: right;
+}
+
+/* ==== Home Page ==== */
+
+.text-container {
+  text-align: center;
+  width: 50%;
+  margin: 100px auto;
+}
+
+/* ==== URL Input ==== */
+
+.URL-form {
+  margin-top: 50px;
 }

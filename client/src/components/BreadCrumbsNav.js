@@ -1,19 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Link from "@material-ui/core/Link";
 
 const BreadCrumbsNav = () => (
   <div className="bread-crumb-nav">
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/searchresults">/ Search Results</Link>
-      </li>
-      <li>
-        <Link to="/article">/ Article</Link>
-      </li>
-    </ul>
+    <Breadcrumbs aria-label="Breadcrumb">
+      <Link color="inherit" href="/">
+        Home
+      </Link>
+
+      <Link color="inherit" href="/searchresults">
+        Search Results
+      </Link>
+
+      <Link color="inherit" href="/article">
+        Article
+      </Link>
+    </Breadcrumbs>
   </div>
 );
 
