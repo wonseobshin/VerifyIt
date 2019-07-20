@@ -10,21 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_235854) do
+ActiveRecord::Schema.define(version: 2019_07_20_021604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "api_annotations", force: :cascade do |t|
+    t.string "category"
+    t.string "content"
+    t.integer "points"
+    t.integer "user_id"
+    t.integer "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "api_articles", force: :cascade do |t|
+    t.string "url"
+    t.string "title"
+    t.string "content"
     t.integer "article_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "api_comments", force: :cascade do |t|
-    t.string "title"
     t.string "content"
-    t.integer "comment_points"
     t.integer "user_id"
     t.integer "article_id"
     t.datetime "created_at", null: false
@@ -32,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_235854) do
   end
 
   create_table "api_tags", force: :cascade do |t|
-    t.string "name"
+    t.string "tag"
     t.integer "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
