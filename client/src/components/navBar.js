@@ -27,7 +27,7 @@ const NavBar = () => (
             
             <InputBase
               className="searchInput"
-              placeholder="Search..."
+              placeholder="Search Articles: Try 'Pyramids'"
               inputProps={{ 'aria-label': 'Search Google Maps' }}
             />
             <IconButton className="iconButton" aria-label="Search">
