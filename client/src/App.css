@@ -46,6 +46,12 @@ a {
 }
 
 .nav-bar .search-container {
+  margin: auto 0 auto 0;
+  height: 70%;
+}
+
+.MuiPaper-root {
+  padding-left: 10px;
 }
 
 .nav-bar .search-container input {
