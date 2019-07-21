@@ -59,20 +59,8 @@ body {
 }
 
 .rating-container {
-  float: right;
-  margin-right: 60px;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  padding: 8px;
-  background: #fff;
-  border: 2px solid #666;
   color: #666;
   text-align: center;
-  font: 72px Arial, sans-serif;
-}
-.rating-header {
-  float: right;
 }
 
 .instructions-container {

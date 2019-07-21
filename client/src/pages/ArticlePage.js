@@ -22,8 +22,10 @@ export default function CenteredGrid() {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <h1 className="rating-container">85</h1>
+        <Grid item xs={10} />
+
+        <Grid item xs={2}>
+          <p className="rating-container">85</p>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">
