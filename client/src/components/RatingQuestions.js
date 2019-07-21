@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
 export default function CheckboxList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
+  console.log(checked);
 
   const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
@@ -32,38 +33,42 @@ export default function CheckboxList() {
   };
 
   return (
-    <List className={classes.root}>
-      {[
-        "This is fake news?",
-        "The source is reliable?",
-        "The author is credible?",
-        "The article is bias?",
-        "There are supporting sources?",
-        "The are citations?"
-      ].map(value => {
-        const labelId = `checkbox-list-label-${value}`;
+    <>
+      <h2>Do you feel:</h2>
+      <List className={classes.root}>
+        {[
+          "This is fake news?",
+          "The source is reliable?",
+          "The author is credible?",
+          "The article is bias?",
+          "There are supporting sources?",
+          "The are citations?"
+        ].map(value => {
+          const labelId = `checkbox-list-label-${value}`;
 
-        return (
-          <ListItem
-            key={value}
-            role={undefined}
-            dense
-            button
-            onClick={handleToggle(value)}
-          >
-            <ListItemText id={labelId} primary={`${value}`} />
-            <ListItemIcon>
-              <Checkbox
-                edge="start"
-                checked={checked.indexOf(value) !== -1}
-                tabIndex={-1}
-                disableRipple
-                inputProps={{ "aria-labelledby": labelId }}
-              />
-            </ListItemIcon>
-          </ListItem>
-        );
-      })}
-    </List>
+          return (
+            <ListItem
+              key={value}
+              role={undefined}
+              dense
+              button
+              onClick={handleToggle(value)}
+            >
+              <ListItemText id={labelId} primary={`${value}`} />
+              <ListItemIcon>
+                <Checkbox
+                  edge="start"
+                  checked={checked.indexOf(value) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                  inputProps={{ "aria-labelledby": labelId }}
+                />
+              </ListItemIcon>
+            </ListItem>
+          );
+        })}
+      </List>
+      <button>Submit</button>
+    </>
   );
 }

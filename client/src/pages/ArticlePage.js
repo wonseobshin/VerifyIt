@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import CheckboxList from "../components/RatingQuestions";
+import Annotation from "../components/Annotation";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +40,7 @@ export default function CenteredGrid() {
         </Grid>
         <Grid item xs={8}>
           <div class="article-container">
-            <h1>Article Container</h1>
+            <Annotation />
           </div>
         </Grid>
         <Grid item xs={2}>
