@@ -1,19 +1,20 @@
 import React from "react";
+
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 
 const BreadCrumbsNav = () => (
   <div className="bread-crumb-nav">
     <Breadcrumbs aria-label="Breadcrumb">
-      <Link color="inherit" href="/">
+      <Link color="inherit" to="/">
         Home
       </Link>
 
-      <Link color="inherit" href="/searchresults">
+      <Link color="inherit" to="/searchresults">
         Search Results
       </Link>
 
-      <Link color="inherit" href="/article">
+      <Link color="inherit" to="/article">
         Article
       </Link>
     </Breadcrumbs>
