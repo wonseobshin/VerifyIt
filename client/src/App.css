@@ -9,6 +9,10 @@ body {
   font-family: 'Noto Serif', serif;
 }
 
+a {
+  text-decoration:none;
+}
+
 /* ==== Nav ==== */
 
 .nav-container {
@@ -34,16 +38,14 @@ body {
   padding-left:15px;
 }
 
-a {
-  text-decoration:none;
-}
-.logo-container h1 {
+
+
+.nav-bar .logo-container h1 {
   color:white;
   margin: 0;
 }
 
 .nav-bar .search-container {
-
 }
 
 .nav-bar .search-container input {
