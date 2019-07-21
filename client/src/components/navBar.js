@@ -1,26 +1,27 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
+import { Link } from 'react-router-dom'
 
 const NavBar = () => (
-  <nav className="nav-bar">
-    <h1 className="nav-item">Verify It</h1>
-    <div className="search-container">
-      <form>
-        <TextField
-          className="search"
-          id="outlined-search"
-          style={{ margin: 8 }}
-          type="search"
-          placeholder="Search..."
-          margin="normal"
-          variant="outlined"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
-      </form>
-    </div>
-  </nav>
+    <nav className="nav-bar nav-container">
+      <div className="logo-container">
+        <Link to={`/`}>
+          <h1 className="nav-item main-logo">Verify It</h1>
+        </Link>
+      </div>
+      <div className="search-container">
+        <form>
+          <TextField
+            id="filled-search"
+            label="Search field"
+            type="search"
+            className="search"
+            margin="normal"
+            variant="filled"
+          />
+        </form>
+      </div>
+    </nav>
 );
 
 export default NavBar;

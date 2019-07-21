@@ -36,7 +36,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          <BreadCrumbsNav />
           <Switch>
             <Route path="/" component={HomePage} exact />
             <Route path="/searchresults" component={SearchResults} />
