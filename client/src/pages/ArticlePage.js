@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import CheckboxList from "../components/RatingQuestions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,7 +43,7 @@ export default function CenteredGrid() {
           </div>
         </Grid>
         <Grid item xs={2}>
-          <Paper className={classes.paper} />
+          <CheckboxList />
         </Grid>
         <Grid item xs={8}>
           <Paper className={classes.paper} />
