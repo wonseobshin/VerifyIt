@@ -27,6 +27,11 @@ body {
 
 .nav-bar .logo-container {
   font-size: 2em;
+  height:65.2px;
+}
+
+.main-logo {
+  padding-left:15px;
 }
 
 a {
