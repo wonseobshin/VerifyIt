@@ -59,3 +59,22 @@ a {
 .URL-form {
   margin-top: 50px;
 }
+
+/* ==== Article Page ====*/
+
+.article-container {
+  background: lightgrey;
+  height: 500px;
+  border: solid black 2px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.rating-container {
+  color: #666;
+  text-align: center;
+}
+
+.instructions-container {
+  padding-left: 20px;
+}
