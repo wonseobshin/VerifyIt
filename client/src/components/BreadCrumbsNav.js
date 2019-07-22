@@ -1,6 +1,9 @@
 import React from "react";
+
+import { Link } from "react-router-dom";
+
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
+import link from "@material-ui/core/Link";
 
 const BreadCrumbsNav = () => (
   <div className="bread-crumb-nav">
@@ -13,7 +16,7 @@ const BreadCrumbsNav = () => (
         Search Results
       </Link>
 
-      <Link color="inherit" href="/article">
+      <Link color="inherit" to="/article/:id">
         Article
       </Link>
     </Breadcrumbs>

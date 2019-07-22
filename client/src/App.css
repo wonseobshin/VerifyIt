@@ -5,8 +5,8 @@
 body {
   margin: 0;
   padding: 0;
-  
-  font-family: 'Noto Serif', serif;
+
+  font-family: "Noto Serif", serif;
 }
 
 a {
@@ -16,9 +16,9 @@ a {
 /* ==== Nav ==== */
 
 .nav-container {
-  display:flex;
-  justify-content:space-between;
-  flex-direction:row;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .nav-bar {
@@ -26,22 +26,24 @@ a {
   color: #c4dfe6;
   overflow: hidden;
   padding: 15px;
-  width:100vw;
+  width: 100vw;
 }
 
 .nav-bar .logo-container {
   font-size: 2em;
-  height:65.2px;
+  height: 65.2px;
 }
 
 .main-logo {
-  padding-left:15px;
+  padding-left: 15px;
 }
 
 
-
-.nav-bar .logo-container h1 {
-  color:white;
+a {
+  text-decoration: none;
+}
+.logo-container h1 {
+  color: white;
   margin: 0;
 }
 
@@ -55,8 +57,8 @@ a {
 }
 
 .nav-bar .search-container input {
-  height:100%;
-  width:250px;
+  height: 100%;
+  width: 250px;
 }
 
 /* ==== Home Page ==== */
@@ -67,17 +69,23 @@ a {
   margin: 100px auto;
 }
 
+.article-card-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* ==== URL Input ==== */
 
 .URL-form {
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 /* ==== Article Page ====*/
 
 .article-container {
   background: lightgrey;
-  height: 500px;
+  height: 600px;
   border: solid black 2px;
   border-radius: 10px;
   text-align: center;
@@ -90,4 +98,17 @@ a {
 
 .instructions-container {
   padding-left: 20px;
+}
+
+/* ==== Annotation ====*/
+.annotation-container {
+  text-align: left;
+  width: 400px;
+  height: 400px;
+}
+
+/* ==== Rating Questionaire ==== */
+
+.rating-questions-container {
+  padding: 5px;
 }
