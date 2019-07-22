@@ -46,16 +46,11 @@ export default function HomePage() {
           </form>
         </Grid>
         <Grid item xs={3} />
-        <Grid item xs={3}>
+
+        <Grid item xs={12} className="article-card-container">
           <ImgMediaCard />
-        </Grid>
-        <Grid item xs={3}>
           <ImgMediaCard />
-        </Grid>
-        <Grid item xs={3}>
           <ImgMediaCard />
-        </Grid>
-        <Grid item xs={3}>
           <ImgMediaCard />
         </Grid>
       </Grid>

@@ -24,7 +24,7 @@ export default function ImgMediaCard() {
           component="img"
           alt="Trump"
           height="140"
-          image={require("../images/trump_finger.png")}
+          image={require("../images/trump_smile.jpg")}
           title="Trump"
         />
         <CardContent>
@@ -38,7 +38,7 @@ export default function ImgMediaCard() {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Learn More
+          Learn Fake Certainty
         </Button>
       </CardActions>
     </Card>

@@ -21,6 +21,11 @@ body {
   margin: 100px auto;
 }
 
+.article-card-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* ==== URL Input ==== */
 
 .URL-form {

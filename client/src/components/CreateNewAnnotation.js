@@ -56,18 +56,44 @@ export default function SimpleSelect() {
         <Typography variant="h6" component="h6">
           UserName
         </Typography>
-        <Typography variant="p" component="p">
-          That other text? Sadly, it’s no longer a 10. You know, it really
-          doesn’t matter what you write as long as you’ve got a young, and
-          beautiful, piece of text. My text is long and beautiful, as, it has
-          been well documented, are various other parts of my website.
-        </Typography>
 
         <form className={classes.root} autoComplete="off">
+          <FormControl required className={classes.formControl}>
+            <InputLabel htmlFor="criteria-required">Criteria</InputLabel>
+            <Select
+              value={values.name}
+              onChange={handleChange}
+              name="name"
+              inputProps={{
+                id: "age-required"
+              }}
+              className={classes.selectEmpty}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="The source is reliable?">
+                The source is reliable?
+              </MenuItem>
+              <MenuItem value="The author is credible?">
+                The author is credible?
+              </MenuItem>
+              <MenuItem value="The article is bias?">
+                The article is bias?
+              </MenuItem>
+              <MenuItem value="There are supporting sources?">
+                There are supporting sources?
+              </MenuItem>
+              <MenuItem value="There are citations?">
+                There are citations?
+              </MenuItem>
+            </Select>
+            <FormHelperText>Required</FormHelperText>
+          </FormControl>
           <TextField
             id="standard-full-width"
             style={{ margin: 8 }}
-            placeholder="Comment"
+            placeholder="Annotate"
             multiline
             fullWidth
             margin="normal"

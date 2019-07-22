@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CheckboxList from "../components/RatingQuestions";
 import Button from "@material-ui/core/Button";
+import CreateNewAnnotation from "../components/CreateNewAnnotation";
 import Annotation from "../components/Annotation";
 import Toggle from "../components/Toggle";
 
@@ -44,15 +45,30 @@ export default function CenteredGrid() {
             <Toggle>
               {({ on, toggle }) => (
                 <div>
-                  {on && <Annotation on={on} />}
                   <Button
                     onClick={toggle}
                     variant="contained"
                     color="primary"
                     className={classes.button}
                   >
-                    Annotate
+                    Create Annotation
                   </Button>
+                  {on && <CreateNewAnnotation on={on} />}
+                </div>
+              )}
+            </Toggle>
+            <Toggle>
+              {({ on, toggle }) => (
+                <div>
+                  <Button
+                    onClick={toggle}
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                  >
+                    View Annotation
+                  </Button>
+                  {on && <Annotation on={on} />}
                 </div>
               )}
             </Toggle>
@@ -62,7 +78,7 @@ export default function CenteredGrid() {
           <Toggle>
             {({ on, toggle }) => (
               <div>
-                {on && <CheckboxList on={on} />}
+                {" "}
                 <Button
                   onClick={toggle}
                   variant="contained"
@@ -71,6 +87,7 @@ export default function CenteredGrid() {
                 >
                   Rate
                 </Button>
+                {on && <CheckboxList on={on} />}
               </div>
             )}
           </Toggle>
