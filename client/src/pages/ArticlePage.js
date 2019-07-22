@@ -1,7 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import CheckboxList from "../components/RatingQuestions";
+import Button from "@material-ui/core/Button";
+import CreateNewAnnotation from "../components/CreateNewAnnotation";
+import Annotation from "../components/Annotation";
+import Toggle from "../components/Toggle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,15 +42,58 @@ export default function CenteredGrid() {
         </Grid>
         <Grid item xs={8}>
           <div class="article-container">
-            <h1>Article Container</h1>
+            <Toggle>
+              {({ on, toggle }) => (
+                <div>
+                  <Button
+                    onClick={toggle}
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                  >
+                    Create Annotation
+                  </Button>
+                  {on && <CreateNewAnnotation on={on} />}
+                </div>
+              )}
+            </Toggle>
+            <Toggle>
+              {({ on, toggle }) => (
+                <div>
+                  <Button
+                    onClick={toggle}
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                  >
+                    View Annotation
+                  </Button>
+                  {on && <Annotation on={on} />}
+                </div>
+              )}
+            </Toggle>
           </div>
         </Grid>
         <Grid item xs={2}>
-          <Paper className={classes.paper} />
+          <Toggle>
+            {({ on, toggle }) => (
+              <div>
+                {" "}
+                <Button
+                  onClick={toggle}
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                >
+                  Rate
+                </Button>
+                {on && <CheckboxList on={on} />}
+              </div>
+            )}
+          </Toggle>
         </Grid>
-        <Grid item xs={8}>
-          <Paper className={classes.paper} />
-        </Grid>
+        <Grid item xs={2} />
+        <Grid item xs={8} />
       </Grid>
     </>
   );

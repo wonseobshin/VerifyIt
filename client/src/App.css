@@ -11,6 +11,7 @@ body {
 
 /* ==== Nav ==== */
 
+<<<<<<< HEAD
 .nav-container {
   display:flex;
   justify-content:space-between;
@@ -49,6 +50,10 @@ a {
 .nav-bar .search-container input {
   height:100%;
   width:250px;
+=======
+#login-button {
+  margin-left: 20px;
+>>>>>>> feature/article-page
 }
 
 /* ==== Home Page ==== */
@@ -59,17 +64,23 @@ a {
   margin: 100px auto;
 }
 
+.article-card-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* ==== URL Input ==== */
 
 .URL-form {
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 /* ==== Article Page ====*/
 
 .article-container {
   background: lightgrey;
-  height: 500px;
+  height: 600px;
   border: solid black 2px;
   border-radius: 10px;
   text-align: center;
@@ -82,4 +93,17 @@ a {
 
 .instructions-container {
   padding-left: 20px;
+}
+
+/* ==== Annotation ====*/
+.annotation-container {
+  text-align: left;
+  width: 400px;
+  height: 400px;
+}
+
+/* ==== Rating Questionaire ==== */
+
+.rating-questions-container {
+  padding: 5px;
 }

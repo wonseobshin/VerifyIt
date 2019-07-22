@@ -11,39 +11,34 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles({
   card: {
     maxWidth: 345
-  },
-  media: {
-    height: 140
   }
 });
 
-export default function MediaCard() {
+export default function ImgMediaCard() {
   const classes = useStyles();
 
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
-          className={classes.media}
-          image=""
-          title="Contemplative Reptile"
+          component="img"
+          alt="Trump"
+          height="140"
+          image={require("../images/trump_smile.jpg")}
+          title="Trump"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+            Trump Is At It Again
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            Trump has never lied.
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+          Learn Fake Certainty
         </Button>
       </CardActions>
     </Card>
