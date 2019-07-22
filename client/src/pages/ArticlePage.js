@@ -41,7 +41,7 @@ export default function CenteredGrid() {
           </div>
         </Grid>
         <Grid item xs={8}>
-          <div class="article-container">
+          <div className="article-container">
             <Toggle>
               {({ on, toggle }) => (
                 <div>
