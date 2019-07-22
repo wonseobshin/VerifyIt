@@ -6,7 +6,8 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-const NavBar = () => (
+export default function HomePage() {
+  return (
     <nav className="nav-bar nav-container">
       <div className="logo-container">
         <Link to={`/`}>
@@ -38,7 +39,9 @@ const NavBar = () => (
         </form>
       </div>
     </nav>
-);
+  );
+}
+
 // =======
 
 // import AppBar from "@material-ui/core/AppBar";

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/navBar";
-import BreadCrumbsNav from "./components/BreadCrumbsNav";
+// import BreadCrumbsNav from "./components/BreadCrumbsNav";
 import SearchResults from "./pages/SearchResultsPage";
 import ArticlePage from "./pages/ArticlePage";
 import NotFoundPage from "./pages/NotFoundPage";
