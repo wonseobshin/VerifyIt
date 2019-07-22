@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+article1 = Api::Article.create({
+  url: 'https://www.theonion.com/real-buzz-aldrin-spends-50th-straight-year-on-moon-tryi-1836538506',
+  title: 'Real Buzz Aldrin Spends 50th Straight Year On Moon Trying To Signal Earth To Warn Of Imposter',
+  content: 'VALLIS ALPES, THE MOON—Yelling and waving his arms frantically in the hope that someone out there was paying attention, the real Buzz Aldrin was reportedly spending his 50th year in a row on the moon Friday trying to warn Earth of the imposter who had taken his place. “Come on, I’m right here, dammit,” shouted the actual 89-year-old astronaut who had been stranded on the lunar surface during the Apollo 11 mission after being replaced by a shape-shifting extraterrestrial who had usurped his life on Earth. “The man you know as Buzz Aldrin isn’t me, it’s some goddamn alien scum. Hasn’t anyone noticed, after all this time? You fools, you’re in danger! Please! Someone! Anyone! I’m right up here!” At press time, Aldrin was reportedly cursing himself once again for having slept through the entirety of the Apollo 12 and Apollo 14 moon missions.', 
+  article_points: 60,
+})
+
+article2 = Api::Article.create({
+  url: 'https://politics.theonion.com/trump-claims-he-tried-to-warn-public-about-epstein-by-p-1836393756',
+  title: 'Trump Claims He Tried To Warn Public About Epstein By Praising Him As A Terrific Guy',
+  content: 'WASHINGTON—Noting multiple occasions when he had applauded the disgraced hedge fund manager’s affable personality, President Donald Trump claimed Monday that he tried to warn the public about Jeffrey Epstein’s behavior by praising him as a terrific guy. “From day one, I was clearly trying to send a message to you people by revealing that I enjoyed spending time with Jeffrey,” said Trump, arguing that he tried to inform the American people about the convicted sex offender by stating that he looked back positively on their 15-year-long relationship and considered him a close personal friend. “Can’t you people read between the lines? I appeared in multiple photos with him and we attended dozens of functions together, so you should’ve known Epstein was really bad news. By partying with him and publicly admiring his lifestyle, I all but told you directly that Jeffery’s a total scumbag.” At press time, Trump claimed that he also attempted to tip off the public by repeatedly expressing his admiration for Mohammad bin Salman and Bill O’Reilly.', 
+  article_points: 85,
+})
+
