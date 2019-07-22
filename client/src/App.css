@@ -5,17 +5,16 @@
 body {
   margin: 0;
   padding: 0;
-  
-  font-family: 'Noto Serif', serif;
+
+  font-family: "Noto Serif", serif;
 }
 
 /* ==== Nav ==== */
 
-<<<<<<< HEAD
 .nav-container {
-  display:flex;
-  justify-content:space-between;
-  flex-direction:row;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .nav-bar {
@@ -23,37 +22,32 @@ body {
   color: #c4dfe6;
   overflow: hidden;
   padding: 15px;
-  width:100vw;
+  width: 100vw;
 }
 
 .nav-bar .logo-container {
   font-size: 2em;
-  height:65.2px;
+  height: 65.2px;
 }
 
 .main-logo {
-  padding-left:15px;
+  padding-left: 15px;
 }
 
 a {
-  text-decoration:none;
+  text-decoration: none;
 }
 .logo-container h1 {
-  color:white;
+  color: white;
   margin: 0;
 }
 
 .nav-bar .search-container {
-
 }
 
 .nav-bar .search-container input {
-  height:100%;
-  width:250px;
-=======
-#login-button {
-  margin-left: 20px;
->>>>>>> feature/article-page
+  height: 100%;
+  width: 250px;
 }
 
 /* ==== Home Page ==== */

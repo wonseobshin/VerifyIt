@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import HomePage from "./pages/HomePage";
-import SearchBarApp from "./components/navBar";
+import NavBar from "./components/navBar";
 import BreadCrumbsNav from "./components/BreadCrumbsNav";
 import SearchResults from "./pages/SearchResultsPage";
 import ArticlePage from "./pages/ArticlePage";
@@ -35,13 +35,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-<<<<<<< HEAD
           <NavBar />
           {/* <BreadCrumbsNav /> */}
-=======
-          <SearchBarApp />
-          <BreadCrumbsNav />
->>>>>>> feature/article-page
+
           <Switch>
             <Route path="/" component={HomePage} exact />
             <Route path="/searchresults" component={SearchResults} />
