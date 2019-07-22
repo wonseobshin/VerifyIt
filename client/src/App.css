@@ -9,29 +9,8 @@ body {
 
 /* ==== Nav ==== */
 
-.nav-bar {
-  background-color: #379392;
-  color: #c4dfe6;
-  overflow: hidden;
-  height: auto;
-  padding: 15px;
-}
-
-.nav-bar h1 {
-  font-size: 3em;
-  float: left;
-}
-
-.nav-bar .search-container {
-  float: right;
-}
-
-.nav-bar .search-container input {
-  background-color: #c4dfe6;
-}
-
-.nav-bar button {
-  float: right;
+#login-button {
+  margin-left: 20px;
 }
 
 /* ==== Home Page ==== */
@@ -52,7 +31,7 @@ body {
 
 .article-container {
   background: lightgrey;
-  height: 500px;
+  height: 600px;
   border: solid black 2px;
   border-radius: 10px;
   text-align: center;
@@ -65,4 +44,17 @@ body {
 
 .instructions-container {
   padding-left: 20px;
+}
+
+/* ==== Annotation ====*/
+.annotation-container {
+  text-align: left;
+  width: 400px;
+  height: 400px;
+}
+
+/* ==== Rating Questionaire ==== */
+
+.rating-questions-container {
+  padding: 5px;
 }

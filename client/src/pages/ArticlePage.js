@@ -1,9 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import CheckboxList from "../components/RatingQuestions";
+import Button from "@material-ui/core/Button";
 import Annotation from "../components/Annotation";
+import Toggle from "../components/Toggle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,15 +41,42 @@ export default function CenteredGrid() {
         </Grid>
         <Grid item xs={8}>
           <div class="article-container">
-            <Annotation />
+            <Toggle>
+              {({ on, toggle }) => (
+                <div>
+                  {on && <Annotation on={on} />}
+                  <Button
+                    onClick={toggle}
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                  >
+                    Annotate
+                  </Button>
+                </div>
+              )}
+            </Toggle>
           </div>
         </Grid>
         <Grid item xs={2}>
-          <CheckboxList />
+          <Toggle>
+            {({ on, toggle }) => (
+              <div>
+                {on && <CheckboxList on={on} />}
+                <Button
+                  onClick={toggle}
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                >
+                  Rate
+                </Button>
+              </div>
+            )}
+          </Toggle>
         </Grid>
-        <Grid item xs={8}>
-          <Paper className={classes.paper} />
-        </Grid>
+        <Grid item xs={2} />
+        <Grid item xs={8} />
       </Grid>
     </>
   );
