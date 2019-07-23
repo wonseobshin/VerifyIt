@@ -1,4 +1,4 @@
-class Api::Annotation < ApplicationRecord
+class Annotation < ApplicationRecord
     belongs_to :user
     belongs_to :article
 

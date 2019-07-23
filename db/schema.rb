@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2019_07_20_021604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "api_annotations", force: :cascade do |t|
+  create_table "annotations", force: :cascade do |t|
     t.string "category"
     t.string "content"
     t.integer "points"
@@ -25,16 +25,16 @@ ActiveRecord::Schema.define(version: 2019_07_20_021604) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "api_articles", force: :cascade do |t|
+  create_table "articles", force: :cascade do |t|
     t.string "url"
     t.string "title"
     t.string "content"
-    t.integer "article_points"
+    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "api_comments", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.string "content"
     t.integer "user_id"
     t.integer "article_id"
@@ -42,14 +42,14 @@ ActiveRecord::Schema.define(version: 2019_07_20_021604) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "api_tags", force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.string "tag"
     t.integer "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "api_users", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "username"
     t.string "password"
