@@ -10,7 +10,7 @@ body {
 }
 
 a {
-  text-decoration:none;
+  text-decoration: none;
 }
 
 /* ==== Nav ==== */
@@ -37,7 +37,6 @@ a {
 .main-logo {
   padding-left: 15px;
 }
-
 
 a {
   text-decoration: none;
@@ -84,11 +83,15 @@ a {
 /* ==== Article Page ====*/
 
 .article-container {
-  background: lightgrey;
+  background: #e8e8e8;
   height: 600px;
   border: solid black 2px;
   border-radius: 10px;
-  text-align: center;
+  padding: 30px;
+}
+
+.article-container h2 p {
+  font-family: "Times New Roman", Times, serif;
 }
 
 .rating-container {

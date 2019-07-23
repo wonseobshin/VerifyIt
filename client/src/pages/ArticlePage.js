@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CheckboxList from "../components/RatingQuestions";
@@ -24,16 +24,17 @@ export default function CenteredGrid({ match }) {
 
   const id = match.params.id;
   const [message, setMessage] = useState({
-    title: ""
-  })
-  
+    title: "",
+    content: ""
+  });
+
   useEffect(() => {
-    Axios.get(`/api/articles/${match.params.id}`)
-      .then(res => {
-        const title = res.data.title
-        setMessage({ title });
-      })
-  },[])
+    Axios.get(`/api/articles/${match.params.id}`).then(res => {
+      const title = res.data.title;
+      const content = res.data.content;
+      setMessage({ title, content });
+    });
+  }, []);
 
   console.log("MESSAGE TITLE:", message.title);
 
@@ -56,9 +57,8 @@ export default function CenteredGrid({ match }) {
         </Grid>
         <Grid item xs={8}>
           <div className="article-container">
-
-            <h1>Message: {message.title}</h1>
-
+            <h2>{message.title}</h2>
+            <p>{message.content}</p>
             <Toggle>
               {({ on, toggle }) => (
                 <div>
