@@ -34,14 +34,11 @@ a {
   height: 65.2px;
 }
 
-.main-logo {
+.nav-bar .main-logo {
   padding-left: 15px;
 }
 
-a {
-  text-decoration: none;
-}
-.logo-container h1 {
+.nav-bar .logo-container h1 {
   color: white;
   margin: 0;
 }
@@ -51,7 +48,7 @@ a {
   height: 70%;
 }
 
-.MuiPaper-root {
+.nav-bar .MuiPaper-root {
   padding-left: 10px;
 }
 

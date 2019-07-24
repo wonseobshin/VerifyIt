@@ -36,7 +36,7 @@ export default function CenteredGrid({ match }) {
     });
   }, []);
 
-  console.log("MESSAGE TITLE:", message.title);
+  // console.log("MESSAGE TITLE:", message.title);
 
   return (
     <>
