@@ -9,11 +9,12 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    article = Api::Article.new(article_params)
+    article = Api::Article.create(article_params)
   end
 
   def show
     article = Api::Article.find params[:id]
+    article.getFakebox
     puts 'showing one article!'
     render :json => {
       title: article.title,
