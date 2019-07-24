@@ -39,7 +39,7 @@ export default function CheckboxList({ match }) {
   const handleSubmit = e => {
     e.preventDefault();
     const rating = checked.length / 7;
-    Axios.put("/api/articles/1", rating)
+    Axios.put("/api/articles/1", { rating: rating })
       .then(response => {
         console.log("sent:", response.data);
       })

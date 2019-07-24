@@ -14,6 +14,7 @@ class Api::ArticlesController < ApplicationController
 
   def show
     article = Api::Article.find params[:id]
+    article.getFakebox
     puts 'showing one article!'
     render :json => {
       title: article.title,
@@ -23,8 +24,11 @@ class Api::ArticlesController < ApplicationController
     }
   end
 
+def getRating
+  
   def update
-    puts params[rating]
+    puts params[:rating] 
+    rating.getRating
 
   end
 
