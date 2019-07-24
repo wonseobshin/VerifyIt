@@ -14,7 +14,7 @@ export default rp(url)
           title: $('h1', html).text(),
           author: $('p.Attribution_content', html).text(),
           content: $('p', html).text(),
-        };
+        };cd
       })
       .catch(function (err) {
         //handle error
