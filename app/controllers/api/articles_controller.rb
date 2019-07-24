@@ -1,7 +1,6 @@
 class Api::ArticlesController < ApplicationController
   def index
-    puts 'ON RAILS!'
-    articles = Api::Articles.all
+    articles = Articles.all
     render :json => {
       message: 'hello rails!',
       articles: articles
@@ -9,18 +8,20 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    article = Api::Article.new(article_params)
+    article = Article.new(article_params)
   end
 
   def show
-    article = Api::Article.find params[:id]
+
     article.getFakebox
+
+    article = Article.find params[:id]
     puts 'showing one article!'
     render :json => {
       title: article.title,
       url: article.url,
       content: article.content,
-      points: article.article_points
+      rating: article.rating
     }
   end
 
@@ -41,7 +42,7 @@ def getRating
       :url,
       :title,
       :content,
-      :article_points
+      :rating
     )
   end
 
