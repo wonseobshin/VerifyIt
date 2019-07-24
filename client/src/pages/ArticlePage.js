@@ -7,6 +7,7 @@ import CreateNewAnnotation from "../components/CreateNewAnnotation";
 import Annotation from "../components/Annotation";
 import Toggle from "../components/Toggle";
 import Axios from "axios";
+import Word from "../components/Word"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,20 +25,26 @@ export default function CenteredGrid({ match }) {
 
   const [message, setMessage] = useState({
     title: "",
-    content: "",
+
     points: ""
+
+    content: [],
+    highlight: ""
+
   });
 
   useEffect(() => {
     Axios.get(`/api/articles/${match.params.id}`).then(res => {
       const title = res.data.title;
       const content = res.data.content;
+      const highlight = ""
       const points = res.data.points;
-      setMessage({ title, content, points });
+      setMessage({ title, content, highlight, points });
     });
   }, []);
 
   function GetSelectedText() {
+
     const selection = {
       start: 0,
       end: 0,
@@ -55,6 +62,28 @@ export default function CenteredGrid({ match }) {
     if (sel) return selection;
   }
 
+
+    selection.start = sel.anchorOffset;
+    selection.end = sel.focusOffset;
+    selection.text = sel.toString();
+    
+    console.log(selection);
+
+    setHighlight(sel);
+
+    if (sel) return selection;
+  }
+
+  function setHighlight(sel) {
+    // sel.anchorNode.parentNode.classList.add('blue')
+    // sel.focusNode.parentNode.classList.add('blue')
+
+    for(let word in message.content){
+      if (word.id > sel.anchorNode.parentNode.id){
+        word.classList.add('blue')
+      }
+    }
+  }
   return (
     <>
       <Grid container spacing={3}>
@@ -75,8 +104,12 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={8}>
           <div className="article-container">
             <h2>{message.title}</h2>
-            <p>{message.content}</p>
-            <button onClick={GetSelectedText}>Get selected text!</button>
+
+            {console.log(typeof message.content)}
+            {message.content.map((word, pos) => {
+              return <Word key={pos} word={word} highlight={message.highlight}/>
+            })}
+            <button onClick={getSelectedText}>DO THE THING</button>
 
             <Toggle>
               {({ on, toggle }) => (
