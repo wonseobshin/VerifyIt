@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_20_021604) do
+ActiveRecord::Schema.define(version: 2019_07_24_221343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "annotations", force: :cascade do |t|
     t.string "category"
-    t.string "content"
-    t.integer "points"
     t.integer "user_id"
-    t.integer "article_id"
+    t.integer "articles_id"
+    t.string "content"
+    t.integer "point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,14 +37,14 @@ ActiveRecord::Schema.define(version: 2019_07_20_021604) do
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.integer "user_id"
-    t.integer "article_id"
+    t.integer "articles_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "tag"
-    t.integer "article_id"
+    t.integer "articles_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_07_20_021604) do
     t.string "email"
     t.string "username"
     t.string "password"
-    t.integer "user_points"
+    t.integer "user_point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

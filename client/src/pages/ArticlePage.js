@@ -93,7 +93,7 @@ export default function CenteredGrid({ match }) {
             <h2>{message.title}</h2>
             {console.log(typeof message.content)}
             {message.content.map((word, pos) => {
-              return <Word pos={pos} word={word} highlight={message.highlight}/>
+              return <Word key={pos} word={word} highlight={message.highlight}/>
             })}
             <button onClick={getSelectedText}>DO THE THING</button>
             <Toggle>
