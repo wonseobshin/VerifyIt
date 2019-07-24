@@ -25,18 +25,36 @@ export default function CenteredGrid({ match }) {
   const id = match.params.id;
   const [message, setMessage] = useState({
     title: "",
-    content: ""
+    content: "",
+    points: ""
   });
 
   useEffect(() => {
     Axios.get(`/api/articles/${match.params.id}`).then(res => {
       const title = res.data.title;
       const content = res.data.content;
-      setMessage({ title, content });
+      const points = res.data.points;
+      setMessage({ title, content, points });
     });
   }, []);
 
-  console.log("MESSAGE TITLE:", message.title);
+  function GetSelectedText() {
+    const selection = {
+      start: 0,
+      end: 0,
+      text: ""
+    };
+
+    const sel = document.getSelection();
+    selection.start = sel.anchorOffset;
+    selection.end = sel.focusOffset;
+    selection.text = sel.toString();
+
+    console.log(sel);
+    console.log(selection);
+
+    if (sel) return selection;
+  }
 
   return (
     <>
@@ -44,7 +62,7 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={10} />
 
         <Grid item xs={2}>
-          <p className="rating-container">85</p>
+          <p className="rating-container" />
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">
@@ -59,6 +77,8 @@ export default function CenteredGrid({ match }) {
           <div className="article-container">
             <h2>{message.title}</h2>
             <p>{message.content}</p>
+            <button onClick={GetSelectedText}>Get selected text!</button>
+
             <Toggle>
               {({ on, toggle }) => (
                 <div>

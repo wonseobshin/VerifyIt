@@ -23,6 +23,9 @@ class Api::ArticlesController < ApplicationController
     }
   end
 
+  def update
+  end
+
   private
 
   def article_params

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -8,6 +8,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,10 +19,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CheckboxList() {
+export default function CheckboxList({ match }) {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
-  console.log(checked);
 
   const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
@@ -35,51 +36,66 @@ export default function CheckboxList() {
     setChecked(newChecked);
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    const rating = checked.length / 7;
+    Axios.put("/api/articles/1", rating)
+      .then(response => {
+        console.log("sent:", response.data);
+      })
+      .catch(err => console.log("Error", err));
+  };
+
   return (
     <>
       <Paper className="rating-questions-container">
-        <h2>Do you feel:</h2>
-        <List className={classes.root}>
-          {[
-            "This is fake news?",
-            "The source is reliable?",
-            "The author is credible?",
-            "The article is bias?",
-            "There are supporting sources?",
-            "The are citations?"
-          ].map(value => {
-            const labelId = `checkbox-list-label-${value}`;
+        <h4>Check if you agree with the following statements</h4>
+        <form onSubmit={handleSubmit}>
+          <FormControl>
+            <List className={classes.root}>
+              {[
+                "This article IS fake news?",
+                "The source NOT is reliable?",
+                "The author is NOT credible?",
+                "The article IS bias?",
+                "The article does NOT have supporting sources?",
+                "The article does NOT have citations?"
+              ].map(value => {
+                const labelId = `checkbox-list-label-${value}`;
 
-            return (
-              <ListItem
-                key={value}
-                role={undefined}
-                dense
-                button
-                onClick={handleToggle(value)}
-              >
-                <ListItemText id={labelId} primary={`${value}`} />
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    checked={checked.indexOf(value) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ "aria-labelledby": labelId }}
-                  />
-                </ListItemIcon>
-              </ListItem>
-            );
-          })}
-        </List>
-        <Button
-          id="rating-button"
-          variant="contained"
-          color="primary"
-          className={classes.button}
-        >
-          Submit
-        </Button>
+                return (
+                  <ListItem
+                    key={value}
+                    role={undefined}
+                    dense
+                    button
+                    onClick={handleToggle(value)}
+                  >
+                    <ListItemText id={labelId} primary={`${value}`} />
+                    <ListItemIcon>
+                      <Checkbox
+                        edge="start"
+                        checked={checked.indexOf(value) !== -1}
+                        tabIndex={-1}
+                        disableRipple
+                        inputProps={{ "aria-labelledby": labelId }}
+                      />
+                    </ListItemIcon>
+                  </ListItem>
+                );
+              })}
+            </List>
+            <Button
+              id="rating-button"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              type="submit"
+            >
+              Submit
+            </Button>
+          </FormControl>
+        </form>
       </Paper>
     </>
   );
