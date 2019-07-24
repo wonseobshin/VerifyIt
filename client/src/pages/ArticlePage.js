@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 export default function CenteredGrid({ match }) {
   const classes = useStyles();
 
-  const id = match.params.id;
   const [message, setMessage] = useState({
     title: "",
     content: "",
@@ -62,7 +61,7 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={10} />
 
         <Grid item xs={2}>
-          <p className="rating-container" />
+          <h1 className="rating-container">{message.points}</h1>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">

@@ -24,7 +24,11 @@ class Api::ArticlesController < ApplicationController
   end
 
   def update
+    puts params[rating]
+
   end
+
+
 
   private
 
@@ -36,4 +40,6 @@ class Api::ArticlesController < ApplicationController
       :article_points
     )
   end
+
+
 end
