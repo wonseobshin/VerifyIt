@@ -9,6 +9,10 @@ body {
   font-family: "Noto Serif", serif;
 }
 
+.blue {
+  background-color: lightblue;
+}
+
 a {
   text-decoration: none;
 }
