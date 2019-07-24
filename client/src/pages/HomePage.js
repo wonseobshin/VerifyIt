@@ -43,7 +43,6 @@ export default function HomePage() {
                 shrink: true
               }}
             />
-            <button className="submit-button" type="submit">Submit</button>
           </form>
         </Grid>
         <Grid item xs={3} />
