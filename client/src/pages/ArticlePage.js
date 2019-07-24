@@ -62,8 +62,14 @@ export default function CenteredGrid({ match }) {
   }
 
   function setHighlight(sel) {
-    sel.anchorNode.parentNode.classList.add('blue')
-    sel.focusNode.parentNode.classList.add('blue')
+    // sel.anchorNode.parentNode.classList.add('blue')
+    // sel.focusNode.parentNode.classList.add('blue')
+
+    for(let word in message.content){
+      if (word.id > sel.anchorNode.parentNode.id){
+        word.classList.add('blue')
+      }
+    }
   }
   return (
     <>

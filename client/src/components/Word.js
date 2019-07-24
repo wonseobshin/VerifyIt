@@ -5,7 +5,7 @@ class Word extends React.Component {
         console.log("HIGHLIGHT", this.props)
     }
     render() {
-      return <span id={"e"+this.props.pos} className={this.props.highlight}>{this.props.word} </span>;
+      return <span id={this.props.pos} className={this.props.highlight}>{this.props.word} </span>;
     }
 }
 
