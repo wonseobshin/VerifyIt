@@ -20,3 +20,9 @@ article2 = Article.create({
   rating: 85,
 })
 
+article3 = Api::Article.create({
+  url: 'https://www.reuters.com/article/us-southkorea-japan-laborers/south-korea-asks-japan-to-cancel-plan-to-remove-the-country-from-white-list-idUSKCN1UJ04F?il=0',
+  title: 'South Korea asks Japan to cancel plan to remove the country from white list',
+  content: 'SEOUL (Reuters) - South Korea said on Wednesday a Japanese plan to remove South Korea from a Japanese list of countries that face minimum trade restrictions would impose tougher conditions without legitimate grounds and consultation. Japan’s plan to remove South Korea from the so-called white list was a very grave matter that undermined the economic and security partnership between the two countries, South Korea’s industry ministry said in a statement. It asked Japan to scrap its plan. Japan threatened last week to drop South Korea from the white list of countries that face minimum trade restrictions under a trade control law. That would require Japanese exporters to seek a license for items that could be used in some weapons-related applications. On Japan’s white list are 27 countries, from Germany to South Korea, Britain and the United States.',
+  article_points: 98,
+})

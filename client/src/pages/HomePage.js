@@ -31,7 +31,7 @@ export default function HomePage() {
         <Grid item xs={3} />
         <Grid item xs={3} />
         <Grid item xs={6}>
-          <form className="URL-form">
+          <form className="URL-form" action="/article/:id">
             <TextField
               id="filled-full-width"
               style={{ margin: 8 }}
