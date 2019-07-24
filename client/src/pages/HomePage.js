@@ -13,7 +13,19 @@ const useStyles = makeStyles(theme => ({
 
 const handleSubmit = (event) => {
   event.preventDefault();
+  //decide which scraper to call (optional)
+  
+
+  //call the scraper
+
+  // send scraper data to 
+  //post localhost:3001/articles
+
+  //will return an article object
+
+  //redirect to articles/article.id
 }
+
 
 export default function HomePage() {
   const classes = useStyles();
@@ -35,7 +47,7 @@ export default function HomePage() {
         <Grid item xs={3} />
         <Grid item xs={3} />
         <Grid item xs={6}>
-          <form className="URL-form" action="/article/:id" onSubmit={this.handleSubmit}>
+          <form className="URL-form" onSubmit={this.handleSubmit}>
             <TextField
               id="filled-full-width"
               style={{ margin: 8 }}
