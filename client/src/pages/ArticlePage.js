@@ -7,6 +7,7 @@ import CreateNewAnnotation from "../components/CreateNewAnnotation";
 import Annotation from "../components/Annotation";
 import Toggle from "../components/Toggle";
 import Axios from "axios";
+import Word from "../components/Word"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,19 +26,45 @@ export default function CenteredGrid({ match }) {
   const id = match.params.id;
   const [message, setMessage] = useState({
     title: "",
-    content: ""
+    content: [],
+    highlight: ""
   });
 
   useEffect(() => {
     Axios.get(`/api/articles/${match.params.id}`).then(res => {
       const title = res.data.title;
-      const content = res.data.content;
-      setMessage({ title, content });
+      const content = res.data.content.split(" ");
+      const highlight = ""
+      setMessage({ title, content, highlight });
     });
   }, []);
 
   // console.log("MESSAGE TITLE:", message.title);
+  function getSelectedText() {
+    const selection = {
+      start: 0,
+      end: 0,
+      text: ""
+    };
+    
+    const sel = document.getSelection();
+    console.log(sel);
 
+    selection.start = sel.anchorOffset;
+    selection.end = sel.focusOffset;
+    selection.text = sel.toString();
+    
+    console.log(selection);
+
+    setHighlight(sel);
+
+    if (sel) return selection;
+  }
+
+  function setHighlight(sel) {
+    sel.anchorNode.parentNode.classList.add('blue')
+    sel.focusNode.parentNode.classList.add('blue')
+  }
   return (
     <>
       <Grid container spacing={3}>
@@ -58,7 +85,11 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={8}>
           <div className="article-container">
             <h2>{message.title}</h2>
-            <p>{message.content}</p>
+            {console.log(typeof message.content)}
+            {message.content.map((word, pos) => {
+              return <Word pos={pos} word={word} highlight={message.highlight}/>
+            })}
+            <button onClick={getSelectedText}>DO THE THING</button>
             <Toggle>
               {({ on, toggle }) => (
                 <div>

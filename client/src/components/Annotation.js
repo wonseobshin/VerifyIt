@@ -47,14 +47,6 @@ export default function SimpleSelect() {
     }));
   }
 
-  useEffect(() => {
-    $( document ).ready(function() {
-      jQuery(function ($) {
-        $('#annotation-container').annotator();
-      });
-    });
-    
-  },[])
 
   return (
     <>
