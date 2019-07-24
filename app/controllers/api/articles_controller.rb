@@ -23,8 +23,8 @@ class Api::ArticlesController < ApplicationController
     }
   end
 
-def getRating
-end
+  def getRating
+  end
   
   def update
     puts params[:rating] 

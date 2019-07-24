@@ -3,7 +3,7 @@ require 'net/http'
 require 'uri'
 require 'httparty'
 
-class Api::Article < ApplicationRecord
+class Article < ApplicationRecord
   has_many :annotations
   has_and_belongs_to_many :tags
 
