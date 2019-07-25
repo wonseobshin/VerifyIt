@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     get '/data', to: 'tests#index'
     
     resources :users
-    resources :articles
+    resources :articles do 
+      resources :annotations
+    end
     resources :tags
-    resources :annotations
     resources :comments
 
   end

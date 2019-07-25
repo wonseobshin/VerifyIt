@@ -31,7 +31,7 @@ export default function CenteredGrid({ match }) {
   });
 
   useEffect(() => {
-    Axios.get(`/api/articles/${match.params.id}`).then(res => {
+    Axios.get(`/api/articles/${id}`).then(res => {
       const title = res.data.title;
       const content = res.data.content.split(" ");
       const highlight = "";
@@ -58,15 +58,28 @@ export default function CenteredGrid({ match }) {
     if (sel) return selection;
   }
 
-  // function setHighlight(sel) {
-  //   // sel.anchorNode.parentNode.classList.add('blue')
-  //   // sel.focusNode.parentNode.classList.add('blue')
+  function setHighlight(sel) {
+    // sel.anchorNode.parentNode.classList.add('blue')
+    // sel.focusNode.parentNode.classList.add('blue')
+    let anchorId = parseInt(sel.anchorNode.parentNode.id);
+    let focusId = parseInt(sel.focusNode.parentNode.id);
 
-  //   for (let word in message.content) {
-  //     if (word.id > sel.anchorNode.parentNode.id) {
-  //       word.classList.add("blue");
-  //     }
-  //   }
+    if (focusId < anchorId) {
+      let tempId = focusId;
+      focusId = anchorId;
+      anchorId = tempId;
+    }
+
+    const range = focusId - anchorId;
+
+    for (let i = 0; i <= range; i++) {
+      document.getElementById(anchorId + i).classList.add("blue");
+    }
+  }
+
+  // function handleOnClick(toggle){
+  //   getSelectedText()
+  //   toggle()
   // }
 
   return (
@@ -93,7 +106,12 @@ export default function CenteredGrid({ match }) {
             {/* {console.log(typeof message.content)} */}
             {message.content.map((word, pos) => {
               return (
-                <Word key={pos} word={word} highlight={message.highlight} />
+                <Word
+                  key={pos}
+                  pos={pos}
+                  word={word}
+                  highlight={message.highlight}
+                />
               );
             })}
             <button onClick={getSelectedText}>DO THE THING</button>
