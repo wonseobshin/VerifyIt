@@ -13,26 +13,18 @@ class Api::ArticlesController < ApplicationController
 
   def show
     article = Article.find params[:id]
+    rating = Rating.average(:rating).round(1)
     article.getFakebox
     puts 'showing one article!'
     render :json => {
       title: article.title,
       url: article.url,
       content: article.content,
-      rating: article.rating
+      rating: rating
     }
   end
 
-  def getRating
-  end
-  
-  def update
-    @article = Article.find(params[:id])
-    @article.update(article_params)
-    render :json => {
-      rating: @article.rating
-    }
-  end
+
 
   private
 
