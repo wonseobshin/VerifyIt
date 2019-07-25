@@ -54,7 +54,8 @@ export default function CenteredGrid({ match }) {
 
     // console.log(sel);
     // console.log(selection);
-
+    setHighlight(sel);
+    
     if (sel) return selection;
   }
 
