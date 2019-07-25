@@ -64,11 +64,19 @@ export default function CenteredGrid({ match }) {
   function setHighlight(sel) {
     // sel.anchorNode.parentNode.classList.add('blue')
     // sel.focusNode.parentNode.classList.add('blue')
+    let anchorId = parseInt(sel.anchorNode.parentNode.id)
+    let focusId = parseInt(sel.focusNode.parentNode.id)
 
-    for(let word in message.content){
-      if (word.id > sel.anchorNode.parentNode.id){
-        word.classList.add('blue')
-      }
+    if(focusId < anchorId){
+      let tempId = focusId;
+      focusId = anchorId;
+      anchorId = tempId;
+    }
+    const range =  focusId - anchorId
+
+    for(let i = 0; i < range; i++){
+      console.log(anchorId + i)
+      document.getElementById(anchorId + i).classList.add('blue')
     }
   }
   return (
@@ -93,7 +101,7 @@ export default function CenteredGrid({ match }) {
             <h2>{message.title}</h2>
             {console.log(typeof message.content)}
             {message.content.map((word, pos) => {
-              return <Word key={pos} word={word} highlight={message.highlight}/>
+              return <Word key={pos} pos={pos} word={word} highlight={message.highlight}/>
             })}
             <button onClick={getSelectedText}>DO THE THING</button>
             <Toggle>
