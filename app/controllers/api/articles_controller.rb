@@ -8,7 +8,7 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    article = Article.new(article_params)
+    @article = Article.new(article_params)
   end
 
   def show
@@ -27,12 +27,12 @@ class Api::ArticlesController < ApplicationController
   end
   
   def update
-    puts params[:rating] 
-    rating.getRating
-
+    @article = Article.find(params[:id])
+    @article.update(article_params)
+    render :json => {
+      rating: @article.rating
+    }
   end
-
-
 
   private
 

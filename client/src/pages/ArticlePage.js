@@ -7,7 +7,7 @@ import CreateNewAnnotation from "../components/CreateNewAnnotation";
 import Annotation from "../components/Annotation";
 import Toggle from "../components/Toggle";
 import Axios from "axios";
-import Word from "../components/Word"
+import Word from "../components/Word";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,26 +25,22 @@ export default function CenteredGrid({ match }) {
 
   const [message, setMessage] = useState({
     title: "",
-
-    points: ""
-
+    rating: "",
     content: [],
     highlight: ""
-
   });
 
   useEffect(() => {
     Axios.get(`/api/articles/${match.params.id}`).then(res => {
       const title = res.data.title;
-      const content = res.data.content;
-      const highlight = ""
-      const points = res.data.points;
-      setMessage({ title, content, highlight, points });
+      const content = res.data.content.split(" ");
+      const highlight = "";
+      const rating = res.data.rating;
+      setMessage({ title, content, highlight, rating });
     });
   }, []);
 
-  function GetSelectedText() {
-
+  function getSelectedText() {
     const selection = {
       start: 0,
       end: 0,
@@ -56,41 +52,30 @@ export default function CenteredGrid({ match }) {
     selection.end = sel.focusOffset;
     selection.text = sel.toString();
 
-    console.log(sel);
-    console.log(selection);
+    // console.log(sel);
+    // console.log(selection);
 
     if (sel) return selection;
   }
 
+  // function setHighlight(sel) {
+  //   // sel.anchorNode.parentNode.classList.add('blue')
+  //   // sel.focusNode.parentNode.classList.add('blue')
 
-    selection.start = sel.anchorOffset;
-    selection.end = sel.focusOffset;
-    selection.text = sel.toString();
-    
-    console.log(selection);
+  //   for (let word in message.content) {
+  //     if (word.id > sel.anchorNode.parentNode.id) {
+  //       word.classList.add("blue");
+  //     }
+  //   }
+  // }
 
-    setHighlight(sel);
-
-    if (sel) return selection;
-  }
-
-  function setHighlight(sel) {
-    // sel.anchorNode.parentNode.classList.add('blue')
-    // sel.focusNode.parentNode.classList.add('blue')
-
-    for(let word in message.content){
-      if (word.id > sel.anchorNode.parentNode.id){
-        word.classList.add('blue')
-      }
-    }
-  }
   return (
     <>
       <Grid container spacing={3}>
         <Grid item xs={10} />
 
         <Grid item xs={2}>
-          <h1 className="rating-container">{message.points}</h1>
+          <h1 className="rating-container">{message.rating}</h1>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">
@@ -105,9 +90,11 @@ export default function CenteredGrid({ match }) {
           <div className="article-container">
             <h2>{message.title}</h2>
 
-            {console.log(typeof message.content)}
+            {/* {console.log(typeof message.content)} */}
             {message.content.map((word, pos) => {
-              return <Word key={pos} word={word} highlight={message.highlight}/>
+              return (
+                <Word key={pos} word={word} highlight={message.highlight} />
+              );
             })}
             <button onClick={getSelectedText}>DO THE THING</button>
 
@@ -167,5 +154,3 @@ export default function CenteredGrid({ match }) {
     </>
   );
 }
-
-// export default ArticlePage;
