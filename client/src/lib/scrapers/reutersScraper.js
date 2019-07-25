@@ -3,6 +3,7 @@ const $ = require('cheerio');
 const url = 'https://www.reuters.com/article/us-southkorea-japan-laborers/south-korea-asks-japan-to-cancel-plan-to-remove-the-country-from-white-list-idUSKCN1UJ04F?il=0';
 
 export default reutersScraper(url)
+
   .then(function (html) {
     const title = [];
     const content = [];
