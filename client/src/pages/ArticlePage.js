@@ -31,7 +31,7 @@ export default function CenteredGrid({ match }) {
   });
 
   useEffect(() => {
-    Axios.get(`/api/articles/${id}`).then(res => {
+    Axios.get(`/api/articles/${match.params.id}`).then(res => {
       const title = res.data.title;
       const content = res.data.content.split(" ");
       const highlight = "";
