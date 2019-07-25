@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import ImgMediaCard from "../components/articleCard";
-import reutersScraper from "../lib/scrapers/reutersScraper";
+// import reutersScraper from "../lib/scrapers/reutersScraper";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,10 +12,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const handleSubmit = (event) => {
-  event.preventDefault();
-  reutersScraper(event) 
-}
+// const handleSubmit = (event) => {
+//   event.preventDefault();
+//   reutersScraper(event) 
+// }
   // decide which scraper to call (optional)
   // call the scraper
   // send scraper data to 
