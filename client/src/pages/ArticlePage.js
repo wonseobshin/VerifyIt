@@ -74,7 +74,7 @@ export default function CenteredGrid({ match }) {
     }
     const range =  focusId - anchorId
 
-    for(let i = 0; i < range; i++){
+    for(let i = 0; i <= range; i++){
       console.log(anchorId + i)
       document.getElementById(anchorId + i).classList.add('blue')
     }
