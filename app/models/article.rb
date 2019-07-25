@@ -7,10 +7,10 @@ class Article < ApplicationRecord
   has_many :annotations
   has_and_belongs_to_many :tags
 
+  after_create :getFakebox
+  puts "HEY THERE!"
+
   def getFakebox
-
-    uri = URI.parse("http://192.168.88.61:8080/fakebox/check")
-
     response = HTTParty.post("http://192.168.88.61:8080/fakebox/check", body: { 
       "title": title, 
       "content": content,
@@ -19,3 +19,4 @@ class Article < ApplicationRecord
     puts response
   end
 end
+

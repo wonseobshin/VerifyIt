@@ -13,6 +13,7 @@ class Api::ArticlesController < ApplicationController
 
   def show
     article = Article.find params[:id]
+    article.getFakebox
     puts 'showing one article!'
     render :json => {
       title: article.title,
