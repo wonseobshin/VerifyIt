@@ -31,7 +31,7 @@ export default function CenteredGrid({ match }) {
   });
 
   useEffect(() => {
-    Axios.get(`/api/articles/${match.params.id}`).then(res => {
+    Axios.get(`/api/articles/${id}`).then(res => {
       const title = res.data.title;
       const content = res.data.content.split(" ");
       const highlight = ""
@@ -72,13 +72,18 @@ export default function CenteredGrid({ match }) {
       focusId = anchorId;
       anchorId = tempId;
     }
+
     const range =  focusId - anchorId
 
     for(let i = 0; i <= range; i++){
-      console.log(anchorId + i)
       document.getElementById(anchorId + i).classList.add('blue')
     }
   }
+  
+  // function handleOnClick(toggle){
+  //   getSelectedText()
+  //   toggle()
+  // }
   return (
     <>
       <Grid container spacing={3}>
