@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import ImgMediaCard from "../components/articleCard";
-import reutersScraper from "../lib/scrapers/reutersScraper";
+import rp from "../lib/scrapers/reutersScraper";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,10 +14,10 @@ const useStyles = makeStyles(theme => ({
 
 const handleSubmit = e => {
   e.preventDefault();
-  reutersScraper();
+  rp();
 }
   // decide which scraper to call (optional)
-  // call the scraper
+  // call the scraper *
   // send scraper data to 
   // post localhost:3001/articles
   // will return an article object
