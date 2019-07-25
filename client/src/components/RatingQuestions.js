@@ -46,6 +46,7 @@ export default function CheckboxList(props) {
       .then(response => {
         console.log("sent:", response.data.rating);
         props.updateRating(response.data.rating);
+        setChecked([0]);
       })
       .catch(err => console.log("Error", err));
   };
