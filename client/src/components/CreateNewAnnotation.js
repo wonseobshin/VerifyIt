@@ -12,6 +12,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,24 +28,68 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SimpleSelect() {
+export default function createNewAnnotation({ params }) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     age: "",
     name: "hai"
   });
 
-  // const inputLabel = React.useRef(null);
-  // const [labelWidth, setLabelWidth] = React.useState(0);
-  // React.useEffect(() => {
-  //   setLabelWidth(inputLabel.current.offsetWidth);
-  // }, []);
+  function submitAnnotationHandler(){
+    getSelectedText()
+  }
+  
+  function getSelectedText() {
+  
+    const sel = document.getSelection();
+  
+    setHighlight(sel);
+  }
+  
+  function setHighlight(sel) {
+    const annotation = {}
+    annotation.anchorId = parseInt(sel.anchorNode.parentNode.id);
+    annotation.focusId = parseInt(sel.focusNode.parentNode.id);
+  
+    if (annotation.focusId < annotation.anchorId) {
+      let tempId = annotation.focusId;
+      annotation.focusId = annotation.anchorIdr;
+      annotation.anchorId = tempId;
+    }
+  
+    const range = annotation.focusId - annotation.anchorId;
+  
+    for (let i = 0; i <= range; i++) {
+      document.getElementById(annotation.anchorId + i).classList.add("blue");
+      // document.getElementById(annotation.anchorId + i).classList.add(params.id);
+    }
+  
+    sendReq(annotation, sel)
+  }
 
   function handleChange(event) {
     setValues(oldValues => ({
       ...oldValues,
       [event.target.name]: event.target.value
     }));
+  }
+
+  function sendReq(annotation){
+    Axios.post(`/api/articles/${params.id}/annotations`, { annotation })
+      .then(res => {
+        console.log("New annotation response: ",res);
+        console.log(res.data);
+        completeAnnotation(annotation, res)
+      })
+  }
+
+  function completeAnnotation(annotation, res) {
+    const range = annotation.focusId - annotation.anchorId;
+  
+    for (let i = 0; i <= range; i++) {
+      document.getElementById(annotation.anchorId + i).classList.add("pink");
+      document.getElementById(annotation.anchorId + i).classList.add(res.data.id);
+    }
   }
 
   return (
@@ -72,20 +117,20 @@ export default function SimpleSelect() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value="The source is reliable?">
-                The source is reliable?
+              <MenuItem value="The source unreliable">
+                The source unreliable
               </MenuItem>
-              <MenuItem value="The author is credible?">
-                The author is credible?
+              <MenuItem value="The author is not credible">
+                The author is not credible
               </MenuItem>
-              <MenuItem value="The article is bias?">
-                The article is bias?
+              <MenuItem value="The article is biased">
+                The article is biased
               </MenuItem>
-              <MenuItem value="There are supporting sources?">
-                There are supporting sources?
+              <MenuItem value="There are no supporting sources">
+                There are no supporting sources
               </MenuItem>
-              <MenuItem value="There are citations?">
-                There are citations?
+              <MenuItem value="There are no citations">
+                There are no citations
               </MenuItem>
             </Select>
             <FormHelperText>Required</FormHelperText>
@@ -93,7 +138,7 @@ export default function SimpleSelect() {
           <TextField
             id="standard-full-width"
             style={{ margin: 8 }}
-            placeholder="Annotate"
+            placeholder="Why do you think so?"
             multiline
             fullWidth
             margin="normal"
@@ -102,6 +147,7 @@ export default function SimpleSelect() {
             }}
           />
           <Button
+            onClick={submitAnnotationHandler}
             variant="contained"
             color="primary"
             className={classes.button}
