@@ -30,7 +30,6 @@ export default function HomePage() {
       console.log(article);
       Axios.post("/api/articles/", article)
       .then(response => {
-        console.log("New Article:", article)
       })
       .catch(err => console.log("error", err));
     });
