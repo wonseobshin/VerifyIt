@@ -9,10 +9,10 @@ Rails.application.routes.draw do
     resources :articles do 
       resources :annotations
       resources :ratings
+      resources :tags
       
     end
    
-    resources :tags
     resources :comments
 
   end

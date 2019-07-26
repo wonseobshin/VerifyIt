@@ -21,6 +21,7 @@ export default function CardsList() {
         {list.cards.map(article => (
           <Grid item xs={8} sm={4} lg={4} xl={3}>
             <ImgMediaCard
+              key={article.id}
               id={article.id}
               title={article.title}
               rating={article.rating}
