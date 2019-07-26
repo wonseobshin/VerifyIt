@@ -74,7 +74,6 @@ a {
   justify-content: space-evenly;
 }
 
-
 /* ==== URL Input ==== */
 
 .URL-form {
@@ -99,6 +98,7 @@ a {
 .rating-container {
   color: #666;
   text-align: center;
+  padding: 15px;
 }
 
 .instructions-container {

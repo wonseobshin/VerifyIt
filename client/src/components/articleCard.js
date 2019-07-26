@@ -14,7 +14,9 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ImgMediaCard() {
+
+
+export default function ImgMediaCard(props) {
   const classes = useStyles();
 
   return (
@@ -25,14 +27,11 @@ export default function ImgMediaCard() {
           alt="Trump"
           height="140"
           image={require("../images/trump_smile.jpg")}
-          title="Trump"
+          title={props.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Trump Is At It Again
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Trump has never lied.
+            {props.title}
           </Typography>
         </CardContent>
       </CardActionArea>

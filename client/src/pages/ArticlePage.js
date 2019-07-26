@@ -8,6 +8,7 @@ import Annotation from "../components/Annotation";
 import Toggle from "../components/Toggle";
 import Axios from "axios";
 import Word from "../components/Word";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -98,7 +99,9 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={10} />
 
         <Grid item xs={2}>
-          <h1 className="rating-container">{rating.rating}</h1>
+          <Typography className="rating-container" variant="h2" component="h3">
+            {rating.rating}
+          </Typography>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">
