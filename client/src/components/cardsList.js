@@ -12,7 +12,6 @@ export default function CardsList() {
     Axios.get("/api/articles").then(res => {
       // console.log(res.data.articles[0].title);
       const cards = res.data.articles;
-      console.log(cards);
       setList({ cards });
     });
   }, []);
