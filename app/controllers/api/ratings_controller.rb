@@ -7,11 +7,14 @@ class Api::RatingsController < ApplicationController
     @article = Article.find(params[:article_id])
     @rating = @article.ratings.create(ratings_params)
     redirect_to api_article_rating_path(@article,@rating)
+    puts params
   end
 
   def show
     # @rating = Rating.find(params[:id])
-    @rating = Rating.average(:rating).round(1)
+    @article = Article.find(params[:article_id])
+
+    @rating = @article.ratings.average(:rating).round(1)
     render :json => {
       rating: @rating
 

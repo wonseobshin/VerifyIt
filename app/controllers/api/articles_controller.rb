@@ -1,8 +1,7 @@
 class Api::ArticlesController < ApplicationController
   def index
-    articles = Articles.all
+    articles = Article.all
     render :json => {
-      message: 'hello rails!',
       articles: articles
     }
   end

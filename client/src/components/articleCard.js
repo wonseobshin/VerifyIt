@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   card: {
@@ -14,33 +15,35 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ImgMediaCard() {
+export default function ImgMediaCard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Trump"
-          height="140"
-          image={require("../images/trump_smile.jpg")}
-          title="Trump"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Trump Is At It Again
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Trump has never lied.
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Learn Fake Certainty
-        </Button>
-      </CardActions>
-    </Card>
+    <Link to={`/article/${props.id}`}>
+      <Card className={classes.card}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Trump"
+            height="140"
+            image={require("../images/trump_smile.jpg")}
+            title="Trump"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h6" component="h2">
+              {props.title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Fake Certainty Rating {props.rating}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Learn Fake Certainty
+          </Button>
+        </CardActions>
+      </Card>
+    </Link>
   );
 }
