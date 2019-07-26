@@ -1,5 +1,3 @@
-// import Axios from 'axios';
-
 const rp = require('request-promise');
 const $ = require('cheerio');
 
@@ -13,7 +11,8 @@ let options = {
     "Access-Control-Allow-Origin": "*"
   }
 }
-export default rp(options)
+export default (cb) => {
+  rp(options)
     .then(function (html) {
       const title = [];
       const author = [];
@@ -25,7 +24,9 @@ export default rp(options)
           };
         })
     .then(function (article) {
-      console.log(article);
+      cb(article);
     })
     .catch(function (err) {
     });
+  }
+  

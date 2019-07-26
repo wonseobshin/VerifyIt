@@ -9,6 +9,7 @@ class Api::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    redirect_to @article
   end
 
   def show

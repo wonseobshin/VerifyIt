@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import ImgMediaCard from "../components/articleCard";
 import rp from "../lib/scrapers/reutersScraper";
+import Axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,20 +13,28 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const handleSubmit = e => {
-  e.preventDefault();
-  rp();
-}
-  // decide which scraper to call (optional)
-  // call the scraper *
-  // send scraper data to 
-  // post localhost:3001/articles
-  // will return an article object
-  // also save article to db
-  // redirect to articles/article.id
+// decide which scraper to call (optional)
+// call the scraper *
+// send scraper data to *
+
+// post localhost:3001/articles 
+// will return an article object
+// also save article to db
+// redirect to articles/article.id
 
 export default function HomePage() {
   const classes = useStyles();
+  const handleSubmit = e => {
+    e.preventDefault();
+    rp((article) => {
+      console.log(article);
+      Axios.post("/api/articles/", article)
+      .then(response => {
+        console.log("New Article:", article)
+      })
+      .catch(err => console.log("error", err));
+    });
+  }
   return (
     <>
       <Grid container spacing={3}>
@@ -44,7 +53,7 @@ export default function HomePage() {
         <Grid item xs={3} />
         <Grid item xs={3} />
         <Grid item xs={6}>
-          <form className="URL-form">
+          <form className="URL-form" onSubmit={handleSubmit}>
             <TextField
               id="filled-full-width"
               style={{ margin: 8 }}
