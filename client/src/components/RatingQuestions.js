@@ -10,6 +10,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import Axios from "axios";
+import Toggle from "../components/Toggle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CheckboxList({ match }) {
+export default function CheckboxList(props) {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
 
@@ -38,10 +39,14 @@ export default function CheckboxList({ match }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const rating = (checked.length / 7) * 100;
-    Axios.put("/api/articles/1", { rating: rating })
+    const rating = Math.floor((checked.length / 7) * 100);
+    Axios.post(`/api/articles/${props.match.params.id}/ratings`, {
+      rating: rating
+    })
       .then(response => {
-        console.log("sent:", response.data);
+        console.log("sent:", response.data.rating);
+        props.updateRating(response.data.rating);
+        setChecked([0]);
       })
       .catch(err => console.log("Error", err));
   };
@@ -85,6 +90,7 @@ export default function CheckboxList({ match }) {
                 );
               })}
             </List>
+
             <Button
               id="rating-button"
               variant="contained"

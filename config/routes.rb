@@ -8,7 +8,10 @@ Rails.application.routes.draw do
     resources :users
     resources :articles do 
       resources :annotations
+      resources :ratings
+      
     end
+   
     resources :tags
     resources :comments
 
