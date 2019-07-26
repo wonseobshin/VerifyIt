@@ -13,7 +13,7 @@ import randomMC from "random-material-color";
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
-    background: randomMC.getColor()
+    background: randomMC.getColor({ opacity: 0.5 })
   }
 });
 
@@ -26,14 +26,12 @@ export default function ImgMediaCard(props) {
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="h6" component="h2">
-              {props.title}
+              {props.title.substring(0, 25)}...
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Is this fake news? Click to find out...
-          </Button>
+          <Button size="small">Is this fake news? Click to find out...</Button>
         </CardActions>
       </Card>
     </Link>
