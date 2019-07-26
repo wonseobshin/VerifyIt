@@ -27,9 +27,11 @@ const useStyles = makeStyles(theme => ({
 export default function HomePage() {
   const classes = useStyles();
   const [newArticle, changeArticle] = useState(undefined);
+  const [newURL, changeURL] = useState(undefined);
   const handleSubmit = e => {
     e.preventDefault();
-    rp((article) => {
+    console.log(newURL)
+    rp(newURL, (article) => {
       console.log(article);
       Axios.post("/api/articles", article)
       .then(res => {
@@ -41,6 +43,11 @@ export default function HomePage() {
       .catch(err => console.log("error", err));
     });
   }
+
+  const handleChange = e => {
+    changeURL(e.target.value)
+  }
+
   return (
     newArticle ? <Redirect to={"/article/" + newArticle.id}/> :
       <Grid container spacing={3}>
@@ -61,12 +68,14 @@ export default function HomePage() {
         <Grid item xs={6}>
           <form className="URL-form" onSubmit={handleSubmit}>
             <TextField
+              onChange={handleChange}
               id="filled-full-width"
               style={{ margin: 8 }}
               placeholder="Enter URL..."
               fullWidth
               margin="normal"
               variant="outlined"
+              name="urlInput"
               InputLabelProps={{
                 shrink: true
               }}

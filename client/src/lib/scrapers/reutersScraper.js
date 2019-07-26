@@ -4,14 +4,16 @@ const $ = require('cheerio');
 let include_headers = function(body, response) {
   return {'headers': response.headers, 'data': body}
 }
-let options = {
-  method: 'GET',
-  url: 'https://' + 'cors-anywhere.herokuapp.com' + '/www.reuters.com/article/us-southkorea-japan-laborers/south-korea-asks-japan-to-cancel-plan-to-remove-the-country-from-white-list-idUSKCN1UJ04F?il=0',
-  headers: {
-    "Access-Control-Allow-Origin": "*"
+export default (url, cb) => {
+  console.log(url)
+  // url = '/www.reuters.com/article/us-southkorea-japan-laborers/south-korea-asks-japan-to-cancel-plan-to-remove-the-country-from-white-list-idUSKCN1UJ04F?il=0';
+  let options = {
+    method: 'GET',
+    url: 'https://' + 'cors-anywhere.herokuapp.com/' + url,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
   }
-}
-export default (cb) => {
   rp(options)
     .then(function (html) {
       const title = [];
