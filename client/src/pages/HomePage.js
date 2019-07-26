@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+import {Redirect} from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -13,6 +14,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
 // decide which scraper to call (optional)
 // call the scraper *
 // send scraper data to *
@@ -24,18 +26,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function HomePage() {
   const classes = useStyles();
+  const [newArticle, changeArticle] = useState(undefined);
   const handleSubmit = e => {
     e.preventDefault();
     rp((article) => {
       console.log(article);
-      Axios.post("/api/articles/", article)
-      .then(response => {
+      Axios.post("/api/articles", article)
+      .then(res => {
+        console.log('res:', res);
+        // Manually redirecting because redirects for AJAX POST not working
+        // window.location.href = res.request.responseURL;
+        changeArticle({id: res.data.article_id});
       })
       .catch(err => console.log("error", err));
     });
   }
   return (
-    <>
+    newArticle ? <Redirect to={"/article/" + newArticle.id}/> :
       <Grid container spacing={3}>
         <Grid item xs={3} />
         <Grid item xs={6} className="text-container">
@@ -75,6 +82,5 @@ export default function HomePage() {
           <ImgMediaCard />
         </Grid>
       </Grid>
-    </>
   );
 }

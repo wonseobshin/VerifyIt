@@ -8,8 +8,15 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
-    redirect_to @article
+    @article = Article.create(article_params)
+    puts params[:id]
+    if @article.save
+      render :json => {
+        article_id: @article.id
+      }
+    else
+      head(:internal_server_error)
+    end
   end
 
   def show
