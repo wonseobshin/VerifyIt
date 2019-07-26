@@ -9,12 +9,12 @@ class Word extends React.Component {
     }
   }
 
-  showAnnotation() {
-    if(){
-      console.log("ANNOTATOIN OPENNNN")
-      this.setState({annotationOpen: true})
-    }
-  }
+  // showAnnotation() {
+  //   if(){
+  //     console.log("ANNOTATOIN OPENNNN")
+  //     this.setState({annotationOpen: true})
+  //   }
+  // }
 
   componentDidMount() {
     console.log("HIGHLIGHT", this.props)
@@ -22,10 +22,11 @@ class Word extends React.Component {
 
   render() {
     return (
-      <span onClick={this.showAnnotation}>
+      /* <span onClick={this.showAnnotation}> */
         <span id={this.props.pos} className={this.props.highlight}> {this.props.word} </span>
-        {this.state.annotationOpen && <Annotation clickAnnotationHandler={this.props.clickAnnotationHandler} /> }
+      /*  {this.state.annotationOpen && <Annotation clickAnnotationHandler={this.props.clickAnnotationHandler} /> }
       </span>
+    */
     )
   }
 }
