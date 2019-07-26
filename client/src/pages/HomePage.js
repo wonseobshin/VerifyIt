@@ -38,6 +38,7 @@ export default function HomePage() {
         console.log('res:', res);
         // Manually redirecting because redirects for AJAX POST not working
         // window.location.href = res.request.responseURL;
+        
         changeArticle({id: res.data.article_id});
       })
       .catch(err => console.log("error", err));

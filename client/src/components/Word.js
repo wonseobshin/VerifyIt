@@ -17,7 +17,7 @@ class Word extends React.Component {
   // }
 
   componentDidMount() {
-    console.log("HIGHLIGHT", this.props)
+    //console.log("HIGHLIGHT", this.props)
   }
 
   render() {

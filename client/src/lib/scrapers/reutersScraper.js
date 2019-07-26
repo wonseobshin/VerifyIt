@@ -23,6 +23,7 @@ export default (url, cb) => {
             title: $('h1', html).text(),
             author: $('p.Attribution_content', html).text(),
             content: $('p', html).text(),
+            url: url
           };
         })
     .then(function (article) {
