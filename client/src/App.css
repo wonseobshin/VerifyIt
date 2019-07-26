@@ -13,6 +13,10 @@ body {
   background-color: lightblue;
 }
 
+.pink {
+  background-color: pink;
+}
+
 a {
   text-decoration: none;
 }

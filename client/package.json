@@ -9,6 +9,7 @@
     "cheerio": "^1.0.0-rc.3",
     "material-ui-icons": "^1.0.0-beta.36",
     "puppeteer": "^1.19.0",
+    "random-material-color": "^1.0.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",

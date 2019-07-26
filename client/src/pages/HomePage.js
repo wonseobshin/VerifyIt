@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import CardsList from "../components/cardsList";
 import ImgMediaCard from "../components/articleCard";
 // import reutersScraper from "../lib/scrapers/reutersScraper";
 
@@ -14,15 +15,17 @@ const useStyles = makeStyles(theme => ({
 
 // const handleSubmit = (event) => {
 //   event.preventDefault();
-//   reutersScraper(event)
+//   reutersScraper(event) 
 // }
-// decide which scraper to call (optional)
-// call the scraper
-// send scraper data to
-// post localhost:3001/articles
-// will return an article object
-// also save article to db
-// redirect to articles/article.id
+  // decide which scraper to call (optional)
+  // call the scraper
+  // send scraper data to 
+  // post localhost:3001/articles
+  // will return an article object
+  // also save article to db
+  // redirect to articles/article.id
+
+
 
 export default function HomePage() {
   const classes = useStyles();
@@ -61,10 +64,7 @@ export default function HomePage() {
         <Grid item xs={3} />
 
         <Grid item xs={12} className="article-card-container">
-          <ImgMediaCard />
-          <ImgMediaCard />
-          <ImgMediaCard />
-          <ImgMediaCard />
+          <CardsList />
         </Grid>
       </Grid>
     </>

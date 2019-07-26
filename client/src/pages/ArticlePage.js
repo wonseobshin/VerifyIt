@@ -26,9 +26,9 @@ export default function CenteredGrid({ match }) {
 
   const [message, setMessage] = useState({
     title: "",
-    // rating: "",
     content: [],
-    highlight: ""
+    highlight: "",
+    annotationId: ""
   });
 
   const [rating, setRating] = useState({
@@ -41,6 +41,7 @@ export default function CenteredGrid({ match }) {
       const content = res.data.content.split(" ");
       const highlight = "";
       const rating = res.data.rating;
+      console.log(rating);
       setMessage({ title, content, highlight });
       setRating({ rating });
     });
@@ -51,47 +52,7 @@ export default function CenteredGrid({ match }) {
     setRating({ rating });
   }
 
-  function getSelectedText() {
-    const selection = {
-      start: 0,
-      end: 0,
-      text: ""
-    };
-
-    const sel = document.getSelection();
-    selection.start = sel.anchorOffset;
-    selection.end = sel.focusOffset;
-    selection.text = sel.toString();
-
-    // console.log(sel);
-    // console.log(selection);
-
-    if (sel) return selection;
-  }
-
-  function setHighlight(sel) {
-    // sel.anchorNode.parentNode.classList.add('blue')
-    // sel.focusNode.parentNode.classList.add('blue')
-    let anchorId = parseInt(sel.anchorNode.parentNode.id);
-    let focusId = parseInt(sel.focusNode.parentNode.id);
-
-    if (focusId < anchorId) {
-      let tempId = focusId;
-      focusId = anchorId;
-      anchorId = tempId;
-    }
-
-    const range = focusId - anchorId;
-
-    for (let i = 0; i <= range; i++) {
-      document.getElementById(anchorId + i).classList.add("blue");
-    }
-  }
-
-  // function handleOnClick(toggle){
-  //   getSelectedText()
-  //   toggle()
-  // }
+  function clickAnnotationHandler() {}
 
   return (
     <>
@@ -120,6 +81,7 @@ export default function CenteredGrid({ match }) {
             {message.content.map((word, pos) => {
               return (
                 <Word
+                  clickAnnotationHandler={clickAnnotationHandler}
                   key={pos}
                   pos={pos}
                   word={word}
@@ -127,7 +89,6 @@ export default function CenteredGrid({ match }) {
                 />
               );
             })}
-            <button onClick={getSelectedText}>DO THE THING</button>
 
             <Toggle>
               {({ on, toggle }) => (
@@ -140,7 +101,7 @@ export default function CenteredGrid({ match }) {
                   >
                     Create Annotation
                   </Button>
-                  {on && <CreateNewAnnotation on={on} />}
+                  {on && <CreateNewAnnotation {...match} on={on} />}
                 </div>
               )}
             </Toggle>
