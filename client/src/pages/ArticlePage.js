@@ -27,7 +27,8 @@ export default function CenteredGrid({ match }) {
     title: "",
     rating: "",
     content: [],
-    highlight: ""
+    highlight: "",
+    annotationId: ""
   });
 
   useEffect(() => {
@@ -40,6 +41,9 @@ export default function CenteredGrid({ match }) {
     });
   }, []);
 
+  function clickAnnotationHandler() {
+
+  }
 
   return (
     <>
@@ -66,6 +70,7 @@ export default function CenteredGrid({ match }) {
             {message.content.map((word, pos) => {
               return (
                 <Word
+                  clickAnnotationHandler={clickAnnotationHandler}
                   key={pos}
                   pos={pos}
                   word={word}

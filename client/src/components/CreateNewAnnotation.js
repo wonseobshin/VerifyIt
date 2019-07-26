@@ -28,10 +28,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-
-
-
 export default function createNewAnnotation({ params }) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
@@ -65,9 +61,10 @@ export default function createNewAnnotation({ params }) {
   
     for (let i = 0; i <= range; i++) {
       document.getElementById(annotation.anchorId + i).classList.add("blue");
+      // document.getElementById(annotation.anchorId + i).classList.add(params.id);
     }
   
-    sendReq(annotation)
+    sendReq(annotation, sel)
   }
 
   function handleChange(event) {
@@ -79,10 +76,20 @@ export default function createNewAnnotation({ params }) {
 
   function sendReq(annotation){
     Axios.post(`/api/articles/${params.id}/annotations`, { annotation })
-        .then(res => {
-          console.log("New annotation response: ",res);
-          console.log(res.data);
-        })
+      .then(res => {
+        console.log("New annotation response: ",res);
+        console.log(res.data);
+        completeAnnotation(annotation, res)
+      })
+  }
+
+  function completeAnnotation(annotation, res) {
+    const range = annotation.focusId - annotation.anchorId;
+  
+    for (let i = 0; i <= range; i++) {
+      document.getElementById(annotation.anchorId + i).classList.add("pink");
+      document.getElementById(annotation.anchorId + i).classList.add(res.data.id);
+    }
   }
 
   return (
