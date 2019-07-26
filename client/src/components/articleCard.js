@@ -22,13 +22,6 @@ export default function ImgMediaCard(props) {
     <Link to={`/article/${props.id}`}>
       <Card className={classes.card}>
         <CardActionArea>
-          <CardMedia
-            component="img"
-            alt="Trump"
-            height="140"
-            image={require("../images/trump_smile.jpg")}
-            title="Trump"
-          />
           <CardContent>
             <Typography gutterBottom variant="h6" component="h2">
               {props.title}
