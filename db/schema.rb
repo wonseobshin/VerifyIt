@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_020525) do
+ActiveRecord::Schema.define(version: 2019_07_25_232109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,11 +18,13 @@ ActiveRecord::Schema.define(version: 2019_07_25_020525) do
   create_table "annotations", force: :cascade do |t|
     t.string "category"
     t.integer "user_id"
-    t.integer "articles_id"
+    t.integer "article_id"
     t.string "content"
     t.integer "point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "anchorId"
+    t.string "focusId"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -37,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_07_25_020525) do
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.integer "user_id"
-    t.integer "articles_id"
+    t.integer "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_07_25_020525) do
 
   create_table "tags", force: :cascade do |t|
     t.string "tag"
-    t.integer "articles_id"
+    t.integer "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
