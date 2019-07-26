@@ -25,7 +25,6 @@ export default function CenteredGrid({ match }) {
 
   const [message, setMessage] = useState({
     title: "",
-    // rating: "",
     content: [],
     highlight: "",
     annotationId: ""
@@ -41,6 +40,7 @@ export default function CenteredGrid({ match }) {
       const content = res.data.content.split(" ");
       const highlight = "";
       const rating = res.data.rating;
+      console.log(rating);
       setMessage({ title, content, highlight });
       setRating({ rating });
     });
