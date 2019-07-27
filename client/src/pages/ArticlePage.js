@@ -8,7 +8,6 @@ import Annotation from "../components/Annotation";
 import Toggle from "../components/Toggle";
 import Axios from "axios";
 import Word from "../components/Word";
-import Tags from "../components/tags";
 import TagsList from "../components/tagsList";
 
 const useStyles = makeStyles(theme => ({
@@ -146,7 +145,6 @@ export default function CenteredGrid({ match }) {
         </Grid>
         <Grid item xs={2} />
         <Grid item xs={8}>
-          <Tags article_id={match.params.id} />
           <TagsList article_id={match.params.id} />
         </Grid>
       </Grid>

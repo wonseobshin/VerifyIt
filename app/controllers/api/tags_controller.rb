@@ -27,9 +27,10 @@ class Api::TagsController < ApplicationController
     @tag = @article.tags
     render :json => {
       tag: @tag
-
     }
- 
+  end
+
+  def destroy
   end
 
   private

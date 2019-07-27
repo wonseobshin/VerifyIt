@@ -4,6 +4,7 @@ import { WithContext as ReactTags } from "react-tag-input";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Axios from "axios";
+import { List } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,10 +17,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Tags({ article_id }) {
+export default function TagsForm({ article_id, handleResponse }) {
   const classes = useStyles();
   const [tagText, setTagText] = useState("");
-  const [newTag, setNewTag] = useState("");
+  // const [newTag, setNewTag] = useState("");
 
   function handleDelete() {
     alert("You clicked the delete icon.");
@@ -31,8 +32,13 @@ export default function Tags({ article_id }) {
       tag: tagText
     })
       .then(response => {
-        console.log("sent:", response.data.tag.tag);
-        setNewTag(response.data.tag.tag);
+        console.log("sent:", response.data.tag);
+        const tag = response.data.tag;
+        // const tags = response.data.map(obj => {
+        //   return obj.tag;
+        // });
+        // setList({ tags });
+        handleResponse(tag);
       })
       .catch(err => console.log("Error", err));
   };
