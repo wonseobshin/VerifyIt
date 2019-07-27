@@ -41,8 +41,6 @@ class Api::ArticlesController < ApplicationController
     }
   end
 
-
-
   private
 
   def article_params
