@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2019_07_25_232109) do
 
   create_table "articles", force: :cascade do |t|
     t.string "url"
-    t.string "title"
-    t.string "content"
+    t.text "title"
+    t.text "content"
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

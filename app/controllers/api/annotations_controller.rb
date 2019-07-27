@@ -7,7 +7,11 @@ class Api::AnnotationsController < ApplicationController
         render :json => @annotation.to_json
     end
 
-
+    def index
+        @article = Article.find(params[:article_id])
+        render :json => @article.annotations.to_json
+    end
+    
     private
 
     def annotation_params

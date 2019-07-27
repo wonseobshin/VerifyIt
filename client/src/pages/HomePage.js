@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
+import {Redirect} from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import CardsList from "../components/cardsList";
 import ImgMediaCard from "../components/articleCard";
-// import reutersScraper from "../lib/scrapers/reutersScraper";
+import rp from "../lib/scrapers/reutersScraper";
+import Axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,24 +15,33 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// const handleSubmit = (event) => {
-//   event.preventDefault();
-//   reutersScraper(event) 
-// }
-  // decide which scraper to call (optional)
-  // call the scraper
-  // send scraper data to 
-  // post localhost:3001/articles
-  // will return an article object
-  // also save article to db
-  // redirect to articles/article.id
-
-
-
 export default function HomePage() {
   const classes = useStyles();
+  const [newArticle, changeArticle] = useState(undefined);
+  const [newURL, changeURL] = useState(undefined);
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(newURL)
+    rp(newURL, (article) => {
+      console.log(article);
+      Axios.post("/api/articles", article)
+      .then(res => {
+        console.log('res:', res);
+        // Manually redirecting because redirects for AJAX POST not working
+        // window.location.href = res.request.responseURL;
+
+        changeArticle({id: res.data.article_id});
+      })
+      .catch(err => console.log("error", err));
+    });
+  }
+
+  const handleChange = e => {
+    changeURL(e.target.value)
+  }
+
   return (
-    <>
+    newArticle ? <Redirect to={"/article/" + newArticle.id}/> :
       <Grid container spacing={3}>
         <Grid item xs={3} />
         <Grid item xs={6} className="text-container">
@@ -47,14 +58,16 @@ export default function HomePage() {
         <Grid item xs={3} />
         <Grid item xs={3} />
         <Grid item xs={6}>
-          <form className="URL-form">
+          <form className="URL-form" onSubmit={handleSubmit}>
             <TextField
+              onChange={handleChange}
               id="filled-full-width"
               style={{ margin: 8 }}
               placeholder="Enter URL..."
               fullWidth
               margin="normal"
               variant="outlined"
+              name="urlInput"
               InputLabelProps={{
                 shrink: true
               }}
@@ -67,6 +80,5 @@ export default function HomePage() {
           <CardsList />
         </Grid>
       </Grid>
-    </>
   );
 }

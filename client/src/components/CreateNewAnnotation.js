@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function createNewAnnotation({ params }) {
+export default function CreateNewAnnotation({ params }) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     age: "",
@@ -53,7 +53,7 @@ export default function createNewAnnotation({ params }) {
   
     if (annotation.focusId < annotation.anchorId) {
       let tempId = annotation.focusId;
-      annotation.focusId = annotation.anchorIdr;
+      annotation.focusId = annotation.anchorId;
       annotation.anchorId = tempId;
     }
   
@@ -88,7 +88,7 @@ export default function createNewAnnotation({ params }) {
   
     for (let i = 0; i <= range; i++) {
       document.getElementById(annotation.anchorId + i).classList.add("pink");
-      document.getElementById(annotation.anchorId + i).classList.add(res.data.id);
+      document.getElementById(annotation.anchorId + i).setAttribute('annotation_id', res.data.id);
     }
   }
 
