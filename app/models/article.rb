@@ -17,7 +17,9 @@ class Article < ApplicationRecord
     })
     body = JSON.parse(response.body) 
     puts body["title"]["decision"]
+    puts body["title"]["score"]
     puts body["content"]["decision"]
+    puts body["content"]["score"]
     puts body["domain"]["category"]
   end
 end
