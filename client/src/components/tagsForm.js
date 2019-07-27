@@ -28,19 +28,23 @@ export default function TagsForm({ article_id, handleResponse }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    Axios.post(`/api/articles/${article_id}/tags`, {
-      tag: tagText
-    })
-      .then(response => {
-        console.log("sent:", response.data.tag);
-        const tag = response.data.tag;
-        // const tags = response.data.map(obj => {
-        //   return obj.tag;
-        // });
-        // setList({ tags });
-        handleResponse(tag);
+    console.log("e.target.value", tagText)
+    if(tagText !== ''){
+      Axios.post(`/api/articles/${article_id}/tags`, {
+        tag: tagText
       })
-      .catch(err => console.log("Error", err));
+        .then(response => {
+          console.log("sent:", response.data.tag);
+          const tag = response.data.tag;
+          // const tags = response.data.map(obj => {
+          //   return obj.tag;
+          // });
+          // setList({ tags });
+          handleResponse(tag);
+        })
+        .catch(err => console.log("Error", err));
+    }
+    setTagText("")
   };
 
   return (
