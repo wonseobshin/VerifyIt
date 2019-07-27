@@ -25,10 +25,13 @@ export default function CenteredGrid({ match }) {
 
   const [message, setMessage] = useState({
     title: "",
-    rating: "",
     content: [],
     highlight: "",
     annotationId: ""
+  });
+
+  const [rating, setRating] = useState({
+    rating: ""
   });
 
   useEffect(() => {
@@ -37,13 +40,18 @@ export default function CenteredGrid({ match }) {
       const content = res.data.content.split(" ");
       const highlight = "";
       const rating = res.data.rating;
-      setMessage({ title, content, highlight, rating });
+      console.log(rating);
+      setMessage({ title, content, highlight });
+      setRating({ rating });
     });
   }, []);
 
-  function clickAnnotationHandler() {
-
+  function updateRating(newRating) {
+    const rating = newRating;
+    setRating({ rating });
   }
+
+  function clickAnnotationHandler() {}
 
   return (
     <>
@@ -51,7 +59,7 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={10} />
 
         <Grid item xs={2}>
-          <h1 className="rating-container">{message.rating}</h1>
+          <h1 className="rating-container">{rating.rating}</h1>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">
@@ -124,7 +132,13 @@ export default function CenteredGrid({ match }) {
                 >
                   Rate
                 </Button>
-                {on && <CheckboxList on={on} />}
+                {on && (
+                  <CheckboxList
+                    updateRating={updateRating}
+                    match={match}
+                    on={on}
+                  />
+                )}
               </div>
             )}
           </Toggle>

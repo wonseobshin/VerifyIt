@@ -1,8 +1,7 @@
 class Api::ArticlesController < ApplicationController
   def index
-    articles = Articles.all
+    articles = Article.all
     render :json => {
-      message: 'hello rails!',
       articles: articles
     }
   end
@@ -28,26 +27,21 @@ class Api::ArticlesController < ApplicationController
 
   def show
     article = Article.find params[:id]
+    rating = Rating.where(:article_id => params[:id]).average(:rating)
+    # .average(:rating).round(1)
     article.getFakebox
     puts 'showing one article!'
+    puts rating
+
     render :json => {
       title: article.title,
       url: article.url,
       content: article.content,
-      rating: article.rating
+      rating: rating
     }
   end
 
-  def getRating
-  end
-  
-  def update
-    @article = Article.find(params[:id])
-    @article.update(article_params)
-    render :json => {
-      rating: @article.rating
-    }
-  end
+
 
   private
 
@@ -56,7 +50,6 @@ class Api::ArticlesController < ApplicationController
       :url,
       :title,
       :content,
-      :rating
     )
   end
 

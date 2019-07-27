@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import CardsList from "../components/cardsList";
 import ImgMediaCard from "../components/articleCard";
 import rp from "../lib/scrapers/reutersScraper";
 import Axios from "axios";
@@ -76,10 +77,7 @@ export default function HomePage() {
         <Grid item xs={3} />
 
         <Grid item xs={12} className="article-card-container">
-          <ImgMediaCard />
-          <ImgMediaCard />
-          <ImgMediaCard />
-          <ImgMediaCard />
+          <CardsList />
         </Grid>
       </Grid>
   );
