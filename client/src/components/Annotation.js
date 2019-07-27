@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FilledInput from "@material-ui/core/FilledInput";
+import Axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -27,12 +28,29 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SimpleSelect() {
+export default function Annotation(params) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     age: "",
     name: "hai"
   });
+  const [annotation, setAnnotation] = React.useState({
+    loaded: false
+  })
+
+  useEffect(() => {
+    // console.log("article id from annotation component:", params.params.id)
+    Axios.get(`/api/articles/${params.params.id}/annotations`).then(res => {
+      // console.log(res.data[0]);
+      const resAnnotation = res.data[0]
+      setAnnotation({resAnnotation})
+      // console.log("ANNOTATION SET")
+      // setList({ tags });
+      return resAnnotation
+    }).then(resAnnotation => {
+      setAnnotation({ ...resAnnotation, loaded: true})
+    });
+  }, []);
 
   // const inputLabel = React.useRef(null);
   // const [labelWidth, setLabelWidth] = React.useState(0);
@@ -47,21 +65,19 @@ export default function SimpleSelect() {
     }));
   }
 
+  useEffect(() => {
 
+  },[])
   return (
     <>
       <Paper className="annotation-container">
-        <Typography variant="h5" component="h5">
-          Hightlighted Text
+        <Typography variant="h4" component="h4">
+          {annotation.loaded && annotation.category}
+          {/* {console.log("CAT:",annotation)} */}
         </Typography>
         <Typography variant="h6" component="h6">
-          UserName
-        </Typography>
-        <Typography variant="body1" component="p">
-          That other text? Sadly, it’s no longer a 10. You know, it really
-          doesn’t matter what you write as long as you’ve got a young, and
-          beautiful, piece of text. My text is long and beautiful, as, it has
-          been well documented, are various other parts of my website.
+          {annotation.loaded && annotation.content}
+          {/* {console.log(annotation.content)} */}
         </Typography>
 
         <form className={classes.root} autoComplete="off">

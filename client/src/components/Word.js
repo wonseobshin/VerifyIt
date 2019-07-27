@@ -77,9 +77,9 @@ class Word extends React.Component {
     return (
       <span /*onClick={this.onClickHandler.bind(this)} onMouseUp={this.onMouseUpHandler.bind(this)}*/> 
         <span onSelect={function (event) {
-            console.log('select event:', event);
+            // console.log('select event:', event);
           }} id={this.props.pos} className={this.props.overlappedAnnotation ? 'pink' : ''} annotation_id={this.props.overlappedAnnotation}> {this.props.word} </span>
-        {this.state.annotationOpen && <Annotation /> }
+        {this.state.annotationOpen && <Annotation {...this.props.match}/> }
         {this.state.annotationFormOpen && <CreateNewAnnotation {...this.props.match}/> }
       </span>
     

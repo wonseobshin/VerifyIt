@@ -21,12 +21,12 @@ export default function HomePage() {
   const [newURL, changeURL] = useState(undefined);
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(newURL)
+    // console.log(newURL)
     rp(newURL, (article) => {
-      console.log(article);
+      // console.log(article);
       Axios.post("/api/articles", article)
       .then(res => {
-        console.log('res:', res);
+        // console.log('res:', res);
         // Manually redirecting because redirects for AJAX POST not working
         // window.location.href = res.request.responseURL;
 

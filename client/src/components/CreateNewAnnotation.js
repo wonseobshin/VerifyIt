@@ -50,7 +50,12 @@ export default function CreateNewAnnotation({ params }) {
     const annotation = {}
     annotation.anchorId = parseInt(sel.anchorNode.parentNode.id);
     annotation.focusId = parseInt(sel.focusNode.parentNode.id);
-  
+    annotation.category = "cat"
+    annotation.user_id = 0
+    annotation.content = "ann"
+    annotation.point = 0
+
+
     if (annotation.focusId < annotation.anchorId) {
       let tempId = annotation.focusId;
       annotation.focusId = annotation.anchorId;
@@ -77,8 +82,8 @@ export default function CreateNewAnnotation({ params }) {
   function sendReq(annotation){
     Axios.post(`/api/articles/${params.id}/annotations`, { annotation })
       .then(res => {
-        console.log("New annotation response: ",res);
-        console.log(res.data);
+        // console.log("New annotation response: ",res);
+        // console.log(res.data);
         completeAnnotation(annotation, res)
       })
   }
