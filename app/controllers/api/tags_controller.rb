@@ -1,11 +1,10 @@
 class Api::TagsController < ApplicationController
 
   def index
-    tags = Tag.all
-    render :json => {
-      tags: tags
-    }
-    puts tags
+    @article = Article.find(params[:article_id])
+    render :json => @article.tags.to_json
+    
+  
   end
 
   def create

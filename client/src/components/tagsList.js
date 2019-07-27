@@ -15,24 +15,32 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function TagsList(params) {
+  const classes = useStyles();
   const [list, setList] = useState({
     tags: []
   });
 
   useEffect(() => {
     Axios.get(`/api/articles/${params.article_id}/tags`).then(res => {
-      const tags = res.data.tags.map(obj => {
+      console.log(res.data);
+      const tags = res.data.map(obj => {
         return obj.tag;
       });
-      console.log("Res", tags);
       setList({ tags });
     });
   }, []);
-  console.log("list 2", list.tags);
+
+  function handleDelete() {}
+
   return (
     <>
       {list.tags.map(tag => (
-        <Chip key={tag.id} label={tag} />
+        <Chip
+          key={tag.id}
+          label={tag}
+          onDelete={handleDelete}
+          className={classes.chip}
+        />
       ))}
     </>
   );
