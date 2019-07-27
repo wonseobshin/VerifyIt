@@ -1,12 +1,12 @@
 import React from "react";
 import Annotation from "./Annotation";
 class Word extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       annotationOpen: false
-    }
+    };
   }
 
   // showAnnotation() {
@@ -16,18 +16,19 @@ class Word extends React.Component {
   //   }
   // }
 
-  componentDidMount() {
-    console.log("HIGHLIGHT", this.props)
-  }
+  componentDidMount() {}
 
   render() {
     return (
       /* <span onClick={this.showAnnotation}> */
-        <span id={this.props.pos} className={this.props.highlight}> {this.props.word} </span>
+      <span id={this.props.pos} className={this.props.highlight}>
+        {" "}
+        {this.props.word}{" "}
+      </span>
       /*  {this.state.annotationOpen && <Annotation clickAnnotationHandler={this.props.clickAnnotationHandler} /> }
       </span>
     */
-    )
+    );
   }
 }
 

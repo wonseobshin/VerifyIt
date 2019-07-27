@@ -1,3 +1,3 @@
 class Tag < ApplicationRecord
-    belongs_to :articles
+    # belongs_to :articles
 end
