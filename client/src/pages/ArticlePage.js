@@ -9,6 +9,7 @@ import Toggle from "../components/Toggle";
 import Axios from "axios";
 import Word from "../components/Word";
 import Tags from "../components/tags";
+import TagsList from "../components/tagsList";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,7 +42,6 @@ export default function CenteredGrid({ match }) {
       const content = res.data.content.split(" ");
       const highlight = "";
       const rating = res.data.rating;
-      console.log(rating);
       setMessage({ title, content, highlight });
       setRating({ rating });
     });
@@ -147,6 +147,7 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={2} />
         <Grid item xs={8}>
           <Tags article_id={match.params.id} />
+          <TagsList article_id={match.params.id} />
         </Grid>
       </Grid>
     </>

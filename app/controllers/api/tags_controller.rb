@@ -1,5 +1,12 @@
 class Api::TagsController < ApplicationController
 
+  def index
+    tags = Tag.all
+    render :json => {
+      tags: tags
+    }
+    puts tags
+  end
 
   def create
     values = tags_params
@@ -11,9 +18,19 @@ class Api::TagsController < ApplicationController
     puts @tag.valid?
     render :json => {
       tag: @tag
+    }
+  end
+
+  def show
+    # @rating = Rating.find(params[:id])
+    @article = Article.find(params[:article_id])
+
+    @tag = @article.tags
+    render :json => {
+      tag: @tag
 
     }
-    puts params
+ 
   end
 
   private

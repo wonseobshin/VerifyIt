@@ -4,7 +4,6 @@ import { WithContext as ReactTags } from "react-tag-input";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Axios from "axios";
-import Chip from "@material-ui/core/Chip";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,12 +62,6 @@ export default function Tags({ article_id }) {
           Tag
         </Button>
       </form>
-      <Chip
-        label={newTag}
-        onDelete={handleDelete}
-        className={classes.chip}
-        color="primary"
-      />
     </div>
   );
 }
