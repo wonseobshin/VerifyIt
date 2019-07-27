@@ -26,6 +26,7 @@ export default function CenteredGrid({ match }) {
   const [message, setMessage] = useState({
     title: "",
     content: [],
+    overlappedAnnotations: [],
     highlight: "",
     annotationId: ""
   });
@@ -34,16 +35,46 @@ export default function CenteredGrid({ match }) {
     rating: ""
   });
 
+  const [annotation, setAnnotation] = useState({
+    view: false,
+    new: false,
+  });
+
+  function getArticle(articleId) {
+    return Axios.get(`/api/articles/${articleId}`);
+  }
+  
+  function getAnnotations(articleId) {
+    return Axios.get(`/api/articles/${articleId}/annotations`);
+  }
+
   useEffect(() => {
-    Axios.get(`/api/articles/${match.params.id}`).then(res => {
-      const title = res.data.title;
-      const content = res.data.content.split(" ");
-      const highlight = "";
-      const rating = res.data.rating;
-      console.log(rating);
-      setMessage({ title, content, highlight });
-      setRating({ rating });
-    });
+    Axios.all([getArticle(match.params.id), getAnnotations(match.params.id)])
+      .then(Axios.spread(function (res, annotations) {
+        const annotationData = annotations.data.map(({anchorId, focusId, id}) => {
+          return {
+            start: Number(anchorId), end: Number(focusId), id
+          };
+        });
+
+        
+        // console.log(annotations)
+        const title = res.data.title;
+        const content = res.data.content.split(" ");
+        const highlight = "";
+        const rating = res.data.rating;
+        // console.log(rating);
+
+        const overlappedAnnotations = content.map((word, index) => {
+          const overlappingAnnotation = annotationData.find(({start, end}) => {
+            return index >= start && index <= end;
+          });
+          return overlappingAnnotation ? overlappingAnnotation.id : undefined;
+        })
+        
+        setMessage({ title, content, highlight, overlappedAnnotations });
+        setRating({ rating });
+      }));
   }, []);
 
   function updateRating(newRating) {
@@ -51,7 +82,47 @@ export default function CenteredGrid({ match }) {
     setRating({ rating });
   }
 
-  function clickAnnotationHandler() {}
+  function onMouseUpHandler(event) {
+    // console.log('on mouse up:', event.target);
+    const selection = window.getSelection();
+    const {anchorNode, focusNode} = selection;
+    // console.log('anchor:', anchorNode, typeof anchorNode, 'focusNode:', focusNode, typeof focusNode);
+    // console.log('anchorID:', anchorNode.parentNode.id, 'focusID:', focusNode.parentNode.id);
+    const startID = Math.min(anchorNode.parentNode.id, focusNode.parentNode.id);
+    const endID = Math.max(anchorNode.parentNode.id, focusNode.parentNode.id);
+    // console.log('start ID:', startID, 'endID:', endID);
+    // console.log("event.target['annotation-id']", event.target.annotation_id)
+    if (selection.toString()){
+      const selectionOverlapsExistingHighlight = message.overlappedAnnotations.some((annotationID, index) => {
+        //if there is some annottion
+        return annotationID && (startID <= index && endID >= index)
+      });
+      
+      console.log('selection overlaps existing highlight:', selectionOverlapsExistingHighlight);
+      // if(selectionOverlapsExistingHighlight) {
+      //   //show form to new new annotation
+      //   setAnnotation({new: false, view: false})
+      // } else {
+      //   setAnnotation({new: true, view: false})
+      // }
+      setAnnotation({new: !selectionOverlapsExistingHighlight, view: false});
+    } else {
+      // //do click stuff: view annotaion
+      // if(event.target.getAttribute('annotation_id')){
+      //   setAnnotation({new: false, view: true})
+      // } else {
+      //   setAnnotation({new: false, view: false})
+      // }
+      setAnnotation({new: false, view: Boolean(event.target.getAttribute('annotation_id'))});
+    }
+
+    
+    // console.log('window selection:', selection.toString(), 'end')
+
+    
+    
+  }
+
 
   return (
     <>
@@ -71,14 +142,16 @@ export default function CenteredGrid({ match }) {
           </div>
         </Grid>
         <Grid item xs={8}>
-          <div className="article-container">
+          <div className="article-container" onMouseUp={onMouseUpHandler}>
             <h2>{message.title}</h2>
 
             {/* {console.log(typeof message.content)} */}
             {message.content.map((word, pos) => {
               return (
                 <Word
-                  clickAnnotationHandler={clickAnnotationHandler}
+                  // clickAnnotationHandler={clickAnnotationHandler}
+                  match={ match }
+                  overlappedAnnotation={message.overlappedAnnotations[pos]}
                   key={pos}
                   pos={pos}
                   word={word}
@@ -87,7 +160,7 @@ export default function CenteredGrid({ match }) {
               );
             })}
 
-            <Toggle>
+            {/* <Toggle>
               {({ on, toggle }) => (
                 <div>
                   <Button
@@ -101,8 +174,8 @@ export default function CenteredGrid({ match }) {
                   {on && <CreateNewAnnotation {...match} on={on} />}
                 </div>
               )}
-            </Toggle>
-            <Toggle>
+            </Toggle> */}
+            {/* <Toggle>
               {({ on, toggle }) => (
                 <div>
                   <Button
@@ -116,7 +189,7 @@ export default function CenteredGrid({ match }) {
                   {on && <Annotation on={on} />}
                 </div>
               )}
-            </Toggle>
+            </Toggle> */}
           </div>
         </Grid>
         <Grid item xs={2}>
@@ -142,6 +215,9 @@ export default function CenteredGrid({ match }) {
               </div>
             )}
           </Toggle>
+          
+          {annotation.view && <Annotation /> }
+          {annotation.new && <CreateNewAnnotation {...match}/> }
         </Grid>
         <Grid item xs={2} />
         <Grid item xs={8} />
