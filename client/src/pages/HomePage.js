@@ -14,16 +14,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-// decide which scraper to call (optional)
-// call the scraper *
-// send scraper data to *
-
-// post localhost:3001/articles 
-// will return an article object
-// also save article to db
-// redirect to articles/article.id
-
 export default function HomePage() {
   const classes = useStyles();
   const [newArticle, changeArticle] = useState(undefined);
@@ -38,7 +28,7 @@ export default function HomePage() {
         console.log('res:', res);
         // Manually redirecting because redirects for AJAX POST not working
         // window.location.href = res.request.responseURL;
-        
+
         changeArticle({id: res.data.article_id});
       })
       .catch(err => console.log("error", err));

@@ -6,7 +6,7 @@ let include_headers = function(body, response) {
 }
 export default (url, cb) => {
   console.log(url)
-  // url = '/www.reuters.com/article/us-southkorea-japan-laborers/south-korea-asks-japan-to-cancel-plan-to-remove-the-country-from-white-list-idUSKCN1UJ04F?il=0';
+  // url = '';
   let options = {
     method: 'GET',
     url: 'https://' + 'cors-anywhere.herokuapp.com/' + url,
