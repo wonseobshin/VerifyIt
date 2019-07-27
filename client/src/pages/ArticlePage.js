@@ -35,6 +35,10 @@ export default function CenteredGrid({ match }) {
     rating: ""
   });
 
+  // const [fakeboxRating, setFakeboxRating] = useState({
+  //   fakeboxRating: ""
+  // });
+
   const [annotation, setAnnotation] = useState({
     view: false,
     new: false,
@@ -130,7 +134,8 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={10} />
 
         <Grid item xs={2}>
-          <h1 className="rating-container">{rating.rating}</h1>
+          <h2 className="rating-container">Users: {rating.rating}</h2>
+          <h3 className="fakebox-rating">Machine: </h3>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">

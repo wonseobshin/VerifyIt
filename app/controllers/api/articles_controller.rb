@@ -29,7 +29,8 @@ class Api::ArticlesController < ApplicationController
     article = Article.find params[:id]
     rating = Rating.where(:article_id => params[:id]).average(:rating)
     # .average(:rating).round(1)
-    article.getFakebox
+    fakeboxRating = article.fakeboxRating
+    puts fakeboxRating
     puts 'showing one article!'
     puts rating
 
