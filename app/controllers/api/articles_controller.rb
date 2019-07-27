@@ -7,7 +7,22 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @articletest = Article.find_by(url: article_params[:url])
+    if !@articletest
+      @article = Article.create(article_params)
+      puts params[:id]
+      if @article.save
+        render :json => {
+          article_id: @article.id
+        }
+      else
+        head(:internal_server_error)
+      end
+    else
+      render :json => {
+        article_id: @articletest.id
+      }
+    end
   end
 
   def show
