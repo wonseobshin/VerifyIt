@@ -57,7 +57,7 @@ export default function SimpleSelect() {
         <Typography variant="h6" component="h6">
           UserName
         </Typography>
-        <Typography variant="p" component="p">
+        <Typography variant="body1" component="p">
           That other text? Sadly, it’s no longer a 10. You know, it really
           doesn’t matter what you write as long as you’ve got a young, and
           beautiful, piece of text. My text is long and beautiful, as, it has
