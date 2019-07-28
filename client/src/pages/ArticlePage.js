@@ -41,6 +41,10 @@ export default function CenteredGrid({ match }) {
     new: false,
   });
 
+  const [sel, setSel] = useState({
+
+  })
+
   function getArticle(articleId) {
     return Axios.get(`/api/articles/${articleId}`);
   }
@@ -48,6 +52,12 @@ export default function CenteredGrid({ match }) {
   function getAnnotations(articleId) {
     return Axios.get(`/api/articles/${articleId}/annotations`);
   }
+
+  // //everytime
+  // useEffect(() => {
+  //   console.log("GETTING SEL")
+  //   setSel( document.getSelection() )
+  // },[annotation.new])
 
   useEffect(() => {
     Axios.all([getArticle(match.params.id), getAnnotations(match.params.id)])
@@ -83,9 +93,19 @@ export default function CenteredGrid({ match }) {
     setRating({ rating });
   }
 
+  function onMouseDownHandler(e){
+    if(annotation.keepnew){
+      setAnnotation({new: true, view: false})
+    } else {
+      setAnnotation({new: false, view: false});
+    }
+  }
+
   function onMouseUpHandler(event) {
     // console.log('on mouse up:', event.target);
     const selection = window.getSelection();
+    setSel( selection )
+    console.log("GETTING SEL")
     const {anchorNode, focusNode} = selection;
     // console.log('anchor:', anchorNode, typeof anchorNode, 'focusNode:', focusNode, typeof focusNode);
     // console.log('anchorID:', anchorNode.parentNode.id, 'focusID:', focusNode.parentNode.id);
@@ -124,6 +144,14 @@ export default function CenteredGrid({ match }) {
     
   }
 
+  // function keepNewOpen(keepOpen){
+  //   if(keepOpen){
+  //     setAnnotation({keepnew: true});
+  //   } else {
+  //     setAnnotation({keepnew: false})
+  //   }
+  //   console.log("VIEW IS KEPT:",annotation.keepnew)
+  // }
 
   return (
     <>
@@ -143,7 +171,7 @@ export default function CenteredGrid({ match }) {
           </div>
         </Grid>
         <Grid item xs={8}>
-          <div className="article-container" onMouseUp={onMouseUpHandler}>
+          <div className="article-container" onMouseUp={onMouseUpHandler} onMouseDown={onMouseDownHandler}>
             <h2>{message.title}</h2>
 
             {/* {console.log(typeof message.content)} */}
@@ -218,7 +246,7 @@ export default function CenteredGrid({ match }) {
           </Toggle>
           
           {annotation.view && <Annotation {...match} /> }
-          {annotation.new && <CreateNewAnnotation {...match}/> }
+          {annotation.new && <CreateNewAnnotation selected={sel} {...match}/> }
         </Grid>
         <Grid item xs={2} />
         <Grid item xs={8}>

@@ -65,9 +65,6 @@ export default function Annotation(params) {
     }));
   }
 
-  useEffect(() => {
-
-  },[])
   return (
     <>
       <Paper className="annotation-container">

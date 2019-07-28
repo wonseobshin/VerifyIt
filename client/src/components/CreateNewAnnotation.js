@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -28,12 +28,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CreateNewAnnotation({ params }) {
+export default function CreateNewAnnotation(prop,{ params }) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    age: "",
-    name: "hai"
+    category: "cate",
+    content: "hai"
   });
+
+  const [page, setPage] = React.useState(1);
+
+  const [state, setState] = React.useState({
+    annotation : {},
+    page: 1
+  })
+  // useEffect(() => {
+    
+  // },[])
 
   function submitAnnotationHandler(){
     getSelectedText()
@@ -42,7 +52,8 @@ export default function CreateNewAnnotation({ params }) {
   function getSelectedText() {
   
     const sel = document.getSelection();
-  
+    // console.log("SEL:",prop.selected)
+
     setHighlight(sel);
   }
   
@@ -55,6 +66,7 @@ export default function CreateNewAnnotation({ params }) {
     annotation.content = "ann"
     annotation.point = 0
 
+    setState({annotation: annotation, page: 2})
 
     if (annotation.focusId < annotation.anchorId) {
       let tempId = annotation.focusId;
@@ -68,19 +80,29 @@ export default function CreateNewAnnotation({ params }) {
       document.getElementById(annotation.anchorId + i).classList.add("blue");
       // document.getElementById(annotation.anchorId + i).classList.add(params.id);
     }
-  
-    sendReq(annotation, sel)
+    // sendReq(annotation)
+    
+    // prop.keepNewOpen(true)
   }
 
   function handleChange(event) {
-    setValues(oldValues => ({
-      ...oldValues,
-      [event.target.name]: event.target.value
-    }));
+    setValues({
+      category: event.target.value,
+      content: values.content
+    });
+    console.log("category: ",values.category, "|| content: ", values.content)
+  }
+  
+  function handleAnnChange(event) {
+    setValues({
+      content: event.target.value,
+      category: values.category
+    });
   }
 
   function sendReq(annotation){
-    Axios.post(`/api/articles/${params.id}/annotations`, { annotation })
+
+    Axios.post(`/api/articles/${prop.params.id}/annotations`, { annotation })
       .then(res => {
         // console.log("New annotation response: ",res);
         // console.log(res.data);
@@ -95,11 +117,14 @@ export default function CreateNewAnnotation({ params }) {
       document.getElementById(annotation.anchorId + i).classList.add("pink");
       document.getElementById(annotation.anchorId + i).setAttribute('annotation_id', res.data.id);
     }
+
+    setState({page: 0})
+    // prop.keepNewOpen(false)
   }
 
   return (
     <>
-      <Paper className="annotation-container">
+      {state.page === 1 && <Paper className="annotation-container">
         <Typography variant="h5" component="h5">
           Hightlighted Text
         </Typography>
@@ -111,9 +136,9 @@ export default function CreateNewAnnotation({ params }) {
           <FormControl required className={classes.formControl}>
             <InputLabel htmlFor="criteria-required">Criteria</InputLabel>
             <Select
-              value={values.name}
+              value={values.category}
               onChange={handleChange}
-              name="name"
+              name="category"
               inputProps={{
                 id: "age-required"
               }}
@@ -122,8 +147,8 @@ export default function CreateNewAnnotation({ params }) {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value="The source unreliable">
-                The source unreliable
+              <MenuItem value="The source is unreliable">
+                The source is unreliable
               </MenuItem>
               <MenuItem value="The author is not credible">
                 The author is not credible
@@ -140,7 +165,40 @@ export default function CreateNewAnnotation({ params }) {
             </Select>
             <FormHelperText>Required</FormHelperText>
           </FormControl>
+          {/* <TextField
+            onChange={handleAnnChange}
+            id="standard-full-width"
+            style={{ margin: 8 }}
+            placeholder="Why do you think so?"
+            multiline
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          /> */}
+          <Button
+            onClick={submitAnnotationHandler}
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            Next
+          </Button>
+        </form>
+      </Paper>}
+    
+      {state.page === 2 && <Paper className="annotation-container">
+        <Typography variant="h5" component="h5">
+          Hightlighted Text
+        </Typography>
+        <Typography variant="h6" component="h6">
+          UserName
+        </Typography>
+
+        <form className={classes.root} autoComplete="off">
           <TextField
+            onChange={handleAnnChange}
             id="standard-full-width"
             style={{ margin: 8 }}
             placeholder="Why do you think so?"
@@ -152,7 +210,7 @@ export default function CreateNewAnnotation({ params }) {
             }}
           />
           <Button
-            onClick={submitAnnotationHandler}
+            onClick={() => {sendReq(state.annotation)}}
             variant="contained"
             color="primary"
             className={classes.button}
@@ -160,7 +218,7 @@ export default function CreateNewAnnotation({ params }) {
             Submit
           </Button>
         </form>
-      </Paper>
+      </Paper>}
     </>
   );
 }
