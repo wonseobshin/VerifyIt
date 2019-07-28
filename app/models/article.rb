@@ -20,8 +20,7 @@ class Article < ApplicationRecord
     title_rating = body["title"]["score"] * 100
     content_rating = body["content"]["score"] * 100
     total_rating = title_rating.to_i + content_rating.to_i
-    this.average_rating = total_rating / 2
-
+    @average_rating = total_rating / 2
 
   end
 end

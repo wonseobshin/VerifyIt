@@ -39,7 +39,7 @@ class Api::ArticlesController < ApplicationController
       url: article.url,
       content: article.content,
       rating: rating,
-      fakebox_rating: article.average_rating,
+      fakebox_rating: @average_rating
     }
   end
 

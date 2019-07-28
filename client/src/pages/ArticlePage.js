@@ -82,7 +82,7 @@ export default function CenteredGrid({ match }) {
         setMessage({ title, content, highlight, overlappedAnnotations });
         setRating({ rating });
         setFakebox({ fakeboxRating })
-        console.log("HAHAHHAHAHA",res.data)
+        console.log("HAHAHHAHAHA",res.data.fakebox_rating)
       }));
   }, []);
 
@@ -140,7 +140,7 @@ export default function CenteredGrid({ match }) {
 
         <Grid item xs={2}>
           <h2 className="rating-container">Users: {rating.rating}</h2>
-          <h2 className="rating-container">Fakebox: {fakebox.rating} {fakebox.decision}</h2>
+          <h2 className="rating-container">Fakebox: {fakebox.rating}</h2>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">
