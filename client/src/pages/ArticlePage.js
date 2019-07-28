@@ -139,8 +139,8 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={10} />
 
         <Grid item xs={2}>
-          <h2 className="rating-container">Users: {rating.rating}</h2>
           <h2 className="rating-container">Fakebox: {fakebox.fakeboxRating}, {fakebox.fakeboxDecision}</h2>
+          <h2 className="rating-container">Users: {rating.rating}</h2>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">

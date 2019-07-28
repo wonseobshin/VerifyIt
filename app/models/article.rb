@@ -15,7 +15,8 @@ class Article < ApplicationRecord
       "content": content,
       "url": url 
     })
-    body = JSON.parse(response.body) 
+    body = JSON.parse(response.body)
+    puts body["domain"]["category"] 
     title_rating = body["title"]["score"] * 100
     content_rating = body["content"]["score"] * 100
     total_rating = title_rating.to_i + content_rating.to_i
