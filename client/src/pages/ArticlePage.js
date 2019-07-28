@@ -23,6 +23,11 @@ const useStyles = makeStyles(theme => ({
 export default function CenteredGrid({ match }) {
   const classes = useStyles();
 
+  const [fakebox, setFakebox] = useState({
+    rating: 0,
+    decision: ""
+  })
+
   const [message, setMessage] = useState({
     title: "",
     content: [],
@@ -34,10 +39,6 @@ export default function CenteredGrid({ match }) {
   const [rating, setRating] = useState({
     rating: ""
   });
-
-  // const [fakeboxRating, setFakeboxRating] = useState({
-  //   fakeboxRating: ""
-  // });
 
   const [annotation, setAnnotation] = useState({
     view: false,
@@ -67,6 +68,8 @@ export default function CenteredGrid({ match }) {
         const content = res.data.content.split(" ");
         const highlight = "";
         const rating = res.data.rating;
+        const fakeboxRating = res.data.fakebox_rating;
+        // const fakeboxDecision = res.data.fakebox_decision
         // console.log(rating);
 
         const overlappedAnnotations = content.map((word, index) => {
@@ -78,6 +81,8 @@ export default function CenteredGrid({ match }) {
         
         setMessage({ title, content, highlight, overlappedAnnotations });
         setRating({ rating });
+        setFakebox({ fakeboxRating })
+        console.log("HAHAHHAHAHA",res.data)
       }));
   }, []);
 
@@ -135,7 +140,7 @@ export default function CenteredGrid({ match }) {
 
         <Grid item xs={2}>
           <h2 className="rating-container">Users: {rating.rating}</h2>
-          <h3 className="fakebox-rating">Machine: </h3>
+          <h2 className="rating-container">Fakebox: {fakebox.rating} {fakebox.decision}</h2>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">

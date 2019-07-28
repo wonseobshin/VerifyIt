@@ -38,9 +38,12 @@ class Api::ArticlesController < ApplicationController
       title: article.title,
       url: article.url,
       content: article.content,
-      rating: rating
+      rating: rating,
+      fakebox_rating: article.average_rating,
     }
   end
+
+
 
   private
 
@@ -49,6 +52,7 @@ class Api::ArticlesController < ApplicationController
       :url,
       :title,
       :content,
+      :fakeboxRating
     )
   end
 

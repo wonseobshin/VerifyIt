@@ -1,3 +1,5 @@
+import { cloneElement } from 'react';
+
 const rp = require('request-promise');
 const $ = require('cheerio');
 
@@ -19,17 +21,16 @@ export default (url, cb) => {
       const title = [];
       const author = [];
       const content = [];
-          return {
-            title: $('h1', html).text(),
-            author: $('p.Attribution_content', html).text(),
-            content: $('p', html).text(),
-            url: url
-          };
-        })
-    .then(function (article) {
+      return {
+        title: $('h1', html).text(),
+        author: $('p.Attribution_content', html).text(),
+        content: $('p', html).text(),
+        url: url
+      };
+    }).then(function (article) {
       cb(article);
-    })
-    .catch(function (err) {
+    }).catch(function (err) {
+      console.log(err)
     });
   }
   
