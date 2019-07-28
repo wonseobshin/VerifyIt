@@ -31,6 +31,8 @@ class Api::ArticlesController < ApplicationController
     # .average(:rating).round(1)
     fakeboxRating = article.fakeboxRating
     puts fakeboxRating
+    fakeboxDecision = article.fakeboxDecision
+    puts fakeboxDecision
     puts 'showing one article!'
     puts rating
 
@@ -40,8 +42,8 @@ class Api::ArticlesController < ApplicationController
       content: article.content,
       rating: rating,
       fakebox_rating: fakeboxRating,
-      # fakebox_decision: @content_decision
-    }
+      fakebox_decision: fakeboxDecision
+  }
   end
 
 
@@ -54,7 +56,7 @@ class Api::ArticlesController < ApplicationController
       :title,
       :content,
       :fakebox_rating,
-      # :fakebox_decision
+      :fakebox_decision
     )
   end
 

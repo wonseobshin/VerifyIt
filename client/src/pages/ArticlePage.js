@@ -69,7 +69,7 @@ export default function CenteredGrid({ match }) {
         const highlight = "";
         const rating = res.data.rating;
         const fakeboxRating = res.data.fakebox_rating;
-        // const fakeboxDecision = res.data.fakebox_decision
+        const fakeboxDecision = res.data.fakebox_decision
         // console.log(rating);
 
         const overlappedAnnotations = content.map((word, index) => {
@@ -81,8 +81,8 @@ export default function CenteredGrid({ match }) {
         
         setMessage({ title, content, highlight, overlappedAnnotations });
         setRating({ rating });
-        setFakebox({ fakeboxRating })
-        console.log("HAHAHHAHAHA",res.data.fakebox_rating)
+        setFakebox({ fakeboxRating, fakeboxDecision })
+        console.log("HAHAHHAHAHA",res.data.fakebox_rating, res.data.fakebox_decision)
       }));
   }, []);
 
@@ -140,7 +140,7 @@ export default function CenteredGrid({ match }) {
 
         <Grid item xs={2}>
           <h2 className="rating-container">Users: {rating.rating}</h2>
-          <h2 className="rating-container">Fakebox: {fakebox.fakeboxRating}</h2>
+          <h2 className="rating-container">Fakebox: {fakebox.fakeboxRating}, {fakebox.fakeboxDecision}</h2>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">
