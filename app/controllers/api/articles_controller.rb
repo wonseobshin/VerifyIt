@@ -39,7 +39,8 @@ class Api::ArticlesController < ApplicationController
       url: article.url,
       content: article.content,
       rating: rating,
-      fakebox_rating: @average_rating
+      fakebox_rating: fakeboxRating,
+      # fakebox_decision: @content_decision
     }
   end
 
@@ -52,7 +53,8 @@ class Api::ArticlesController < ApplicationController
       :url,
       :title,
       :content,
-      :fakeboxRating
+      :fakebox_rating,
+      # :fakebox_decision
     )
   end
 

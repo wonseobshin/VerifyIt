@@ -25,7 +25,7 @@ export default function CenteredGrid({ match }) {
 
   const [fakebox, setFakebox] = useState({
     rating: 0,
-    decision: ""
+    decision: []
   })
 
   const [message, setMessage] = useState({
@@ -140,7 +140,7 @@ export default function CenteredGrid({ match }) {
 
         <Grid item xs={2}>
           <h2 className="rating-container">Users: {rating.rating}</h2>
-          <h2 className="rating-container">Fakebox: {fakebox.rating}</h2>
+          <h2 className="rating-container">Fakebox: {fakebox.fakeboxRating}</h2>
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">
