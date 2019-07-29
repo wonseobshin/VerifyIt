@@ -120,7 +120,7 @@ export default function CenteredGrid({ match }) {
         return annotationID && (startID <= index && endID >= index)
       });
       
-      // console.log('selection overlaps existing highlight:', selectionOverlapsExistingHighlight);
+      console.log('selection overlaps existing highlight:', selectionOverlapsExistingHighlight);
       // if(selectionOverlapsExistingHighlight) {
       //   //show form to new new annotation
       //   setAnnotation({new: false, view: false})

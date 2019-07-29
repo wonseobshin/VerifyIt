@@ -132,10 +132,10 @@ export default function CreateNewAnnotation(prop,{ params }) {
     <>
       {state.page === 1 && <Paper className="annotation-container">
         <Typography variant="h5" component="h5">
-          Hightlighted Text
+          {/* Hightlighted Text */}
         </Typography>
         <Typography variant="h6" component="h6">
-          UserName
+          {/* UserName */}
         </Typography>
 
         <form className={classes.root} autoComplete="off">
