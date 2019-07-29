@@ -98,6 +98,8 @@ a {
 
 .article-container h2 p {
   font-family: "Times New Roman", Times, serif;
+  white-space: pre-line;
+
 }
 
 .rating-container {
@@ -125,31 +127,59 @@ a {
 /* ==== Fakebox Rating ==== */
 
 .flex-container {
-  padding: 0;
-  margin: 0;
-
+  display: flex;
+  padding-right: 4px;
+  margin: 4px;
 }
 
+.bias-label {
+  margin-right: 0.5em;
+}
+
+.impartial-label {
+  margin-left: 0.5em;
+}
+
+
 .fakebox-bar-cont {
-  background: gainsboro;
+  background: black;
+  width: 16em;
   height: 2em;
   padding: 0.5em;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
   border-radius: 50px;
   box-sizing: border-box;
   box-shadow: 0 0 1px 0 rgba(#000, 0.75) inset, 0 0 4px 0 rgba(#000, 0.5);
 }
 
 .fakebox-bar {
-  background: #000;
+  background: goldenrod;
   height: 100%;
   border-radius: 50px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset, 0 0 1px 3px rgba(white, 0.75) inset;
 }
-   
 
+.user-bar-cont {
+  background: black;
+  width: 16em;
+  height: 2em;
+  padding: 0.5em;
+  border-radius: 50px;
+  box-sizing: border-box;
+  box-shadow: 0 0 1px 0 rgba(#000, 0.75) inset, 0 0 4px 0 rgba(#000, 0.5);
+}
+
+.user-bar {
+  background: red;
+  height: 100%;
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset, 0 0 1px 3px rgba(white, 0.75) inset;
+}
+
+.rating-display {
+  padding-left:0.5em;
+
+}

@@ -18,13 +18,18 @@ export default (url, cb) => {
   }
   rp(options)
     .then(function (html) {
-      const title = [];
-      const author = [];
-      const content = [];
+      // const title = [];
+      // const author = [];
+      // const content = [];
+      let content = "";
+      $('p', html).each(function (index, value) {
+        content += $(this).text() + '\n';
+      })
+      console.log(content)
       return {
         title: $('h1', html).text(),
         author: $('p.Attribution_content', html).text(),
-        content: $('p', html).text(),
+        content: content,
         url: url
       };
     }).then(function (article) {

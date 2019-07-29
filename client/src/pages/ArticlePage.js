@@ -136,19 +136,24 @@ export default function CenteredGrid({ match }) {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={10} />
-
-        <Grid item xs={2}>
-          <div className="flex-container">
+        <Grid item xs={8} />
+        <Grid item xs={3}>
           <h5>Hover to see what Fakebox thinks!</h5>
+          <div className="flex-container">
+            <div className="bias-label">Biased</div>
             <div className="fakebox-bar-cont">
-              <div className="fakebox-bar" style={ {width: fakebox.fakeboxRating + '%'}}>
-                <div className="fakebox-bar-background"></div>
-              </div>
+              <div className="fakebox-bar" style={{width: fakebox.fakeboxRating + '%'}}></div>
             </div>
+            <div className="impartial-label">Impartial</div>
           </div>
-          {/* <h2 className="rating-container">Fakebox: {fakebox.fakeboxRating}, {fakebox.fakeboxDecision}</h2> */}
-          <h2 className="rating-container">Users: {rating.rating}</h2>
+          <h5>Hover to see what other users think!</h5>
+          <div className="flex-container">
+          <div className="user-bar-cont">
+            <div className="user-bar" style={{width: rating.rating + '%'}}></div>
+          </div>
+          <div className="rating-display">{rating.rating}</div>
+          </div>
+          {/* <h2 className="rating-container">Users: {rating.rating}</h2> */}
         </Grid>
         <Grid item xs={2}>
           <div className="instructions-container">
