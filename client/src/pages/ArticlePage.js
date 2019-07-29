@@ -9,6 +9,7 @@ import Toggle from "../components/Toggle";
 import Axios from "axios";
 import Word from "../components/Word";
 import TagsList from "../components/tagsList";
+import Instruction from "../components/Instruction";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -162,13 +163,15 @@ export default function CenteredGrid({ match }) {
           <h1 className="rating-container">{rating.rating}</h1>
         </Grid>
         <Grid item xs={2}>
-          <div className="instructions-container">
+          {/* <div className="instructions-container">
             <h2>Instructions</h2>
             <p>Add an Annotation</p>
             <p>Add a Comment</p>
             <p>Update a Comment</p>
             <p>Add a Rating</p>
-          </div>
+          </div> */}
+          <h2>Instructions</h2>
+          <Instruction />
         </Grid>
         <Grid item xs={8}>
           <div className="article-container" onMouseUp={onMouseUpHandler} onMouseDown={onMouseDownHandler}>
