@@ -39,8 +39,10 @@ export default function Annotation(params) {
     point: 0
   });
 
-  const [comments, setCommments] = React.useState({
-    content: []
+  const [commentText, setCommentText] = React.useState("");
+
+  const [commentList, setCommentList] = useState({
+    comments: []
   });
 
   useEffect(() => {
@@ -49,7 +51,6 @@ export default function Annotation(params) {
       `/api/articles/${params.params.id}/annotations/${params.annotation_id}`
     )
       .then(res => {
-        console.log("GET RES DATA:", res.data);
         const resAnnotation = res.data;
         // setAnnotation({resAnnotation})
         // console.log("ANNOTATION SET")
@@ -70,12 +71,45 @@ export default function Annotation(params) {
       }
     )
       .then(response => {
-        console.log("Votes:", response.data.point.point);
         const newVote = response.data.point.point;
         setAnnotation({ ...annotation, point: newVote });
       })
       .catch(err => console.log("Error", err));
   };
+
+  const handleComment = e => {
+    e.preventDefault();
+    Axios.post(
+      `/api/articles/${params.params.id}/annotations/${
+        params.annotation_id
+      }/comments`,
+      {
+        content: commentText
+      }
+    )
+      .then(response => {
+        console.log("comment sent:", response.data.content);
+        setCommentList({
+          comments: [...commentList.comments, response.data.content]
+        });
+        setCommentText("");
+      })
+      .catch(err => console.log("Error", err));
+  };
+
+  useEffect(() => {
+    Axios.get(
+      `/api/articles/${params.params.id}/annotations/${
+        params.annotation_id
+      }/comments`
+    ).then(res => {
+      console.log("Comments", res.data);
+      const comments = res.data.comment.map(obj => {
+        return obj.content;
+      });
+      setCommentList({ comments });
+    });
+  }, []);
 
   // const inputLabel = React.useRef(null);
   // const [labelWidth, setLabelWidth] = React.useState(0);
@@ -114,7 +148,24 @@ export default function Annotation(params) {
           Up Vote
         </Button>
 
-        <form className={classes.root} autoComplete="off">
+        <Typography variant="h6" component="h6">
+          Comments:
+        </Typography>
+        {commentList.comments.map(comment => (
+          <Typography variant="p" component="p">
+            {comment}
+          </Typography>
+        ))}
+        <Typography variant="p" component="p" />
+
+        <Typography variant="h6" component="h6">
+          Add a Comment
+        </Typography>
+        <form
+          className={classes.root}
+          autoComplete="off"
+          onSubmit={handleComment}
+        >
           <TextField
             id="standard-full-width"
             style={{ margin: 8 }}
@@ -122,16 +173,19 @@ export default function Annotation(params) {
             multiline
             fullWidth
             margin="normal"
+            value={commentText}
+            onChange={event => setCommentText(event.target.value)}
             InputLabelProps={{
               shrink: true
             }}
           />
           <Button
+            type="submit"
             variant="contained"
             color="primary"
             className={classes.button}
           >
-            Submit
+            Add Comment
           </Button>
         </form>
       </Paper>
