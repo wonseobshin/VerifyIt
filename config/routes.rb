@@ -7,13 +7,12 @@ Rails.application.routes.draw do
     
     resources :users
     resources :articles do 
-      resources :annotations
       resources :ratings
       resources :tags
-      
+      resources :annotations do
+        resources :comments
+      end
     end
-   
-    resources :comments
 
   end
 

@@ -32,7 +32,7 @@ class Api::ArticlesController < ApplicationController
     # .average(:rating).round(1)
     article.getFakebox
     puts 'showing one article!'
-    # puts rating
+    puts rating
 
     render :json => {
       title: article.title,
