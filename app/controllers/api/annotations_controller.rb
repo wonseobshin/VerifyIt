@@ -12,6 +12,18 @@ class Api::AnnotationsController < ApplicationController
         render :json => @article.annotations.to_json
     end
     
+    def show
+        annotation = Annotation.find params[:id]
+        render :json => {
+            anchorId:annotation.anchorId,
+            focusId:annotation.focusId,
+            category:annotation.category,
+            point:annotation.point,
+            content: annotation.content,
+            article_id: annotation.article_id
+        }
+    end
+
     private
 
     def annotation_params
@@ -19,7 +31,7 @@ class Api::AnnotationsController < ApplicationController
             :anchorId,
             :focusId,
             :category,
-            :points,
+            :point,
             :content,
             :article_id
         )

@@ -94,11 +94,11 @@ export default function CenteredGrid({ match }) {
   }
 
   function onMouseDownHandler(e){
-    if(annotation.keepnew){
-      setAnnotation({new: true, view: false})
-    } else {
+    // if(annotation.keepnew){
+    //   setAnnotation({new: true, view: false})
+    // } else {
       setAnnotation({new: false, view: false});
-    }
+    // }
   }
 
   function onMouseUpHandler(event) {
@@ -134,9 +134,9 @@ export default function CenteredGrid({ match }) {
       // } else {
       //   setAnnotation({new: false, view: false})
       // }
+      setMessage({...message, annotationId: event.target.getAttribute('annotation_id')})
       setAnnotation({new: false, view: Boolean(event.target.getAttribute('annotation_id'))});
     }
-
     
     // console.log('window selection:', selection.toString(), 'end')
 
@@ -245,7 +245,7 @@ export default function CenteredGrid({ match }) {
             )}
           </Toggle>
           
-          {annotation.view && <Annotation {...match} /> }
+          {annotation.view && <Annotation annotation_id={message.annotationId} {...match} /> }
           {annotation.new && <CreateNewAnnotation selected={sel} {...match}/> }
         </Grid>
         <Grid item xs={2} />

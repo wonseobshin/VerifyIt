@@ -40,10 +40,10 @@ export default function Annotation(params) {
 
   useEffect(() => {
     // console.log("article id from annotation component:", params.params.id)
-    Axios.get(`/api/articles/${params.params.id}/annotations`).then(res => {
-      // console.log(res.data[0]);
-      const resAnnotation = res.data[0]
-      setAnnotation({resAnnotation})
+    Axios.get(`/api/articles/${params.params.id}/annotations/${params.annotation_id}`).then(res => {
+      console.log("GET RES DATA:",res.data);
+      const resAnnotation = res.data
+      // setAnnotation({resAnnotation})
       // console.log("ANNOTATION SET")
       // setList({ tags });
       return resAnnotation
