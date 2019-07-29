@@ -25,7 +25,7 @@ class Article < ApplicationRecord
 
   after_create :fakeboxDecision
   def fakeboxDecision
-    response = HTTParty.post("http://192.168.88.61:8080/fakebox/check", body: { 
+    response = HTTParty.post("http://192.168.1.78:8080/fakebox/check", body: { 
       "title": title, 
       "content": content,
       "url": url 
