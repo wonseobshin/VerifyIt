@@ -139,7 +139,15 @@ export default function CenteredGrid({ match }) {
         <Grid item xs={10} />
 
         <Grid item xs={2}>
-          <h2 className="rating-container">Fakebox: {fakebox.fakeboxRating}, {fakebox.fakeboxDecision}</h2>
+          <div className="flex-container">
+          <h5>Hover to see what Fakebox thinks!</h5>
+            <div className="fakebox-bar-cont">
+              <div className="fakebox-bar" style={ {width: fakebox.fakeboxRating + '%'}}>
+                <div className="fakebox-bar-background"></div>
+              </div>
+            </div>
+          </div>
+          {/* <h2 className="rating-container">Fakebox: {fakebox.fakeboxRating}, {fakebox.fakeboxDecision}</h2> */}
           <h2 className="rating-container">Users: {rating.rating}</h2>
         </Grid>
         <Grid item xs={2}>

@@ -122,4 +122,34 @@ a {
   padding: 5px;
 }
 
-/* ==== Rating Display ==== */
+/* ==== Fakebox Rating ==== */
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+
+}
+
+.fakebox-bar-cont {
+  background: gainsboro;
+  height: 2em;
+  padding: 0.5em;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 50px;
+  box-sizing: border-box;
+  box-shadow: 0 0 1px 0 rgba(#000, 0.75) inset, 0 0 4px 0 rgba(#000, 0.5);
+}
+
+.fakebox-bar {
+  background: #000;
+  height: 100%;
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset, 0 0 1px 3px rgba(white, 0.75) inset;
+}
+   
+

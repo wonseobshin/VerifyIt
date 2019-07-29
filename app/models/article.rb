@@ -21,11 +21,12 @@ class Article < ApplicationRecord
     content_rating = body["content"]["score"] * 100
     total_rating = title_rating.to_i + content_rating.to_i
     @average_rating = total_rating / 2 
+    
   end
 
   after_create :fakeboxDecision
   def fakeboxDecision
-    response = HTTParty.post("http://192.168.1.78:8080/fakebox/check", body: { 
+    response = HTTParty.post("http://192.168.88.61:8080/fakebox/check", body: { 
       "title": title, 
       "content": content,
       "url": url 
