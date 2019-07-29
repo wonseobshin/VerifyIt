@@ -97,6 +97,7 @@ export default function CreateNewAnnotation(prop,{ params }) {
   }
   
   function handleAnnChange(event) {
+    console.log("TARGET----:",event.target)
     setValues({
       content: event.target.value,
       category: values.category
@@ -104,7 +105,9 @@ export default function CreateNewAnnotation(prop,{ params }) {
   }
 
   function sendReq(annotation){
-    console.log(annotation)
+    annotation.content = values.content
+    console.log("CONTENTa----:",annotation.content)
+    console.log("CONTENT----:",values.content)
     Axios.post(`/api/articles/${prop.params.id}/annotations`, { annotation })
       .then(res => {
         // console.log("New annotation response: ",res);
