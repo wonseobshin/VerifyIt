@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -36,21 +36,44 @@ export default function Annotation(params) {
   });
   const [annotation, setAnnotation] = React.useState({
     loaded: false
-  })
+  });
 
   useEffect(() => {
     // console.log("article id from annotation component:", params.params.id)
-    Axios.get(`/api/articles/${params.params.id}/annotations/${params.annotation_id}`).then(res => {
-      console.log("GET RES DATA:",res.data);
-      const resAnnotation = res.data
-      // setAnnotation({resAnnotation})
-      // console.log("ANNOTATION SET")
-      // setList({ tags });
-      return resAnnotation
-    }).then(resAnnotation => {
-      setAnnotation({ ...resAnnotation, loaded: true})
-    });
+    Axios.get(
+      `/api/articles/${params.params.id}/annotations/${params.annotation_id}`
+    )
+      .then(res => {
+        console.log("GET RES DATA:", res.data);
+        const resAnnotation = res.data;
+        // setAnnotation({resAnnotation})
+        // console.log("ANNOTATION SET")
+        // setList({ tags });
+        return resAnnotation;
+      })
+      .then(resAnnotation => {
+        setAnnotation({ ...resAnnotation, loaded: true });
+      });
   }, []);
+
+  const handleUpVote = e => {
+    Axios.post(
+      `/api/articles/${params.params.id}/annotation/${params.annotation_id}`,
+      {
+        point: 
+      }
+    )
+      .then(response => {
+        console.log("sent:", response.data.tag);
+        const tag = response.data.tag;
+        // const tags = response.data.map(obj => {
+        //   return obj.tag;
+        // });
+        // setList({ tags });
+        handleResponse(tag);
+      })
+      .catch(err => console.log("Error", err));
+  };
 
   // const inputLabel = React.useRef(null);
   // const [labelWidth, setLabelWidth] = React.useState(0);
@@ -76,6 +99,18 @@ export default function Annotation(params) {
           {annotation.loaded && annotation.content}
           {/* {console.log(annotation.content)} */}
         </Typography>
+
+        <Typography variant="h6" component="h6">
+          Votes: {annotation.point}
+        </Typography>
+        <Button
+          onClick={() => handleUpVote()}
+          variant="contained"
+          color="primary"
+          className={classes.button}
+        >
+          Up Vote
+        </Button>
 
         <form className={classes.root} autoComplete="off">
           <TextField
