@@ -27,18 +27,18 @@ class Api::ArticlesController < ApplicationController
 
   def show
     article = Article.find params[:id]
-    rating = Rating.where(:article_id => params[:id]).average(:rating)
+    # rating = Rating.where(:article_id => params[:id]).average(:rating)
     tag = Tag.where(:article_id => params[:id])
     # .average(:rating).round(1)
-    article.getFakebox
+    # article.getFakebox
     puts 'showing one article!'
-    puts rating
+    # puts rating
 
     render :json => {
       title: article.title,
       url: article.url,
       content: article.content,
-      rating: rating,
+      # rating: rating,
       tag: tag
     }
   end
