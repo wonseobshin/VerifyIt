@@ -32,10 +32,15 @@ export default function Annotation(params) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     age: "",
-    name: "hai"
+    name: ""
   });
   const [annotation, setAnnotation] = React.useState({
-    loaded: false
+    loaded: false,
+    point: 0
+  });
+
+  const [comments, setCommments] = React.useState({
+    content: []
   });
 
   useEffect(() => {
@@ -57,20 +62,17 @@ export default function Annotation(params) {
   }, []);
 
   const handleUpVote = e => {
-    Axios.post(
-      `/api/articles/${params.params.id}/annotation/${params.annotation_id}`,
+    let addVote = annotation.point + 1;
+    Axios.put(
+      `/api/articles/${params.params.id}/annotations/${params.annotation_id}`,
       {
-        point: 
+        point: addVote
       }
     )
       .then(response => {
-        console.log("sent:", response.data.tag);
-        const tag = response.data.tag;
-        // const tags = response.data.map(obj => {
-        //   return obj.tag;
-        // });
-        // setList({ tags });
-        handleResponse(tag);
+        console.log("Votes:", response.data.point.point);
+        const newVote = response.data.point.point;
+        setAnnotation({ ...annotation, point: newVote });
       })
       .catch(err => console.log("Error", err));
   };
