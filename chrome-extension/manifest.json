@@ -1,0 +1,21 @@
+{
+  "name": "Verify It",
+  "version": "1.0",
+  "description": "Extension for Verify It",
+  "permissions": ["tabs", "activeTab", "declarativeContent", "storage", "http://localhost:3000/"],
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [ {
+    "matches": ["http://localhost:3000/"],
+    "js": ["reutersScraper.js"]
+  } ],
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' https://unpkg.com/axios/dist/axios.min.js https://cdnjs.cloudflare.com/ajax/libs/then-request/2.2.0/request.js; object-src 'self'"
+
+}
