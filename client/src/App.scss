@@ -132,13 +132,13 @@ a {
 
 /* ==== Fakebox Rating ==== */
 
-.flex-container {
+.flex-fakebox-cont {
   display: flex;
   padding-right: 4px;
   margin: 4px;
 }
 
-.bias-label {
+.fakebox-label {
   margin-right: 0.5em;
 }
 
@@ -218,6 +218,12 @@ a {
       }
     }
   }
+}
+
+.flex-user-cont {
+  display: flex;
+  padding-right: 4px;
+  margin: 4px;
 }
 
 .user-bar-cont {

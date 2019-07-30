@@ -193,9 +193,9 @@ export default function CenteredGrid({ match }) {
       <Grid container spacing={3}>
         <Grid item xs={3} />
         <Grid item xs={8}>
-          <h5>Try hovering over the progress bars...</h5>
-          <div className="flex-container">
-            <div className="bias-label">Fakebox: </div>
+          {/* <h5>Try hovering over the bars</h5> */}
+          <div className="fakebox-label">Fakebox:</div>
+          <div className="flex-fakebox-cont">
               <div className="fakebox-bar-cont">
                 <div className="fakebox-bar">
                   <div className="fakebox-background" style={{width: fakebox.fakeboxRating + '%'}}>
@@ -204,8 +204,8 @@ export default function CenteredGrid({ match }) {
               </div>
           </div>
           <br></br>
-          <div className="flex-container">
-            <div className="users-label">Users: </div>
+          <div className="users-label">Users:</div>
+          <div className="flex-user-cont">
               <div className="user-bar-cont">
                 <div className="user-bar">
                   <div className="user-bar-background" style={{width: rating.rating + '%'}}>
