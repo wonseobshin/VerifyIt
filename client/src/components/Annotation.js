@@ -174,7 +174,7 @@ export default function Annotation(params) {
           {commentList.comments.map(comment => (
             <>
               <div className="avatar-container">
-                <Avatar src={putin} className={classes.bigAvatar} />
+                <Avatar src={putin} className={classes.avatar} />
                 <Typography className="username" variant="h6" component="h6">
                   Vladimir Putin
                 </Typography>

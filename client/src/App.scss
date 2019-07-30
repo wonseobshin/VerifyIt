@@ -122,6 +122,16 @@ a {
 }
 
 /* ==== Annotation ====*/
+
+.new-annotation-container {
+  position: absolute;
+  height: 400px;
+  width: 1000px;
+  z-index: 99;
+  padding: 30px;
+  line-height: 28px;
+}
+
 .annotation-container {
   position: absolute;
   left: 20%;
