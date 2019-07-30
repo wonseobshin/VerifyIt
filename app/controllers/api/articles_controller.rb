@@ -30,7 +30,10 @@ class Api::ArticlesController < ApplicationController
     rating = Rating.where(:article_id => params[:id]).average(:rating)
     tag = Tag.where(:article_id => params[:id])
     # .average(:rating).round(1)
-    article.getFakebox
+    fakeboxRating = article.fakeboxRating
+    puts fakeboxRating
+    fakeboxDecision = article.fakeboxDecision
+    puts fakeboxDecision
     puts 'showing one article!'
     puts rating
 
@@ -39,9 +42,14 @@ class Api::ArticlesController < ApplicationController
       url: article.url,
       content: article.content,
       rating: rating,
-      tag: tag
+      tag: tag,
+      fakebox_rating: fakeboxRating,
+      fakebox_decision: fakeboxDecision
     }
+
   end
+
+
 
   private
 
@@ -50,6 +58,8 @@ class Api::ArticlesController < ApplicationController
       :url,
       :title,
       :content,
+      :fakebox_rating,
+      :fakebox_decision
     )
   end
 

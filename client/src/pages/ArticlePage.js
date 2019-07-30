@@ -25,6 +25,11 @@ const useStyles = makeStyles(theme => ({
 export default function CenteredGrid({ match }) {
   const classes = useStyles();
 
+  const [fakebox, setFakebox] = useState({
+    rating: 0,
+    decision: []
+  })
+
   const [message, setMessage] = useState({
     title: "",
     content: [],
@@ -75,6 +80,8 @@ export default function CenteredGrid({ match }) {
         const content = res.data.content.split(" ");
         const highlight = "";
         const rating = res.data.rating;
+        const fakeboxRating = res.data.fakebox_rating;
+        const fakeboxDecision = res.data.fakebox_decision
         // console.log(rating);
 
         const overlappedAnnotations = content.map((word, index) => {
@@ -86,6 +93,8 @@ export default function CenteredGrid({ match }) {
         
         setMessage({ title, content, highlight, overlappedAnnotations });
         setRating({ rating });
+        setFakebox({ fakeboxRating, fakeboxDecision })
+        console.log("HAHAHHAHAHA",res.data.fakebox_rating, res.data.fakebox_decision)
       }));
   }, []);
 
@@ -157,10 +166,24 @@ export default function CenteredGrid({ match }) {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={10} />
-
-        <Grid item xs={2}>
-          <h1 className="rating-container">{rating.rating}</h1>
+        <Grid item xs={8} />
+        <Grid item xs={3}>
+          <h5>Hover to see what Fakebox thinks!</h5>
+          <div className="flex-container">
+            <div className="bias-label">Biased</div>
+            <div className="fakebox-bar-cont">
+              <div className="fakebox-bar" style={{width: fakebox.fakeboxRating + '%'}}></div>
+            </div>
+            <div className="impartial-label">Impartial</div>
+          </div>
+          <h5>Hover to see what other users think!</h5>
+          <div className="flex-container">
+          <div className="user-bar-cont">
+            <div className="user-bar" style={{width: rating.rating + '%'}}></div>
+          </div>
+          <div className="rating-display">{rating.rating}</div>
+          </div>
+          {/* <h2 className="rating-container">Users: {rating.rating}</h2> */}
         </Grid>
         <Grid item xs={2}>
           {/* <div className="instructions-container">
