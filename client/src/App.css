@@ -95,10 +95,12 @@ a {
   padding: 30px;
 }
 
+.loadingSpinner {
+  margin: auto;
+}
 .article-container h2 p {
   font-family: "Times New Roman", Times, serif;
   white-space: pre-line;
-
 }
 
 .rating-container {
@@ -139,7 +141,6 @@ a {
   margin-left: 0.5em;
 }
 
-
 .fakebox-bar-cont {
   background: black;
   width: 16em;
@@ -156,7 +157,8 @@ a {
   border-radius: 50px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset, 0 0 1px 3px rgba(white, 0.75) inset;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset,
+    0 0 1px 3px rgba(white, 0.75) inset;
 }
 
 .user-bar-cont {
@@ -175,10 +177,10 @@ a {
   border-radius: 50px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset, 0 0 1px 3px rgba(white, 0.75) inset;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset,
+    0 0 1px 3px rgba(white, 0.75) inset;
 }
 
 .rating-display {
-  padding-left:0.5em;
-
+  padding-left: 0.5em;
 }
