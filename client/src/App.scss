@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+.page-container {
+  width: 95%;
+  margin: 0 auto;
+}
 /* ==== Nav ==== */
 
 .nav-container {
@@ -119,9 +123,25 @@ a {
 
 /* ==== Annotation ====*/
 .annotation-container {
+  position: absolute;
+  left: 20%;
   text-align: left;
-  width: 400px;
+  width: 1000px;
   height: 400px;
+  z-index: 99;
+}
+
+.annotation-paper {
+  padding: 30px;
+  line-height: 28px;
+}
+
+.annotation-content {
+  border-bottom: solid 1px grey;
+}
+
+.comment-container {
+  background: lightgray;
 }
 
 /* ==== Rating Questionaire ==== */

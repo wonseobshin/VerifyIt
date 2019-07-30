@@ -13,6 +13,9 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import ThumbUpAlt from "@material-ui/icons/ThumbUpAlt";
+import Comment from "@material-ui/icons/Comment";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -126,68 +129,65 @@ export default function Annotation(params) {
 
   return (
     <>
-      <Paper className="annotation-container">
+      <Paper className="annotation-paper">
         <Typography variant="h4" component="h4">
-          {annotation.loaded && annotation.category}
+          Criteria: {annotation.loaded && annotation.category}
           {/* {console.log("CAT:",annotation)} */}
         </Typography>
-        <Typography variant="h6" component="h6">
+        <Typography className="annotation-content" variant="h6" component="h6">
           {annotation.loaded && annotation.content}
+          <IconButton
+            onClick={() => handleUpVote()}
+            type="submit"
+            className={classes.root}
+            aria-label="Vote"
+          >
+            {" "}
+            <ThumbUpAlt /> {annotation.point}
+          </IconButton>
           {/* {console.log(annotation.content)} */}
         </Typography>
 
-        <Typography variant="h6" component="h6">
-          Votes: {annotation.point}
-        </Typography>
-        <Button
-          onClick={() => handleUpVote()}
-          variant="contained"
-          color="primary"
-          className={classes.button}
-        >
-          Up Vote
-        </Button>
-
-        <Typography variant="h6" component="h6">
-          Comments:
-        </Typography>
-        {commentList.comments.map(comment => (
-          <Typography variant="p" component="p">
-            {comment}
+        <Typography variant="h6" component="h6" />
+        <div className="comment-container">
+          <Typography variant="h6" component="h6">
+            Comments:
           </Typography>
-        ))}
-        <Typography variant="p" component="p" />
+          {commentList.comments.map(comment => (
+            <Typography variant="p" component="p">
+              {comment}
+            </Typography>
+          ))}
+          <Typography variant="p" component="p" />
 
-        <Typography variant="h6" component="h6">
-          Add a Comment
-        </Typography>
-        <form
-          className={classes.root}
-          autoComplete="off"
-          onSubmit={handleComment}
-        >
-          <TextField
-            id="standard-full-width"
-            style={{ margin: 8 }}
-            placeholder="Comment"
-            multiline
-            fullWidth
-            margin="normal"
-            value={commentText}
-            onChange={event => setCommentText(event.target.value)}
-            InputLabelProps={{
-              shrink: true
-            }}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.button}
+          <form
+            className={classes.root}
+            autoComplete="off"
+            onSubmit={handleComment}
           >
-            Add Comment
-          </Button>
-        </form>
+            <TextField
+              id="standard-full-width"
+              style={{ margin: 8 }}
+              placeholder="Add a Comment"
+              multiline
+              fullWidth
+              margin="normal"
+              value={commentText}
+              onChange={event => setCommentText(event.target.value)}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            <IconButton
+              type="submit"
+              className={classes.root}
+              aria-label="Vote"
+            >
+              {" "}
+              <Comment />
+            </IconButton>
+          </form>
+        </div>
       </Paper>
     </>
   );

@@ -190,8 +190,15 @@ export default function CenteredGrid({ match }) {
 
   return (
     <>
+      <div className="annotation-container">
+        {annotation.view && (
+          <Annotation annotation_id={message.annotationId} {...match} />
+        )}
+        {annotation.new && <CreateNewAnnotation selected={sel} {...match} />}
+      </div>
       <Grid container spacing={3}>
         <Grid item xs={8} />
+
         <Grid item xs={3}>
           <h5>Hover to see what Fakebox thinks!</h5>
           <div className="flex-container">
@@ -287,12 +294,8 @@ export default function CenteredGrid({ match }) {
               </div>
             )}
           </Toggle>
-
-          {annotation.view && (
-            <Annotation annotation_id={message.annotationId} {...match} />
-          )}
-          {annotation.new && <CreateNewAnnotation selected={sel} {...match} />}
         </Grid>
+
         <Grid item xs={2} />
         <Grid item xs={8}>
           <TagsList article_id={match.params.id} />
