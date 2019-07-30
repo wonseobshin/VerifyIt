@@ -30,7 +30,7 @@ a {
 }
 
 .nav-bar {
-  background-color: #379392;
+  background-color: white;
   color: #c4dfe6;
   overflow: hidden;
   padding: 15px;
@@ -47,7 +47,7 @@ a {
 }
 
 .nav-bar .logo-container h1 {
-  color: white;
+  color: black;
   margin: 0;
 }
 
@@ -91,7 +91,7 @@ a {
 .article-container {
   background: white;
   height: 600px;
-  border: solid black 2px;
+  border: solid white 1px;
   border-radius: 10px;
   padding: 30px;
   line-height: 2;
@@ -138,13 +138,13 @@ a {
   margin-right: 0.5em;
 }
 
-.impartial-label {
-  margin-left: 0.5em;
+.users-label {
+  margin-right: 0.5em;
 }
 
 .fakebox-bar-cont {
-  background: black;
-  width: 18em;
+  background: gainsboro;
+  width: 32em;
   height: 2em;
   padding: 0.5em;
   border-radius: 50px;
@@ -216,8 +216,8 @@ a {
 }
 
 .user-bar-cont {
-  background: black;
-  width: 18em;
+  background: gainsboro;
+  width: 32em;
   height: 2em;
   padding: 0.5em;
   border-radius: 50px;
@@ -287,7 +287,6 @@ a {
     }
   }
 }
-
 
 .rating-display {
   padding-left:0.5em;
