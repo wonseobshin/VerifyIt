@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2019_07_29_214636) do
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "fakebox_rating"
+    t.text "fakebox_decision"
   end
 
   create_table "comments", force: :cascade do |t|
