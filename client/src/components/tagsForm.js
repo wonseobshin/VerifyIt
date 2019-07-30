@@ -5,16 +5,19 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Axios from "axios";
 import { List } from "@material-ui/core";
+import LocalOffer from "@material-ui/icons/LocalOffer";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap"
+    flexDirection: "row"
   },
   chip: {
     margin: theme.spacing(1)
-  }
+  },
+  button: {}
 }));
 
 export default function TagsForm({ article_id, handleResponse }) {
@@ -28,8 +31,8 @@ export default function TagsForm({ article_id, handleResponse }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("e.target.value", tagText)
-    if(tagText !== ''){
+    console.log("e.target.value", tagText);
+    if (tagText !== "") {
       Axios.post(`/api/articles/${article_id}/tags`, {
         tag: tagText
       })
@@ -44,7 +47,7 @@ export default function TagsForm({ article_id, handleResponse }) {
         })
         .catch(err => console.log("Error", err));
     }
-    setTagText("")
+    setTagText("");
   };
 
   return (
@@ -63,14 +66,18 @@ export default function TagsForm({ article_id, handleResponse }) {
             shrink: true
           }}
         />
-        <Button
+        <IconButton type="submit" className={classes.root} aria-label="Tag">
+          <LocalOffer />
+        </IconButton>
+        {/* <Button
           type="submit"
           variant="contained"
           color="primary"
+          id="tag-button"
           className={classes.button}
         >
           Tag
-        </Button>
+        </Button> */}
       </form>
     </div>
   );
