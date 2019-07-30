@@ -194,22 +194,22 @@ export default function CenteredGrid({ match }) {
           <div className="flex-container">
             <div className="bias-label">Biased</div>
             <div className="fakebox-bar-cont">
-              <div
-                className="fakebox-bar"
-                style={{ width: fakebox.fakeboxRating + "%" }}
-              />
+              <div className="fakebox-bar">
+              <div className="fakebox-background" style={{width: fakebox.fakeboxRating + '%'}}>
+              </div>
+              </div>
             </div>
             <div className="impartial-label">Impartial</div>
           </div>
           <h5>Hover to see what other users think!</h5>
           <div className="flex-container">
-            <div className="user-bar-cont">
-              <div
-                className="user-bar"
-                style={{ width: rating.rating + "%" }}
-              />
+          <div className="user-bar-cont">
+            <div className="user-bar">
+              <div className="user-bar-background" style={{width: rating.rating + '%'}}>
+              </div>
             </div>
-            <div className="rating-display">{rating.rating}</div>
+          </div>
+          <div className="rating-display">{rating.rating}</div>
           </div>
           {/* <h2 className="rating-container">Users: {rating.rating}</h2> */}
         </Grid>
