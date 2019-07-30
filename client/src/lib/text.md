@@ -12,3 +12,14 @@ Verify It™ is a full-stack web application built to help rejuvenate our collec
 
 ### Who.
 
+## Instructions.
+
+### Add an Annotation
+Step 1: Highlight any word or phrase you want to discuss.
+Step 2: Pick a criteria from the dropdown menu.
+Step 3: Write a short description for your annotation.
+Step 4: Submit!
+
+## View Annotation
+
+Simply click on any highlighted word or phrase.

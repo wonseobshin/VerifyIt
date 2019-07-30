@@ -36,8 +36,12 @@ export default function Instruction() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+          <ul>
+            <li>Highlight any word or phrase you want to discuss.</li>
+            <li>Pick a criteria from the dropdown menu.</li>
+            <li>Write a short description for your annotation.</li>
+            <li>Submit!</li>
+          </ul>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -51,8 +55,9 @@ export default function Instruction() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            <ul>
+              <li>Simply click on any highlighted word or phrase.</li>
+            </ul>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
