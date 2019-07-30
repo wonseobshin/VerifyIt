@@ -37,13 +37,14 @@ class App extends Component {
         <div className="App">
           <NavBar />
           {/* <BreadCrumbsNav /> */}
-
-          <Switch>
-            <Route path="/" component={HomePage} exact />
-            <Route path="/searchresults" component={SearchResults} />
-            <Route path="/article/:id" component={ArticlePage} />
-            <Route component={NotFoundPage} />
-          </Switch>
+          <div className="page-container">
+            <Switch>
+              <Route path="/" component={HomePage} exact />
+              <Route path="/searchresults" component={SearchResults} />
+              <Route path="/article/:id" component={ArticlePage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </div>
         </div>
       </Router>
     );
