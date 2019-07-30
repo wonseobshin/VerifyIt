@@ -7,7 +7,7 @@ import NavBar from "./components/navBar";
 import SearchResults from "./pages/SearchResultsPage";
 import ArticlePage from "./pages/ArticlePage";
 import NotFoundPage from "./pages/NotFoundPage";
-import "./App.css";
+import "./App.scss";
 
 class App extends Component {
   constructor(props) {
