@@ -7,6 +7,9 @@ body {
   padding: 0;
 
   font-family: "Noto Serif", serif;
+  ul {
+    padding: 0 0 0 1em;
+  }
 }
 
 .blue {
@@ -125,9 +128,9 @@ a {
 
 .new-annotation-container {
   position: absolute;
-  height: 400px;
-  width: 1000px;
-  z-index: 99;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
   padding: 30px;
   line-height: 28px;
 }
@@ -136,9 +139,9 @@ a {
   position: absolute;
   left: 20%;
   text-align: left;
-  width: 1000px;
-  height: 400px;
-  z-index: 99;
+  width: 60%;
+  height: 40%;
+  z-index: 5;
 }
 
 .annotation-paper {
@@ -317,8 +320,8 @@ a {
       background: purple;
       -webkit-clip-path: inset(0 100% 0 0);
       clip-path: (0 100% 0 0);
-      transition: all 3s;
-      -webkit-transition: all 3s;
+      transition: all 1s;
+      -webkit-transition: all 1s;
       &:before {
         content: "";
         display: block;
