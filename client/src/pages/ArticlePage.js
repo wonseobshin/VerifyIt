@@ -158,43 +158,8 @@ export default function CenteredGrid({ match }) {
         </div>
       }
       <Grid container spacing={3}>
-        <Grid item xs={3} />
-        <Grid item xs={8}>
-          <h5>Try hovering over the progress bars...</h5>
-          <div className="flex-container">
-            <div className="bias-label">Fakebox: </div>
-              <div className="fakebox-bar-cont">
-                <div className="fakebox-bar">
-                  <div className="fakebox-background" style={{width: fakebox.fakeboxRating + '%'}}>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <br></br>
-          <div className="flex-container">
-            <div className="users-label">Users: </div>
-              <div className="user-bar-cont">
-                <div className="user-bar">
-                  <div className="user-bar-background" style={{width: rating.rating + '%'}}>
-                  </div>
-                </div>
-              </div>
-            <div className="rating-display">{rating.rating}</div>
-          </div>
-        </Grid>
-        <Grid item xs={2}>
-          {/* <div className="instructions-container">
-            <h2>Instructions</h2>
-            <p>Add an Annotation</p>
-            <p>Add a Comment</p>
-            <p>Update a Comment</p>
-            <p>Add a Rating</p>
-          </div> */}
-          <h2>Instructions</h2>
-          <Instruction />
-        </Grid>
-
-        <Grid item xs={8}>
+        <Grid item xs={1} /> {/* PALM */}
+        <Grid item xs={6}> {/* PEACH */}
           <div
             className="article-container"
             onMouseUp={onMouseUpHandler}
@@ -225,8 +190,29 @@ export default function CenteredGrid({ match }) {
             )}
           </div>
         </Grid>
+        <Grid item xs={4}> {/* PEAR */}
+        <h5>Try hovering over the progress bars...</h5>
+          <div className="flex-container">
+            <div className="bias-label">Fakebox: </div>
+              <div className="fakebox-bar-cont">
+                <div className="fakebox-bar">
+                  <div className="fakebox-background" style={{width: fakebox.fakeboxRating + '%'}}>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <br></br>
+          <div className="flex-container">
+            <div className="users-label">Users: </div>
+              <div className="user-bar-cont">
+                <div className="user-bar">
+                  <div className="user-bar-background" style={{width: rating.rating + '%'}}>
+                  </div>
+                </div>
+              </div>
+            <div className="rating-display">{rating.rating}</div>
+          </div>
 
-        <Grid item xs={2}>
           <Toggle>
             {({ on, toggle }) => (
               <div>
@@ -249,12 +235,13 @@ export default function CenteredGrid({ match }) {
               </div>
             )}
           </Toggle>
-        </Grid>
+          
+          <h2>Instructions</h2>
+          <Instruction />
 
-        <Grid item xs={2} />
-        <Grid item xs={8}>
           <TagsList article_id={match.params.id} />
         </Grid>
+        <Grid item xs={1} /> {/* PINE */}
       </Grid>
     </>
   );
