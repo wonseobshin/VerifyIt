@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import ImgMediaCard from "./articleCard";
 import Axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
 
 export default function CardsList() {
   const [list, setList] = useState({
@@ -17,9 +18,16 @@ export default function CardsList() {
   }, []);
   return (
     <>
-      <Grid container spacing={24} style={{ padding: 24 }}>
+    <Grid container spacing={3} style={{ padding: 24 }}>
         {list.cards.map(article => (
-          <Grid item xs={8} sm={4} lg={4} xl={3}>
+          <Grid
+            className="article-card-container"
+            item
+            xs={12}
+            sm={4}
+            lg={4}
+            xl={3}
+          >
             <ImgMediaCard
               key={article.id}
               id={article.id}
