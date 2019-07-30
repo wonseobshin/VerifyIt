@@ -11,7 +11,7 @@ export default function HomePage() {
     <nav className="nav-bar nav-container">
       <div className="logo-container">
         <Link to={`/`}>
-          <h1 className="nav-item main-logo">Verify It</h1>
+          <h1 className="nav-item main-logo">verify it.</h1>
         </Link>
       </div>
       <div className="search-container">
