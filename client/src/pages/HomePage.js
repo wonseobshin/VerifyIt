@@ -50,14 +50,14 @@ export default function HomePage() {
     <Grid container spacing={3}>
       <Grid item xs={3} />
       <Grid item xs={6} className="text-container">
-        <Typography>
           <h1>Welcome to Verify It</h1>
-          <p>
+        <Typography>
+          {/* <p> */}
             That other text? Sadly, it’s no longer a 10. You know, it really
             doesn’t matter what you write as long as you’ve got a young, and
             beautiful, piece of text. My text is long and beautiful, as, it has
             been well documented, are various other parts of my website.
-          </p>
+          {/* </p> */}
         </Typography>
         {/* {loadingSpinner ? <LoadingSpinner /> : <span />} */}
         {loadingSpinner.loading && <LoadingSpinner />}

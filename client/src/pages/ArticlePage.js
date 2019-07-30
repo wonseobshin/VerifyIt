@@ -63,12 +63,6 @@ export default function CenteredGrid({ match }) {
     return Axios.get(`/api/articles/${articleId}/annotations`);
   }
 
-  // //everytime
-  // useEffect(() => {
-  //   console.log("GETTING SEL")
-  //   setSel( document.getSelection() )
-  // },[annotation.new])
-
   useEffect(() => {
     Axios.all([
       getArticle(match.params.id),
@@ -85,14 +79,12 @@ export default function CenteredGrid({ match }) {
           }
         );
 
-        // console.log(annotations)
         const title = res.data.title;
         const content = res.data.content.split(" ");
         const highlight = "";
         const rating = res.data.rating;
         const fakeboxRating = res.data.fakebox_rating;
         const fakeboxDecision = res.data.fakebox_decision;
-        // console.log(rating);
 
         const overlappedAnnotations = content.map((word, index) => {
           const overlappingAnnotation = annotationData.find(
@@ -121,25 +113,16 @@ export default function CenteredGrid({ match }) {
   }
 
   function onMouseDownHandler(e) {
-    // if(annotation.keepnew){
-    //   setAnnotation({new: true, view: false})
-    // } else {
     setAnnotation({ new: false, view: false });
-    // }
   }
 
   function onMouseUpHandler(event) {
-    // console.log('on mouse up:', event.target);
     const selection = window.getSelection();
     setSel(selection);
     console.log("GETTING SEL");
     const { anchorNode, focusNode } = selection;
-    // console.log('anchor:', anchorNode, typeof anchorNode, 'focusNode:', focusNode, typeof focusNode);
-    // console.log('anchorID:', anchorNode.parentNode.id, 'focusID:', focusNode.parentNode.id);
     const startID = Math.min(anchorNode.parentNode.id, focusNode.parentNode.id);
     const endID = Math.max(anchorNode.parentNode.id, focusNode.parentNode.id);
-    // console.log('start ID:', startID, 'endID:', endID);
-    // console.log("event.target['annotation-id']", event.target.annotation_id)
     if (selection.toString()) {
       const selectionOverlapsExistingHighlight = message.overlappedAnnotations.some(
         (annotationID, index) => {
@@ -152,20 +135,9 @@ export default function CenteredGrid({ match }) {
         "selection overlaps existing highlight:",
         selectionOverlapsExistingHighlight
       );
-      // if(selectionOverlapsExistingHighlight) {
-      //   //show form to new new annotation
-      //   setAnnotation({new: false, view: false})
-      // } else {
-      //   setAnnotation({new: true, view: false})
-      // }
       setAnnotation({ new: !selectionOverlapsExistingHighlight, view: false });
     } else {
       // //do click stuff: view annotaion
-      // if(event.target.getAttribute('annotation_id')){
-      //   setAnnotation({new: false, view: true})
-      // } else {
-      //   setAnnotation({new: false, view: false})
-      // }
       setMessage({
         ...message,
         annotationId: event.target.getAttribute("annotation_id")
@@ -175,27 +147,16 @@ export default function CenteredGrid({ match }) {
         view: Boolean(event.target.getAttribute("annotation_id"))
       });
     }
-
-    // console.log('window selection:', selection.toString(), 'end')
   }
-
-  // function keepNewOpen(keepOpen){
-  //   if(keepOpen){
-  //     setAnnotation({keepnew: true});
-  //   } else {
-  //     setAnnotation({keepnew: false})
-  //   }
-  //   console.log("VIEW IS KEPT:",annotation.keepnew)
-  // }
 
   return (
     <>
-      <div className="annotation-container">
-        {annotation.view && (
-          <Annotation annotation_id={message.annotationId} {...match} />
-        )}
-        {annotation.new && <CreateNewAnnotation selected={sel} {...match} />}
-      </div>
+      {(annotation.view || annotation.new) && 
+        <div className="annotation-container">
+          {annotation.view && <Annotation annotation_id={message.annotationId} {...match} />}
+          {annotation.new && <CreateNewAnnotation selected={sel} {...match} />}
+        </div>
+      }
       <Grid container spacing={3}>
         <Grid item xs={3} />
         <Grid item xs={8}>
