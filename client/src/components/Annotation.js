@@ -16,6 +16,9 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import ThumbUpAlt from "@material-ui/icons/ThumbUpAlt";
 import Comment from "@material-ui/icons/Comment";
+import Avatar from "@material-ui/core/Avatar";
+import trump from "../images/avatar_trump.jpg";
+import putin from "../images/avatar_putin.jpg";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,6 +31,14 @@ const useStyles = makeStyles(theme => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
+  },
+  avatar: {
+    margin: 10
+  },
+  bigAvatar: {
+    margin: 10,
+    width: 60,
+    height: 60
   }
 }));
 
@@ -130,10 +141,17 @@ export default function Annotation(params) {
   return (
     <>
       <Paper className="annotation-paper">
+        <div className="avatar-container">
+          <Avatar src={trump} className={classes.bigAvatar} />
+          <Typography className="username" variant="h6" component="h6">
+            Donald Trump
+          </Typography>
+        </div>
         <Typography variant="h4" component="h4">
           Criteria: {annotation.loaded && annotation.category}
           {/* {console.log("CAT:",annotation)} */}
         </Typography>
+
         <Typography className="annotation-content" variant="h6" component="h6">
           {annotation.loaded && annotation.content}
           <IconButton
@@ -154,9 +172,17 @@ export default function Annotation(params) {
             Comments:
           </Typography>
           {commentList.comments.map(comment => (
-            <Typography variant="p" component="p">
-              {comment}
-            </Typography>
+            <>
+              <div className="avatar-container">
+                <Avatar src={putin} className={classes.bigAvatar} />
+                <Typography className="username" variant="h6" component="h6">
+                  Vladimir Putin
+                </Typography>
+              </div>
+              <Typography className="comment-text" variant="p" component="p">
+                {comment}
+              </Typography>
+            </>
           ))}
           <Typography variant="p" component="p" />
 
