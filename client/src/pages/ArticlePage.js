@@ -232,7 +232,9 @@ export default function CenteredGrid({ match }) {
             onMouseDown={onMouseDownHandler}
           >
             {isLoading ? (
-              <LoadingSpinner />
+              <div className="spinner-container">
+                <LoadingSpinner />
+              </div>
             ) : (
               <>
                 <h2>{message.title}</h2>

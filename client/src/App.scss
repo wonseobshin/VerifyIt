@@ -78,7 +78,6 @@ a {
   justify-content: space-evenly;
 }
 
-
 /* ==== URL Input ==== */
 
 .URL-form {
@@ -98,9 +97,12 @@ a {
   overflow: auto;
 }
 
-.loadingSpinner {
-  margin: auto;
+.spinner-container {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
 }
+
 .article-container h2 p {
   font-family: "Times New Roman", Times, serif;
   white-space: pre-line;
@@ -186,4 +188,8 @@ a {
 
 .rating-display {
   padding-left: 0.5em;
+}
+
+#tag-button {
+  display: inline;
 }

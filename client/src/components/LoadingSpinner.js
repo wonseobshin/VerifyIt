@@ -13,9 +13,7 @@ export default function LoadingSpinner() {
 
   return (
     <>
-      <span className="loadingSpinner">
-        <CircularProgress className={classes.progress} color="secondary" />
-      </span>
+      <CircularProgress className={classes.progress} color="secondary" />
     </>
   );
 }
