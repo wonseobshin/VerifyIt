@@ -50,7 +50,7 @@ export default function HomePage() {
     <Grid container spacing={3}>
       <Grid item xs={3} />
       <Grid item xs={6} className="text-container">
-          <h1>Welcome to Verify It</h1>
+          <h1>Welcome to <em>verify it</em>.</h1>
         <Typography>
           {/* <p> */}
             That other text? Sadly, it’s no longer a 10. You know, it really

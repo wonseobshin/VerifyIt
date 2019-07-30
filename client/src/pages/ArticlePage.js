@@ -179,7 +179,7 @@ export default function CenteredGrid({ match }) {
                   </div>
                 </div>
               </div>
-            <div className="rating-display">{rating.rating}</div>
+            {/* <div className="rating-display">{rating.rating}</div> */}
           </div>
         </Grid>
         <Grid item xs={2}>
