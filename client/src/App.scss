@@ -279,7 +279,7 @@ a {
       }
     }
   }
-  &:active {
+  &:hover {
     .fakebox-bar {
       .fakebox-background {
         -webkit-clip-path: inset(0 0 0 0);
@@ -360,6 +360,14 @@ a {
     }
   }
   &:hover {
+    .user-bar {
+      .user-bar-background {
+        -webkit-clip-path: inset(0 0 0 0);
+        clip-path: inset(0 0 0 0);
+      }
+    }
+  }
+  &.fill {
     .user-bar {
       .user-bar-background {
         -webkit-clip-path: inset(0 0 0 0);

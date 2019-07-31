@@ -32,6 +32,11 @@ const useStyles = makeStyles(theme => ({
 export default function CenteredGrid({ match }) {
   const classes = useStyles();
 
+  const [progressBar, setProgressBar] = useState({
+    fakeboxBar: "",
+    userBar: ""
+  })
+
   const [fakebox, setFakebox] = useState({
     rating: 0,
     decision: [],
@@ -66,6 +71,10 @@ export default function CenteredGrid({ match }) {
 
   function getAnnotations(articleId) {
     return Axios.get(`/api/articles/${articleId}/annotations`);
+  }
+
+  function setUserBarRating() {
+    setProgressBar({ userBar: "fill"})
   }
 
   useEffect(() => {
@@ -213,7 +222,7 @@ export default function CenteredGrid({ match }) {
           <br></br>
           <div className="flex-container">
             <div className="users-label">Users: </div>
-              <div className="user-bar-cont">
+              <div className={"user-bar-cont " + progressBar.userBar} onMouseOver={ setUserBarRating }>
                 <div className="user-bar">
                   <div className="user-bar-background" style={{width: rating.rating + '%'}}>
                   </div>
@@ -257,6 +266,8 @@ export default function CenteredGrid({ match }) {
           <div className="tag-list-container" >
             <TagsList article_id={match.params.id} />
           </div>
+
+
         </Grid>
         <Grid id="pine" item xs={1} /> {/* PINE */}
       </Grid>
