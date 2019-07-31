@@ -8,14 +8,12 @@ class Api::ArticlesController < ApplicationController
       #   #add the sccrapping thing here
 
       #   @article = Article.create(#add params here)
-      #   puts params[:id]
       #   if @article.save
       #     redirect_to "http://localhost:3000/article/#{@article.id}"
       #   else
       #     head(:internal_server_error)
       #   end
       # else
-      # # puts `http://localhost:3000/article/#{@article.id}`
       redirect_to "http://localhost:3000/article/#{@article.id}"
 
         # render :json => {
