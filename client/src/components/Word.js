@@ -4,6 +4,7 @@ import CreateNewAnnotation from "./CreateNewAnnotation";
 
 class Word extends React.Component {
   constructor(props) {
+    // console.log("WHAT THE F", props);
     super(props);
 
     this.state = {
@@ -69,7 +70,9 @@ class Word extends React.Component {
   //   console.log("No Annotation was selected. Click on an existing annotation.")
   // }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log("WHAT THE F", this.props);
+  }
 
   render() {
     return (

@@ -117,6 +117,7 @@ export default function CenteredGrid({ match }) {
       })
     );
   }, []);
+
   function updateRating(newRating) {
     const rating = newRating;
     setRating({ rating });
@@ -240,6 +241,7 @@ export default function CenteredGrid({ match }) {
                       pos={pos}
                       word={word}
                       highlight={message.highlight}
+                      upVotes={upVotes.votes}
                     />
                   );
                 })}
