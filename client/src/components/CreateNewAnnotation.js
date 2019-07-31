@@ -112,14 +112,9 @@ export default function CreateNewAnnotation(prop, { params }) {
 
   function sendReq(annotation) {
     annotation.content = values.content;
-    console.log("CONTENTa----:", annotation.content);
-    console.log("CONTENT----:", values.content);
     Axios.post(`/api/articles/${prop.params.id}/annotations`, {
       annotation
     }).then(res => {
-      // console.log("New annotation response: ",res);
-      // console.log(res.data);
-
       completeAnnotation(annotation, res);
     });
   }
@@ -135,7 +130,6 @@ export default function CreateNewAnnotation(prop, { params }) {
     }
 
     setState({ page: 0 });
-    // prop.keepNewOpen(false)
   }
 
   return (
@@ -148,9 +142,6 @@ export default function CreateNewAnnotation(prop, { params }) {
               Donald Trump
             </Typography>
           </div>
-          <Typography variant="h6" component="h6">
-            {/* UserName */}
-          </Typography>
 
           <form className={classes.root} autoComplete="off">
             <FormControl required className={classes.formControl}>
@@ -185,35 +176,14 @@ export default function CreateNewAnnotation(prop, { params }) {
               </Select>
               <FormHelperText>Required</FormHelperText>
             </FormControl>
-            {/* <TextField
-            onChange={handleAnnChange}
-            id="standard-full-width"
-            style={{ margin: 8 }}
-            placeholder="Why do you think so?"
-            multiline
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true
-            }}
-          /> */}
             <IconButton
               onClick={submitAnnotationHandler}
               type="submit"
               className={classes.root}
               aria-label="Next"
             >
-              {" "}
               <Add />
             </IconButton>
-            {/* <Button
-              onClick={submitAnnotationHandler}
-              variant="contained"
-              color="primary"
-              className={classes.button}
-            >
-              Next
-            </Button> */}
           </form>
         </Paper>
       )}
@@ -250,8 +220,7 @@ export default function CreateNewAnnotation(prop, { params }) {
               className={classes.root}
               variant="contained"
             >
-              {" "}
-              <Publish />
+              <Add />
             </IconButton>
           </form>
         </Paper>
