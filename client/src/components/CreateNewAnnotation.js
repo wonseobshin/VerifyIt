@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function CreateNewAnnotation(prop, { params }) {
+  console.log("PROP", prop);
   const classes = useStyles();
   const [values, setValues] = React.useState({
     category: "cate",
@@ -118,6 +119,7 @@ export default function CreateNewAnnotation(prop, { params }) {
     }).then(res => {
       // console.log("New annotation response: ",res);
       // console.log(res.data);
+
       completeAnnotation(annotation, res);
     });
   }

@@ -51,6 +51,16 @@ export default function CenteredGrid({ match }) {
     new: false
   });
 
+  const [upVotes, setUpVotes] = useState({
+    votes: 0
+  });
+
+  console.log("NEW VOTES", upVotes);
+
+  function handlePoints(points) {
+    setUpVotes({ points });
+  }
+
   const [sel, setSel] = useState({});
 
   const [isLoading, setIsLoading] = useState(true);
@@ -70,10 +80,11 @@ export default function CenteredGrid({ match }) {
     ]).then(
       Axios.spread(function(res, annotations) {
         const annotationData = annotations.data.map(
-          ({ anchorId, focusId, id }) => {
+          ({ anchorId, focusId, point, id }) => {
             return {
               start: Number(anchorId),
               end: Number(focusId),
+              point: Number(point),
               id
             };
           }
@@ -106,7 +117,6 @@ export default function CenteredGrid({ match }) {
       })
     );
   }, []);
-
   function updateRating(newRating) {
     const rating = newRating;
     setRating({ rating });
@@ -151,34 +161,46 @@ export default function CenteredGrid({ match }) {
 
   return (
     <>
-      {(annotation.view || annotation.new) && 
+      {(annotation.view || annotation.new) && (
         <div className="annotation-container">
-          {annotation.view && <Annotation annotation_id={message.annotationId} {...match} />}
-          {annotation.new && <CreateNewAnnotation selected={sel} {...match} />}
+          {annotation.view && (
+            <Annotation
+              handlePoints={handlePoints}
+              annotation_id={message.annotationId}
+              {...match}
+            />
+          )}
+          {annotation.new && (
+            <CreateNewAnnotation upVotes={upVotes} selected={sel} {...match} />
+          )}
         </div>
-      }
+      )}
       <Grid container spacing={3}>
         <Grid item xs={3} />
         <Grid item xs={8}>
           <h5>Try hovering over the progress bars...</h5>
           <div className="flex-container">
             <div className="bias-label">Fakebox: </div>
-              <div className="fakebox-bar-cont">
-                <div className="fakebox-bar">
-                  <div className="fakebox-background" style={{width: fakebox.fakeboxRating + '%'}}>
-                  </div>
-                </div>
+            <div className="fakebox-bar-cont">
+              <div className="fakebox-bar">
+                <div
+                  className="fakebox-background"
+                  style={{ width: fakebox.fakeboxRating + "%" }}
+                />
               </div>
+            </div>
           </div>
-          <br></br>
+          <br />
           <div className="flex-container">
             <div className="users-label">Users: </div>
-              <div className="user-bar-cont">
-                <div className="user-bar">
-                  <div className="user-bar-background" style={{width: rating.rating + '%'}}>
-                  </div>
-                </div>
+            <div className="user-bar-cont">
+              <div className="user-bar">
+                <div
+                  className="user-bar-background"
+                  style={{ width: rating.rating + "%" }}
+                />
               </div>
+            </div>
             <div className="rating-display">{rating.rating}</div>
           </div>
         </Grid>
