@@ -1,29 +1,30 @@
 class Api::ArticlesController < ApplicationController
   def index
-    # if params[:extension] 
-    #   puts params[:extension]
-    #   @article = Article.find_by(url: params[:extension])
-    #   if !@articletest
+    if params[:extension] 
+      puts params[:extension]
+      @article = Article.find_by(url: params[:extension])
+      # if !@articletest
 
-    #     #add the sccrapping thing here
+      #   #add the sccrapping thing here
 
-    #     @article = Article.create(#add params here)
-    #     puts params[:id]
-    #     if @article.save
-    #       redirect_to `http://localhost:3000/article/#{@article.id}`
-    #     else
-    #       head(:internal_server_error)
-    #     end
-    #   else
-    #   puts `http://localhost:3000/article/#{@article.id}`
-    #   redirect_to "http://localhost:3000/article/#{@article.id}"
+      #   @article = Article.create(#add params here)
+      #   puts params[:id]
+      #   if @article.save
+      #     redirect_to "http://localhost:3000/article/#{@article.id}"
+      #   else
+      #     head(:internal_server_error)
+      #   end
+      # else
+      # # puts `http://localhost:3000/article/#{@article.id}`
+      redirect_to "http://localhost:3000/article/#{@article.id}"
 
-    #     # render :json => {
-    #     #   article_id: @articletest.id
-    #     # }
-    #   # end
-    #   # return 
+        # render :json => {
+        #   article_id: @articletest.id
+        # }
+      # end
+      # return 
     # else
+    end
       articles = Article.all
       render :json => {
         articles: articles

@@ -106,7 +106,7 @@ export default function CenteredGrid({ match }) {
         setRating({ rating });
         setFakebox({ fakeboxRating, fakeboxDecision, fakeboxDomainCategory, url });
         console.log(
-          "HAHAHHAHAHA",
+          "Heylo",
           res.data.fakebox_rating,
           res.data.fakebox_decision,
           res.data.fakebox_domain_category,
