@@ -31,7 +31,9 @@ export default function CenteredGrid({ match }) {
 
   const [fakebox, setFakebox] = useState({
     rating: 0,
-    decision: []
+    decision: [],
+    category: [],
+    url: ""
   });
 
   const [message, setMessage] = useState({
@@ -85,6 +87,8 @@ export default function CenteredGrid({ match }) {
         const rating = res.data.rating;
         const fakeboxRating = res.data.fakebox_rating;
         const fakeboxDecision = res.data.fakebox_decision;
+        const fakeboxDomainCategory = res.data.fakebox_domain_category;
+        const url = res.data.url
 
         const overlappedAnnotations = content.map((word, index) => {
           const overlappingAnnotation = annotationData.find(
@@ -97,11 +101,13 @@ export default function CenteredGrid({ match }) {
         setIsLoading(false);
         setMessage({ title, content, highlight, overlappedAnnotations });
         setRating({ rating });
-        setFakebox({ fakeboxRating, fakeboxDecision });
+        setFakebox({ fakeboxRating, fakeboxDecision, fakeboxDomainCategory, url });
         console.log(
           "HAHAHHAHAHA",
           res.data.fakebox_rating,
-          res.data.fakebox_decision
+          res.data.fakebox_decision,
+          res.data.fakebox_domain_category,
+          res.data.url.split("/")[2]
         );
       })
     );
@@ -158,48 +164,8 @@ export default function CenteredGrid({ match }) {
         </div>
       }
       <Grid container spacing={3}>
-<<<<<<< HEAD
-        <Grid item xs={3} />
-        <Grid item xs={8}>
-          {/* <h5>Try hovering over the bars</h5> */}
-          <div className="fakebox-label">Fakebox:</div>
-          <div className="flex-fakebox-cont">
-              <div className="fakebox-bar-cont">
-                <div className="fakebox-bar">
-                  <div className="fakebox-background" style={{width: fakebox.fakeboxRating + '%'}}>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <br></br>
-          <div className="users-label">Users:</div>
-          <div className="flex-user-cont">
-              <div className="user-bar-cont">
-                <div className="user-bar">
-                  <div className="user-bar-background" style={{width: rating.rating + '%'}}>
-                  </div>
-                </div>
-              </div>
-            {/* <div className="rating-display">{rating.rating}</div> */}
-          </div>
-        </Grid>
-        <Grid item xs={2}>
-          {/* <div className="instructions-container">
-            <h2>Instructions</h2>
-            <p>Add an Annotation</p>
-            <p>Add a Comment</p>
-            <p>Update a Comment</p>
-            <p>Add a Rating</p>
-          </div> */}
-          <h2>Instructions</h2>
-          <Instruction />
-        </Grid>
-
-        <Grid item xs={8}>
-=======
         <Grid item xs={1} /> {/* PALM */}
         <Grid item xs={6}> {/* PEACH */}
->>>>>>> master
           <div
             className="article-container"
             onMouseUp={onMouseUpHandler}

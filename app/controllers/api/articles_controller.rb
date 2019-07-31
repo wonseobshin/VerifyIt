@@ -34,6 +34,7 @@ class Api::ArticlesController < ApplicationController
     puts fakeboxRating
     fakeboxDecision = article.fakeboxDecision
     puts fakeboxDecision
+    fakeboxDomainCategory = article.fakeboxDomainCategory
     puts 'showing one article!'
     puts rating
 
@@ -44,7 +45,8 @@ class Api::ArticlesController < ApplicationController
       rating: rating,
       tag: tag,
       fakebox_rating: fakeboxRating,
-      fakebox_decision: fakeboxDecision
+      fakebox_decision: fakeboxDecision,
+      fakebox_domain_category: fakeboxDomainCategory 
     }
 
   end
