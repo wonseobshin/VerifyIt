@@ -1,9 +1,35 @@
 class Api::ArticlesController < ApplicationController
   def index
-    articles = Article.all
-    render :json => {
-      articles: articles
-    }
+    if params[:extension] 
+      puts params[:extension]
+      @article = Article.find_by(url: params[:extension])
+      # if !@articletest
+
+      #   #add the sccrapping thing here
+
+      #   @article = Article.create(#add params here)
+      #   puts params[:id]
+      #   if @article.save
+      #     redirect_to "http://localhost:3000/article/#{@article.id}"
+      #   else
+      #     head(:internal_server_error)
+      #   end
+      # else
+      # # puts `http://localhost:3000/article/#{@article.id}`
+      redirect_to "http://localhost:3000/article/#{@article.id}"
+
+        # render :json => {
+        #   article_id: @articletest.id
+        # }
+      # end
+      # return 
+    # else
+    end
+      articles = Article.all
+      render :json => {
+        articles: articles
+      }
+    # end
   end
 
   def create
@@ -34,6 +60,7 @@ class Api::ArticlesController < ApplicationController
     puts fakeboxRating
     fakeboxDecision = article.fakeboxDecision
     puts fakeboxDecision
+    fakeboxDomainCategory = article.fakeboxDomainCategory
     puts 'showing one article!'
     puts rating
 
@@ -44,7 +71,8 @@ class Api::ArticlesController < ApplicationController
       rating: rating,
       tag: tag,
       fakebox_rating: fakeboxRating,
-      fakebox_decision: fakeboxDecision
+      fakebox_decision: fakeboxDecision,
+      fakebox_domain_category: fakeboxDomainCategory 
     }
 
   end

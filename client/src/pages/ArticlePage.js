@@ -10,7 +10,10 @@ import Axios from "axios";
 import Word from "../components/Word";
 import TagsList from "../components/tagsList";
 import Instruction from "../components/Instruction";
+// import { Popover } from "@material-ui/core";
 import LoadingSpinner from "../components/LoadingSpinner";
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +34,9 @@ export default function CenteredGrid({ match }) {
 
   const [fakebox, setFakebox] = useState({
     rating: 0,
-    decision: []
+    decision: [],
+    category: [],
+    url: ""
   });
 
   const [message, setMessage] = useState({
@@ -95,6 +100,8 @@ export default function CenteredGrid({ match }) {
         const rating = res.data.rating;
         const fakeboxRating = res.data.fakebox_rating;
         const fakeboxDecision = res.data.fakebox_decision;
+        const fakeboxDomainCategory = res.data.fakebox_domain_category;
+        const url = res.data.url.split("/")[2]
 
         const overlappedAnnotations = content.map((word, index) => {
           const overlappingAnnotation = annotationData.find(
@@ -107,11 +114,13 @@ export default function CenteredGrid({ match }) {
         setIsLoading(false);
         setMessage({ title, content, highlight, overlappedAnnotations });
         setRating({ rating });
-        setFakebox({ fakeboxRating, fakeboxDecision });
+        setFakebox({ fakeboxRating, fakeboxDecision, fakeboxDomainCategory, url });
         console.log(
-          "HAHAHHAHAHA",
+          "Heylo",
           res.data.fakebox_rating,
-          res.data.fakebox_decision
+          res.data.fakebox_decision,
+          res.data.fakebox_domain_category,
+          res.data.url.split("/")[2]
         );
       })
     );
@@ -176,10 +185,8 @@ export default function CenteredGrid({ match }) {
         </div>
       )}
       <Grid container spacing={3}>
-        <Grid item xs={1} /> {/* PALM */}
-        <Grid item xs={6}>
-          {" "}
-          {/* PEACH */}
+        <Grid id="palm" item xs={1} /> {/*s PALM */}
+        <Grid id="peach" item xs={7}> {/* PEACH */}
           <div
             className="article-container"
             onMouseUp={onMouseUpHandler}
@@ -211,10 +218,8 @@ export default function CenteredGrid({ match }) {
             )}
           </div>
         </Grid>
-        <Grid item xs={4}>
-          {" "}
-          {/* PEAR */}
-          <h5>Try hovering over the progress bars...</h5>
+        <Grid id="pear" item xs={3}> {/* PEAR */}
+        <h5>Try hovering over the progress bars...</h5>
           <div className="flex-container">
             <div className="bias-label">Fakebox: </div>
             <div className="fakebox-bar-cont">
@@ -239,10 +244,15 @@ export default function CenteredGrid({ match }) {
             </div>
             <div className="rating-display">{rating.rating}</div>
           </div>
+
+          <div className="domain-decision-cont">
+            <h3>Hover to check if it's fake</h3>
+            <div className="domain-name">{fakebox.url} === {fakebox.fakeboxDomainCategory}</div>
+          </div> 
+
           <Toggle>
             {({ on, toggle }) => (
-              <div>
-                {" "}
+              <div className="rating-btn-container">
                 <Button
                   onClick={toggle}
                   variant="contained"
@@ -261,11 +271,17 @@ export default function CenteredGrid({ match }) {
               </div>
             )}
           </Toggle>
-          <h2>Instructions</h2>
-          <Instruction />
-          <TagsList article_id={match.params.id} />
+          
+          <div  className="instruction-container">
+            <h2>Instructions</h2>
+            <Instruction />
+          </div>
+          
+          <div className="tag-list-container" >
+            <TagsList article_id={match.params.id} />
+          </div>
         </Grid>
-        <Grid item xs={1} /> {/* PINE */}
+        <Grid id="pine" item xs={1} /> {/* PINE */}
       </Grid>
     </>
   );

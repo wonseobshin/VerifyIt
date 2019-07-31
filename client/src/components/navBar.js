@@ -43,103 +43,93 @@ export default function HomePage() {
 }
 
 // =======
+// import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
-// import AppBar from "@material-ui/core/AppBar";
-// import Toolbar from "@material-ui/core/Toolbar";
-// import IconButton from "@material-ui/core/IconButton";
-// import Typography from "@material-ui/core/Typography";
-// import InputBase from "@material-ui/core/InputBase";
-// import { fade, makeStyles } from "@material-ui/core/styles";
-// import Button from "@material-ui/core/Button";
-// // import MenuIcon from "@material-ui/icons/Menu";
-// // import SearchIcon from "@material-ui/core/IconSearch";
-// >>>>>>> 09f43dfe111f1586d45f4af6c82a1b2ca3645439
-
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     flexGrow: 1
-//   },
-//   menuButton: {
-//     marginRight: theme.spacing(2)
-//   },
-//   title: {
-//     flexGrow: 1,
-//     display: "none",
-//     fontSize: "2em",
-//     [theme.breakpoints.up("sm")]: {
-//       display: "block"
-//     }
-//   },
-//   search: {
-//     position: "relative",
-//     borderRadius: theme.shape.borderRadius,
-//     backgroundColor: fade(theme.palette.common.white, 0.15),
-//     "&:hover": {
-//       backgroundColor: fade(theme.palette.common.white, 0.25)
-//     },
-//     marginLeft: 0,
-//     width: "100%",
-//     [theme.breakpoints.up("sm")]: {
-//       marginLeft: theme.spacing(1),
-//       width: "auto"
-//     }
-//   },
-//   searchIcon: {
-//     width: theme.spacing(7),
-//     height: "100%",
-//     position: "absolute",
-//     pointerEvents: "none",
-//     display: "flex",
-//     alignItems: "center",
-//     justifyContent: "center"
-//   },
-//   inputRoot: {
-//     color: "inherit"
-//   },
-//   inputInput: {
-//     padding: theme.spacing(1, 1, 1, 7),
-//     transition: theme.transitions.create("width"),
-//     width: "100%",
-//     [theme.breakpoints.up("sm")]: {
-//       width: 120,
-//       "&:focus": {
-//         width: 200
-//       }
-//     }
-//   }
-// }));
-
-// export default function SearchAppBar() {
-//   const classes = useStyles();
-
+// function HideOnScroll(props) {
+//   const trigger = useScrollTrigger({
+//     disableHysteresis: true,
+//     threshold: 0,
+//   });
 //   return (
-//     <div className={classes.root}>
-//       <AppBar position="static">
-//         <Toolbar>
-//           <Typography className={classes.title} variant="h6" noWrap>
-//             Verify It
-//           </Typography>
-//           <div className={classes.search}>
-//             <div className={classes.searchIcon}>{/* <SearchIcon /> */}</div>
-//             <InputBase
-//               placeholder="Search…"
-//               classes={{
-//                 root: classes.inputRoot,
-//                 input: classes.inputInput
-//               }}
-//               inputProps={{ "aria-label": "Search" }}
-//             />
+//     <Slide in={!trigger}>
+//       <div>Hello</div>
+//     </Slide>
+//   );
+// }
+
+
+// // import React from 'react';
+// import PropTypes from 'prop-types';
+// import AppBar from '@material-ui/core/AppBar';
+// import Toolbar from '@material-ui/core/Toolbar';
+// import Typography from '@material-ui/core/Typography';
+// import CssBaseline from '@material-ui/core/CssBaseline';
+// import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+// import Box from '@material-ui/core/Box';
+// import Container from '@material-ui/core/Container';
+
+// function ElevationScroll(props) {
+//   const { children, window } = props;
+//   // Note that you normally won't need to set the window ref as useScrollTrigger
+//   // will default to window.
+//   // This is only being set here because the demo is in an iframe.
+//   const trigger = useScrollTrigger({
+//     disableHysteresis: true,
+//     threshold: 0,
+//     target: window ? window() : undefined,
+//   });
+
+//   return React.cloneElement(children, {
+//     elevation: trigger ? 14 : 0,
+//   });
+// }
+
+// ElevationScroll.propTypes = {
+//   children: PropTypes.element.isRequired,
+//   /**
+//    * Injected by the documentation to work in an iframe.
+//    * You won't need it on your project.
+//    */
+//   window: PropTypes.func,
+// };
+
+// export default function ElevateAppBar(props) {
+//   return (
+//     <React.Fragment>
+//       <CssBaseline />
+//       <ElevationScroll {...props}>
+//         <nav className="nav-bar nav-container">
+//           <div className="logo-container">
+//             <Link to={`/`}>
+//               <h1 className="nav-item main-logo">verify it.</h1>
+//             </Link>
 //           </div>
-//           <Button
-//             id="login-button"
-//             variant="contained"
-//             color="secondary"
-//             className={classes.button}
-//           >
-//             Login
-//           </Button>
-//         </Toolbar>
-//       </AppBar>
-//     </div>
+//           <div className="search-container">
+//             <form>
+//               {/* <TextField
+//                 id="filled-search"
+//                 label="Search field"
+//                 type="search"
+//                 className="search"
+//                 margin="normal"
+//                 variant="filled"
+//               /> */}
+//               <Paper>
+                
+//                 <InputBase
+//                   className="searchInput"
+//                   placeholder="Search Articles: Try 'Pyramids'"
+//                   inputProps={{ 'aria-label': 'Search Google Maps' }}
+//                 />
+//                 <IconButton className="iconButton" aria-label="Search">
+//                   <SearchIcon />
+//                 </IconButton>
+                
+//               </Paper>
+//             </form>
+//           </div>
+//         </nav>
+//       </ElevationScroll>
+//     </React.Fragment>
 //   );
 // }
