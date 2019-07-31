@@ -222,10 +222,10 @@ export default function CenteredGrid({ match }) {
             <div className="rating-display">{rating.rating}</div>
           </div>
 
-          {/* <div className="domain-decision-cont">
-            ===========IS IT FAKE?==========
+          <div className="domain-decision-cont">
+            <h3>Hover to check if it's fake</h3>
             <div className="domain-name">{fakebox.url} === {fakebox.fakeboxDomainCategory}</div>
-          </div>  */}
+          </div> 
 
           <Toggle>
             {({ on, toggle }) => (

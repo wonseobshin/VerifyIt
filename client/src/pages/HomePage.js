@@ -53,10 +53,9 @@ export default function HomePage() {
           <h1>Welcome to <em>verify it</em>.</h1>
         <Typography>
           {/* <p> */}
-            That other text? Sadly, it’s no longer a 10. You know, it really
-            doesn’t matter what you write as long as you’ve got a young, and
-            beautiful, piece of text. My text is long and beautiful, as, it has
-            been well documented, are various other parts of my website.
+          verify it.™ aims to rejuvenate our collective curiosities. 
+          We aim to cultivate a well-informed society by providing a platform where users can annotate, discuss, 
+          and verify news stories from all over the Internet.  
           {/* </p> */}
         </Typography>
         {/* {loadingSpinner ? <LoadingSpinner /> : <span />} */}
