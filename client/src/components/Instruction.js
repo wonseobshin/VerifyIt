@@ -71,8 +71,9 @@ export default function Instruction() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            <ul>
+              <li>You know that highlighted word or phrase? click on it and the second line in the pop up should be your comment line.</li>
+            </ul>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -86,8 +87,9 @@ export default function Instruction() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            <ul>
+              <li>Umm. There's an "Add A Rating" button...</li>
+            </ul>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>

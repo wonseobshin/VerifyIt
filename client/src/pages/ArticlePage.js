@@ -10,7 +10,10 @@ import Axios from "axios";
 import Word from "../components/Word";
 import TagsList from "../components/tagsList";
 import Instruction from "../components/Instruction";
+// import { Popover } from "@material-ui/core";
 import LoadingSpinner from "../components/LoadingSpinner";
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +34,9 @@ export default function CenteredGrid({ match }) {
 
   const [fakebox, setFakebox] = useState({
     rating: 0,
-    decision: []
+    decision: [],
+    category: [],
+    url: ""
   });
 
   const [message, setMessage] = useState({
@@ -85,6 +90,8 @@ export default function CenteredGrid({ match }) {
         const rating = res.data.rating;
         const fakeboxRating = res.data.fakebox_rating;
         const fakeboxDecision = res.data.fakebox_decision;
+        const fakeboxDomainCategory = res.data.fakebox_domain_category;
+        const url = res.data.url.split("/")[2]
 
         const overlappedAnnotations = content.map((word, index) => {
           const overlappingAnnotation = annotationData.find(
@@ -97,11 +104,13 @@ export default function CenteredGrid({ match }) {
         setIsLoading(false);
         setMessage({ title, content, highlight, overlappedAnnotations });
         setRating({ rating });
-        setFakebox({ fakeboxRating, fakeboxDecision });
+        setFakebox({ fakeboxRating, fakeboxDecision, fakeboxDomainCategory, url });
         console.log(
           "HAHAHHAHAHA",
           res.data.fakebox_rating,
-          res.data.fakebox_decision
+          res.data.fakebox_decision,
+          res.data.fakebox_domain_category,
+          res.data.url.split("/")[2]
         );
       })
     );
@@ -212,6 +221,11 @@ export default function CenteredGrid({ match }) {
               </div>
             <div className="rating-display">{rating.rating}</div>
           </div>
+
+          {/* <div className="domain-decision-cont">
+            ===========IS IT FAKE?==========
+            <div className="domain-name">{fakebox.url} === {fakebox.fakeboxDomainCategory}</div>
+          </div>  */}
 
           <Toggle>
             {({ on, toggle }) => (
