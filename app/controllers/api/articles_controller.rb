@@ -23,13 +23,13 @@ class Api::ArticlesController < ApplicationController
         # }
       # end
       # return 
-    # else
-    end
+    else
+    # end
       articles = Article.all
       render :json => {
         articles: articles
       }
-    # end
+    end
   end
 
   def create
