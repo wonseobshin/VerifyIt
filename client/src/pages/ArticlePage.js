@@ -159,7 +159,7 @@ export default function CenteredGrid({ match }) {
       }
       <Grid container spacing={3}>
         <Grid id="palm" item xs={1} /> {/*s PALM */}
-        <Grid id="peach" item xs={6}> {/* PEACH */}
+        <Grid id="peach" item xs={7}> {/* PEACH */}
           <div
             className="article-container"
             onMouseUp={onMouseUpHandler}
@@ -190,7 +190,7 @@ export default function CenteredGrid({ match }) {
             )}
           </div>
         </Grid>
-        <Grid id="pear" item xs={4}> {/* PEAR */}
+        <Grid id="pear" item xs={3}> {/* PEAR */}
         <h5>Try hovering over the progress bars...</h5>
           <div className="flex-container">
             <div className="bias-label">Fakebox: </div>

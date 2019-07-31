@@ -37,14 +37,18 @@ a {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 7;
+  background-color: white;
 }
 
 .nav-bar {
-  background-color: white;
   color: #c4dfe6;
   overflow: hidden;
   padding: 15px;
-  width: 100vw;
+  width: 100%;
 }
 
 .nav-bar .logo-container {
@@ -53,7 +57,7 @@ a {
 }
 
 .nav-bar .main-logo {
-  padding-left: 15px;
+  padding-left: 30px;
 }
 
 .nav-bar .logo-container h1 {
@@ -64,6 +68,7 @@ a {
 .nav-bar .search-container {
   margin: auto 0 auto 0;
   height: 70%;
+  padding-right: 30px;
 }
 
 .nav-bar .MuiPaper-root {
@@ -98,10 +103,8 @@ a {
 /* ==== Article Page ====*/
 
 .article-container {
-  background: white;
   border: solid white 1px;
   border-radius: 10px;
-  padding: 30px;
   line-height: 2;
 }
 
@@ -126,7 +129,16 @@ a {
   padding-left: 20px;
 }
 
-#pear { position: sticky; }
+#pear { 
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  padding:30px 
+}
+
+#peach {
+  padding:30px
+}
 
 #pear button{
   margin:30px auto 30px;
@@ -166,7 +178,6 @@ a {
 }
 
 .comment-container {
-  background: #f5f5f5;
 }
 
 .comment-text {
@@ -247,7 +258,7 @@ a {
       position: absolute;
       top: 0;
       left: 0;
-      background: goldenrod;
+      background: purple;
       -webkit-clip-path: inset(0 100% 0 0);
       clip-path: (0 100% 0 0);
       transition: all 1s;
