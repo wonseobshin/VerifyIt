@@ -74,7 +74,11 @@ export default function CenteredGrid({ match }) {
   }
 
   function setUserBarRating() {
-    setProgressBar({ userBar: "fill"})
+    setProgressBar({ userBar: "fill", fakeboxBar: progressBar.fakeboxBar })
+  }
+
+  function setFakeboxBarRating() {
+    setProgressBar({ fakeboxBar: "fill", userBar: progressBar.userBar })
   }
 
   useEffect(() => {
@@ -212,7 +216,7 @@ export default function CenteredGrid({ match }) {
         <h5>Try hovering over the progress bars...</h5>
           <div className="flex-container">
             <div className="bias-label">Fakebox: </div>
-              <div className="fakebox-bar-cont">
+              <div className={"fakebox-bar-cont " + progressBar.fakeboxBar} onMouseOver={ setFakeboxBarRating }>
                 <div className="fakebox-bar">
                   <div className="fakebox-background" style={{width: fakebox.fakeboxRating + '%'}}>
                   </div>
@@ -228,7 +232,7 @@ export default function CenteredGrid({ match }) {
                   </div>
                 </div>
               </div>
-            <div className="rating-display">{rating.rating}</div>
+            {/* <div className="rating-display">{rating.rating}</div> */}
           </div>
 
           <div className="domain-decision-cont">
