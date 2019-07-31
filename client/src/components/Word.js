@@ -1,6 +1,7 @@
 import React from "react";
 import Annotation from "./Annotation";
 import CreateNewAnnotation from "./CreateNewAnnotation";
+import Axios from "axios";
 
 class Word extends React.Component {
   constructor(props) {
@@ -71,8 +72,14 @@ class Word extends React.Component {
   // }
 
   componentDidMount() {
-    console.log("WHAT THE F", this.props);
+    // console.log("here");
+    // Axios.get(`/api/articles/${this.props.match.params.id}/annotations`).then(
+    //   res => {
+    //     console.log("GET", res.data);
+    //   }
+    // );
   }
+  componentWillMount() {}
 
   render() {
     return (

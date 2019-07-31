@@ -52,13 +52,12 @@ export default function CenteredGrid({ match }) {
   });
 
   const [upVotes, setUpVotes] = useState({
-    votes: 0
+    upVotes: 0
   });
 
-  console.log("NEW VOTES", upVotes);
-
   function handlePoints(points) {
-    setUpVotes({ points });
+    console.log("NEW VOTES", points);
+    setUpVotes(points);
   }
 
   const [sel, setSel] = useState({});
@@ -177,9 +176,44 @@ export default function CenteredGrid({ match }) {
         </div>
       )}
       <Grid container spacing={3}>
-<<<<<<< HEAD
-        <Grid item xs={3} />
-        <Grid item xs={8}>
+        <Grid item xs={1} /> {/* PALM */}
+        <Grid item xs={6}>
+          {" "}
+          {/* PEACH */}
+          <div
+            className="article-container"
+            onMouseUp={onMouseUpHandler}
+            onMouseDown={onMouseDownHandler}
+          >
+            {isLoading ? (
+              <div className="spinner-container">
+                <LoadingSpinner />
+              </div>
+            ) : (
+              <>
+                <h2>{message.title}</h2>
+
+                {message.content.map((word, pos) => {
+                  return (
+                    <Word
+                      // clickAnnotationHandler={clickAnnotationHandler}
+                      match={match}
+                      overlappedAnnotation={message.overlappedAnnotations[pos]}
+                      key={pos}
+                      pos={pos}
+                      word={word}
+                      highlight={message.highlight}
+                      upVotes={upVotes}
+                    />
+                  );
+                })}
+              </>
+            )}
+          </div>
+        </Grid>
+        <Grid item xs={4}>
+          {" "}
+          {/* PEAR */}
           <h5>Try hovering over the progress bars...</h5>
           <div className="flex-container">
             <div className="bias-label">Fakebox: </div>
@@ -205,78 +239,6 @@ export default function CenteredGrid({ match }) {
             </div>
             <div className="rating-display">{rating.rating}</div>
           </div>
-        </Grid>
-        <Grid item xs={2}>
-          {/* <div className="instructions-container">
-            <h2>Instructions</h2>
-            <p>Add an Annotation</p>
-            <p>Add a Comment</p>
-            <p>Update a Comment</p>
-            <p>Add a Rating</p>
-          </div> */}
-          <h2>Instructions</h2>
-          <Instruction />
-        </Grid>
-
-        <Grid item xs={8}>
-=======
-        <Grid item xs={1} /> {/* PALM */}
-        <Grid item xs={6}> {/* PEACH */}
->>>>>>> master
-          <div
-            className="article-container"
-            onMouseUp={onMouseUpHandler}
-            onMouseDown={onMouseDownHandler}
-          >
-            {isLoading ? (
-              <div className="spinner-container">
-                <LoadingSpinner />
-              </div>
-            ) : (
-              <>
-                <h2>{message.title}</h2>
-
-                {message.content.map((word, pos) => {
-                  return (
-                    <Word
-                      // clickAnnotationHandler={clickAnnotationHandler}
-                      match={match}
-                      overlappedAnnotation={message.overlappedAnnotations[pos]}
-                      key={pos}
-                      pos={pos}
-                      word={word}
-                      highlight={message.highlight}
-                      upVotes={upVotes.votes}
-                    />
-                  );
-                })}
-              </>
-            )}
-          </div>
-        </Grid>
-        <Grid item xs={4}> {/* PEAR */}
-        <h5>Try hovering over the progress bars...</h5>
-          <div className="flex-container">
-            <div className="bias-label">Fakebox: </div>
-              <div className="fakebox-bar-cont">
-                <div className="fakebox-bar">
-                  <div className="fakebox-background" style={{width: fakebox.fakeboxRating + '%'}}>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <br></br>
-          <div className="flex-container">
-            <div className="users-label">Users: </div>
-              <div className="user-bar-cont">
-                <div className="user-bar">
-                  <div className="user-bar-background" style={{width: rating.rating + '%'}}>
-                  </div>
-                </div>
-              </div>
-            <div className="rating-display">{rating.rating}</div>
-          </div>
-
           <Toggle>
             {({ on, toggle }) => (
               <div>
@@ -299,10 +261,8 @@ export default function CenteredGrid({ match }) {
               </div>
             )}
           </Toggle>
-          
           <h2>Instructions</h2>
           <Instruction />
-
           <TagsList article_id={match.params.id} />
         </Grid>
         <Grid item xs={1} /> {/* PINE */}

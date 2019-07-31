@@ -85,9 +85,8 @@ export default function Annotation(props) {
       }
     )
       .then(response => {
-        console.log("HERE", response.data);
+        console.log(response.data);
         const newVote = response.data.point.point;
-
         setAnnotation({ ...annotation, point: newVote });
         props.handlePoints(newVote);
       })
