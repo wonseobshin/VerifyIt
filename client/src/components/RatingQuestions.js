@@ -59,12 +59,12 @@ export default function CheckboxList(props) {
           <FormControl>
             <List className={classes.root}>
               {[
-                "This article IS fake news?",
-                "The source NOT is reliable?",
-                "The author is NOT credible?",
-                "The article IS bias?",
-                "The article does NOT have supporting sources?",
-                "The article does NOT have citations?"
+                "This article is fake news?",
+                "The publication is unreliable",
+                "The author is not clearly stated.",
+                "The article is biased.",
+                "The article does not contain interviews or citations.",
+                "The article has not been reported on by other publications."
               ].map(value => {
                 const labelId = `checkbox-list-label-${value}`;
 
