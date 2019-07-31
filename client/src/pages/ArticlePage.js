@@ -158,8 +158,8 @@ export default function CenteredGrid({ match }) {
         </div>
       }
       <Grid container spacing={3}>
-        <Grid item xs={1} /> {/* PALM */}
-        <Grid item xs={6}> {/* PEACH */}
+        <Grid id="palm" item xs={1} /> {/*s PALM */}
+        <Grid id="peach" item xs={6}> {/* PEACH */}
           <div
             className="article-container"
             onMouseUp={onMouseUpHandler}
@@ -190,7 +190,7 @@ export default function CenteredGrid({ match }) {
             )}
           </div>
         </Grid>
-        <Grid item xs={4}> {/* PEAR */}
+        <Grid id="pear" item xs={4}> {/* PEAR */}
         <h5>Try hovering over the progress bars...</h5>
           <div className="flex-container">
             <div className="bias-label">Fakebox: </div>
@@ -215,8 +215,7 @@ export default function CenteredGrid({ match }) {
 
           <Toggle>
             {({ on, toggle }) => (
-              <div>
-                {" "}
+              <div className="rating-btn-container">
                 <Button
                   onClick={toggle}
                   variant="contained"
@@ -236,12 +235,16 @@ export default function CenteredGrid({ match }) {
             )}
           </Toggle>
           
-          <h2>Instructions</h2>
-          <Instruction />
-
-          <TagsList article_id={match.params.id} />
+          <div  className="instruction-container">
+            <h2>Instructions</h2>
+            <Instruction />
+          </div>
+          
+          <div className="tag-list-container" >
+            <TagsList article_id={match.params.id} />
+          </div>
         </Grid>
-        <Grid item xs={1} /> {/* PINE */}
+        <Grid id="pine" item xs={1} /> {/* PINE */}
       </Grid>
     </>
   );

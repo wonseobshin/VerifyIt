@@ -86,11 +86,7 @@ export default function CreateNewAnnotation(prop, { params }) {
 
     for (let i = 0; i <= range; i++) {
       document.getElementById(annotation.anchorId + i).classList.add("blue");
-      // document.getElementById(annotation.anchorId + i).classList.add(params.id);
     }
-    // sendReq(annotation)
-
-    // prop.keepNewOpen(true)
   }
 
   function handleChange(event) {
@@ -98,11 +94,9 @@ export default function CreateNewAnnotation(prop, { params }) {
       category: event.target.value,
       content: values.content
     });
-    console.log("category: ", values.category, "|| content: ", values.content);
   }
 
   function handleAnnChange(event) {
-    console.log("TARGET----:", event.target);
     setValues({
       content: event.target.value,
       category: values.category
