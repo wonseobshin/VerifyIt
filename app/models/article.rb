@@ -10,13 +10,14 @@ class Article < ApplicationRecord
 
   after_create :fakeboxRating
   def fakeboxRating
+    puts "hi i received these: #{title},#{content},#{url}"
     response = HTTParty.post("http://192.168.88.61:8080/fakebox/check", body: { 
       "title": title, 
       "content": content,
       "url": url 
     })
-    puts url
     body = JSON.parse(response.body)
+    puts "THIS IS THE BODY OF THE RESPONSE #{body}"
     title_rating = body["title"]["score"] * 100
     content_rating = body["content"]["score"] * 100
     total_rating = title_rating.to_i + content_rating.to_i
