@@ -63,7 +63,7 @@ class Word extends React.Component {
         let number = 100 - points * 0.055 * 100;
         const colors = `hsl(0, 100%, ${number}%)`;
         console.log(colors);
-        this.setState({ backgroundColor: colors });
+        this.setState({ color: colors });
       });
     }
   }
@@ -73,7 +73,7 @@ class Word extends React.Component {
     let number = 100 - this.state.points * 0.055 * 100;
     const colors = `hsl(0, 100%, ${number}%)`;
     console.log(colors);
-    this.setState({ backgroundColor: colors });
+    this.setState({ color: colors });
   }
   render() {
     return (
@@ -83,7 +83,7 @@ class Word extends React.Component {
           id={this.props.pos}
           className={this.props.overlappedAnnotation ? "pink" : ""}
           annotation_id={this.props.overlappedAnnotation}
-          style={{ backgroundColor: this.state.backgroundColor }}
+          style={{ color: this.state.color }}
         >
           {" "}
           {this.props.word}{" "}
