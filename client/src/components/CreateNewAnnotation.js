@@ -152,19 +152,18 @@ export default function CreateNewAnnotation(prop, { params }) {
                   <em>None</em>
                 </MenuItem>
                 <MenuItem value="The source is unreliable">
-                  The source is unreliable
+                  Credibility
                 </MenuItem>
                 <MenuItem value="The author is not credible">
-                  The author is not credible
-                </MenuItem>
+                  Author Attribution                </MenuItem>
                 <MenuItem value="The article is biased">
-                  The article is biased
+                  Bias and Objectivity
                 </MenuItem>
                 <MenuItem value="There are no supporting sources">
-                  There are no supporting sources
+                  Interviews and Sources
                 </MenuItem>
                 <MenuItem value="There are no citations">
-                  There are no citations
+                  Other
                 </MenuItem>
               </Select>
               <FormHelperText>Required</FormHelperText>

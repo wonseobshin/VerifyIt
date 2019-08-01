@@ -307,6 +307,36 @@ a {
       }
     }
   }
+  &.fill {
+    .fakebox-bar {
+      .fakebox-background {
+        -webkit-clip-path: inset(0 0 0 0);
+        clip-path: inset(0 0 0 0);
+      }
+    }
+  }
+}
+
+.bias-label {
+  color: black;
+  position: absolute;
+  text-align: left;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  padding-left: 6px;
+  margin: 4px;
+}
+
+.impartial-label {
+  color: black;
+  position: absolute;
+  text-align: right;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  padding-right: 14px;
+  margin: 4px;
 }
 
 .flex-user-cont {
@@ -379,7 +409,16 @@ a {
       }
     }
   }
+
   &:hover {
+    .user-bar {
+      .user-bar-background {
+        -webkit-clip-path: inset(0 0 0 0);
+        clip-path: inset(0 0 0 0);
+      }
+    }
+  }
+  &.fill {
     .user-bar {
       .user-bar-background {
         -webkit-clip-path: inset(0 0 0 0);
@@ -389,6 +428,13 @@ a {
   }
 }
 
+.user-rating-text {
+  color: gainsboro;
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+}
 .rating-display {
   padding-left: 0.5em;
   display: none;
