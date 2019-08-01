@@ -72,7 +72,8 @@ export default function Instruction() {
         <ExpansionPanelDetails>
           <Typography>
             <ul>
-              <li>You know that highlighted word or phrase? click on it and the second line in the pop up should be your comment line.</li>
+              <li>Click on an existing highlighted word or phrase.</li>
+              <li>A comment sectin should pop up on the top of the article.</li>
             </ul>
           </Typography>
         </ExpansionPanelDetails>
@@ -88,7 +89,9 @@ export default function Instruction() {
         <ExpansionPanelDetails>
           <Typography>
             <ul>
-              <li>Umm. There's an "Add A Rating" button...</li>
+              <li>Click on the "Add A Rating" button</li>
+              <li>Select the statements you agree with from the drop down menu.</li>
+              <li>Submit.</li>
             </ul>
           </Typography>
         </ExpansionPanelDetails>

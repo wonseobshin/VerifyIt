@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Link } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper';
@@ -6,9 +6,24 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
+
 export default function HomePage() {
+  const [scrolled, setScrolled] = useState("");
+
+  useEffect(()=>{
+    window.addEventListener('scroll', () => {
+      if(window.scrollY === 0){
+        setScrolled("")
+        console.log("not scrolled")
+      } else {
+        setScrolled("scrolled")
+        console.log("scrolled")
+      }
+    });
+  },[])
+  
   return (
-    <nav className="nav-bar nav-container">
+    <nav className={`nav-bar nav-container ${scrolled}`}>
       <div className="logo-container">
         <Link to={`/`}>
           <h1 className="nav-item main-logo">verify it.</h1>
