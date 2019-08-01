@@ -30,6 +30,7 @@
  - go through a user process
   - emphasize the annotation feature
   - talk about how the annotation code was developed.
+  - TALK ABOUT HOW THIS MAGIC WAS CREATED
 - view instructions
 - add ratings
   - use this opportunity to talk about material ui as well.
@@ -38,6 +39,10 @@
 
 - Display another article, a real one that will yield a "trusted" fakebox decision
   - make sure this article has existing annotations and comments to view
+  - make sure this article has an existing rating
+    - update rating 
+  - TALK ABOUT HOOKS
+  - IF THE COLOURS COME THROUGH!
 
 ## 5 
 
