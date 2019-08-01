@@ -188,20 +188,62 @@ export default function CenteredGrid({ match }) {
     }
   }
 
+  function setViewFalse(){
+    setAnnotation({ new: false, view: false});
+    //next few lines are completely unrelated to setting views
+    Axios.all([
+      getArticle(match.params.id),
+      getAnnotations(match.params.id)
+    ]).then(
+      Axios.spread(function(res, annotations) {
+        const annotationData = annotations.data.map(
+          ({ anchorId, focusId, id }) => {
+            return {
+              start: Number(anchorId),
+              end: Number(focusId),
+              id
+            };
+          }
+        );
+
+        const title = res.data.title;
+        const content = res.data.content.split(" ");
+        const highlight = "";
+        const rating = res.data.rating;
+        const fakeboxRating = res.data.fakebox_rating;
+        const fakeboxDecision = res.data.fakebox_decision;
+        const fakeboxDomainCategory = res.data.fakebox_domain_category;
+        const url = res.data.url.split("/")[2]
+
+        const overlappedAnnotations = content.map((word, index) => {
+          const overlappingAnnotation = annotationData.find(
+            ({ start, end }) => {
+              return index >= start && index <= end;
+            }
+          );
+          return overlappingAnnotation ? overlappingAnnotation.id : undefined;
+        });
+        setIsLoading(false);
+        setMessage({ title, content, highlight, overlappedAnnotations });
+        setRating({ rating });
+        setFakebox({ fakeboxRating, fakeboxDecision, fakeboxDomainCategory, url });
+        console.log(
+          "Heylo",
+          res.data.fakebox_rating,
+          res.data.fakebox_decision,
+          res.data.fakebox_domain_category,
+          res.data.url.split("/")[2]
+        );
+      })
+    );
+  }
+
   return (
     <>
       {(annotation.view || annotation.new) && (
         <div className="annotation-container">
-          {annotation.view && (
-            <Annotation
-              handlePoints={handlePoints}
-              annotation_id={message.annotationId}
-              {...match}
-            />
-          )}
-          {annotation.new && (
-            <CreateNewAnnotation upVotes={upVotes} selected={sel} {...match} />
-          )}
+          {annotation.view && <Annotation annotation_id={message.annotationId} {...match} />}
+          {annotation.new && <CreateNewAnnotation setViewFalse={setViewFalse} selected={sel} {...match} />}
         </div>
       )}
       <Grid container spacing={3}>
@@ -227,7 +269,6 @@ export default function CenteredGrid({ match }) {
                   // console.log("upvotes", upVotes);
                   return (
                     <Word
-                      // clickAnnotationHandler={clickAnnotationHandler}
                       match={match}
                       overlappedAnnotation={message.overlappedAnnotations[pos]}
                       key={pos}
