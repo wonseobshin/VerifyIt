@@ -174,12 +174,16 @@ export default function CenteredGrid({ match }) {
     }
   }
 
+  function setViewFalse(){
+    setAnnotation({ new: false, view: false});
+  }
+
   return (
     <>
       {(annotation.view || annotation.new) && 
         <div className="annotation-container">
           {annotation.view && <Annotation annotation_id={message.annotationId} {...match} />}
-          {annotation.new && <CreateNewAnnotation selected={sel} {...match} />}
+          {annotation.new && <CreateNewAnnotation setViewFalse={setViewFalse} selected={sel} {...match} />}
         </div>
       }
       <Grid container spacing={3}>

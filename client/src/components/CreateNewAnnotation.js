@@ -41,15 +41,10 @@ export default function CreateNewAnnotation(prop, { params }) {
     content: "hai"
   });
 
-  const [page, setPage] = React.useState(1);
-
   const [state, setState] = React.useState({
     annotation: {},
     page: 1
   });
-  // useEffect(() => {
-
-  // },[])
 
   function submitAnnotationHandler() {
     getSelectedText();
@@ -121,7 +116,7 @@ export default function CreateNewAnnotation(prop, { params }) {
         .getElementById(annotation.anchorId + i)
         .setAttribute("annotation_id", res.data.id);
     }
-
+    prop.setViewFalse();
     setState({ page: 0 });
   }
 
@@ -217,6 +212,8 @@ export default function CreateNewAnnotation(prop, { params }) {
           </form>
         </Paper>
       )}
+
+      {state.page === 0 && <></>}
     </>
   );
 }
