@@ -112,9 +112,7 @@ export default function CreateNewAnnotation(prop, { params }) {
 
     for (let i = 0; i <= range; i++) {
       document.getElementById(annotation.anchorId + i).classList.add("pink");
-      document
-        .getElementById(annotation.anchorId + i)
-        .setAttribute("annotation_id", res.data.id);
+      document.getElementById(annotation.anchorId + i).setAttribute("annotation_id", res.data.id);
     }
     prop.setViewFalse();
     setState({ page: 0 });
