@@ -248,11 +248,7 @@ export default function CenteredGrid({ match }) {
       {(annotation.view || annotation.new) && (
         <div className="annotation-container">
           {annotation.view && (
-            <Annotation
-              handlePoints={handlePoints}
-              annotation_id={message.annotationId}
-              {...match}
-            />
+            <Annotation annotation_id={message.annotationId} {...match} />
           )}
           {annotation.new && (
             <CreateNewAnnotation
@@ -267,7 +263,6 @@ export default function CenteredGrid({ match }) {
       <Grid container spacing={3}>
         <Grid id="palm" item xs={1} /> {/*s PALM */}
         <Grid id="peach" item xs={7}>
-          {" "}
           {/* PEACH */}
           <div
             className="article-container"
@@ -302,32 +297,39 @@ export default function CenteredGrid({ match }) {
           </div>
         </Grid>
         <Grid id="pear" item xs={3}>
-          {" "}
           {/* PEAR */}
-          <h5>Try hovering over the progress bars...</h5>
+          <h4>Try hovering over the progress bars...</h4>
           <div className="flex-container">
-            <div className="bias-label">Fakebox: </div>
-            <div className="fakebox-bar-cont">
+            <div className="fakebox-label">Fakebox: </div>
+            <div
+              className={"fakebox-bar-cont " + progressBar.fakeboxBar}
+              onMouseOver={setFakeboxBarRating}
+            >
               <div className="fakebox-bar">
+                <span className="bias-label">Biased</span>
+                <span className="impartial-label">Impartial</span>
                 <div
                   className="fakebox-background"
                   style={{ width: fakebox.fakeboxRating + "%" }}
                 />
               </div>
             </div>
-          </div>
-          <br />
-          <div className="flex-container">
-            <div className="users-label">Users: </div>
-            <div className="user-bar-cont">
-              <div className="user-bar">
-                <div
-                  className="user-bar-background"
-                  style={{ width: rating.rating + "%" }}
-                />
+            <br />
+            <div className="flex-container">
+              <div className="users-label">Users: </div>
+              <div
+                className={"user-bar-cont " + progressBar.userBar}
+                onMouseOver={setUserBarRating}
+              >
+                <div className="user-bar">
+                  <span className="user-rating-text">{rating.rating}%</span>
+                  <div
+                    className="user-bar-background"
+                    style={{ width: rating.rating + "%" }}
+                  />
+                </div>
               </div>
             </div>
-            <div className="rating-display">{rating.rating}</div>
           </div>
           <div className="domain-decision-cont" onMouseEnter={onDomCatEnter}>
             <h4>Hover to check if it's fake</h4>
