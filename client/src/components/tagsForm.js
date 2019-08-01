@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { WithContext as ReactTags } from "react-tag-input";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import Axios from "axios";
+import { List } from "@material-ui/core";
+
 import LocalOffer from "@material-ui/icons/LocalOffer";
 import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,7 +17,8 @@ const useStyles = makeStyles(theme => ({
   },
   chip: {
     margin: theme.spacing(1)
-  }
+  },
+  button: {}
 }));
 
 export default function TagsForm({ article_id, handleResponse }) {
