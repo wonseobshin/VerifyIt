@@ -13,8 +13,6 @@ import Instruction from "../components/Instruction";
 // import { Popover } from "@material-ui/core";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -35,7 +33,7 @@ export default function CenteredGrid({ match }) {
   const [progressBar, setProgressBar] = useState({
     fakeboxBar: "",
     userBar: ""
-  })
+  });
 
   const [fakebox, setFakebox] = useState({
     rating: 0,
@@ -61,6 +59,14 @@ export default function CenteredGrid({ match }) {
     new: false
   });
 
+  const [upVotes, setUpVotes] = useState(0);
+
+  function handlePoints(points) {
+    console.log("NEW VOTES", points);
+    setUpVotes(points);
+  }
+  console.log("YO", upVotes);
+
   const [sel, setSel] = useState({});
 
   const [isLoading, setIsLoading] = useState(true);
@@ -74,11 +80,11 @@ export default function CenteredGrid({ match }) {
   }
 
   function setUserBarRating() {
-    setProgressBar({ userBar: "fill", fakeboxBar: progressBar.fakeboxBar })
+    setProgressBar({ userBar: "fill", fakeboxBar: progressBar.fakeboxBar });
   }
 
   function setFakeboxBarRating() {
-    setProgressBar({ fakeboxBar: "fill", userBar: progressBar.userBar })
+    setProgressBar({ fakeboxBar: "fill", userBar: progressBar.userBar });
   }
 
   useEffect(() => {
@@ -88,10 +94,11 @@ export default function CenteredGrid({ match }) {
     ]).then(
       Axios.spread(function(res, annotations) {
         const annotationData = annotations.data.map(
-          ({ anchorId, focusId, id }) => {
+          ({ anchorId, focusId, point, id }) => {
             return {
               start: Number(anchorId),
               end: Number(focusId),
+              point: Number(point),
               id
             };
           }
@@ -104,7 +111,7 @@ export default function CenteredGrid({ match }) {
         const fakeboxRating = res.data.fakebox_rating;
         const fakeboxDecision = res.data.fakebox_decision;
         const fakeboxDomainCategory = res.data.fakebox_domain_category;
-        const url = res.data.url.split("/")[2]
+        const url = res.data.url.split("/")[2];
 
         const overlappedAnnotations = content.map((word, index) => {
           const overlappingAnnotation = annotationData.find(
@@ -117,7 +124,12 @@ export default function CenteredGrid({ match }) {
         setIsLoading(false);
         setMessage({ title, content, highlight, overlappedAnnotations });
         setRating({ rating });
-        setFakebox({ fakeboxRating, fakeboxDecision, fakeboxDomainCategory, url });
+        setFakebox({
+          fakeboxRating,
+          fakeboxDecision,
+          fakeboxDomainCategory,
+          url
+        });
         console.log(
           "Heylo",
           res.data.fakebox_rating,
@@ -173,15 +185,25 @@ export default function CenteredGrid({ match }) {
 
   return (
     <>
-      {(annotation.view || annotation.new) && 
+      {(annotation.view || annotation.new) && (
         <div className="annotation-container">
-          {annotation.view && <Annotation annotation_id={message.annotationId} {...match} />}
-          {annotation.new && <CreateNewAnnotation selected={sel} {...match} />}
+          {annotation.view && (
+            <Annotation
+              handlePoints={handlePoints}
+              annotation_id={message.annotationId}
+              {...match}
+            />
+          )}
+          {annotation.new && (
+            <CreateNewAnnotation upVotes={upVotes} selected={sel} {...match} />
+          )}
         </div>
-      }
+      )}
       <Grid container spacing={3}>
         <Grid id="palm" item xs={1} /> {/*s PALM */}
-        <Grid id="peach" item xs={7}> {/* PEACH */}
+        <Grid id="peach" item xs={7}>
+          {" "}
+          {/* PEACH */}
           <div
             className="article-container"
             onMouseUp={onMouseUpHandler}
@@ -196,6 +218,8 @@ export default function CenteredGrid({ match }) {
                 <h2>{message.title}</h2>
 
                 {message.content.map((word, pos) => {
+                  // console.log("inside map");
+                  // console.log("upvotes", upVotes);
                   return (
                     <Word
                       // clickAnnotationHandler={clickAnnotationHandler}
@@ -205,6 +229,7 @@ export default function CenteredGrid({ match }) {
                       pos={pos}
                       word={word}
                       highlight={message.highlight}
+                      upVotes={upVotes}
                     />
                   );
                 })}
@@ -212,37 +237,40 @@ export default function CenteredGrid({ match }) {
             )}
           </div>
         </Grid>
-        <Grid id="pear" item xs={3}> {/* PEAR */}
-        <h4>Try hovering over the progress bars...</h4>
+        <Grid id="pear" item xs={3}>
+          {" "}
+          {/* PEAR */}
+          <h5>Try hovering over the progress bars...</h5>
           <div className="flex-container">
-            <div className="fakebox-label">Fakebox: </div>
-              <div className={"fakebox-bar-cont " + progressBar.fakeboxBar} onMouseOver={ setFakeboxBarRating }>
-                <div className="fakebox-bar">
-                <span className="bias-label">Biased</span>
-                <span className="impartial-label">Impartial</span>
-                  <div className="fakebox-background" style={{width: fakebox.fakeboxRating + '%'}}>
-                  </div>
-                </div>
+            <div className="bias-label">Fakebox: </div>
+            <div className="fakebox-bar-cont">
+              <div className="fakebox-bar">
+                <div
+                  className="fakebox-background"
+                  style={{ width: fakebox.fakeboxRating + "%" }}
+                />
               </div>
+            </div>
           </div>
-          <br></br>
+          <br />
           <div className="flex-container">
             <div className="users-label">Users: </div>
-              <div className={"user-bar-cont " + progressBar.userBar} onMouseOver={ setUserBarRating }>
-                <div className="user-bar">
-                  <span className="user-rating-text">{rating.rating}%</span>
-                  <div className="user-bar-background" style={{width: rating.rating + '%'}}>
-                    
-                  </div>
-                </div>
+            <div className="user-bar-cont">
+              <div className="user-bar">
+                <div
+                  className="user-bar-background"
+                  style={{ width: rating.rating + "%" }}
+                />
               </div>
+            </div>
+            <div className="rating-display">{rating.rating}</div>
           </div>
-
           <div className="domain-decision-cont">
-            <h4>Hover to check if it's fake</h4>
-            <div className="domain-name">{fakebox.url} === {fakebox.fakeboxDomainCategory}</div>
-          </div> 
-
+            <h3>Hover to check if it's fake</h3>
+            <div className="domain-name">
+              {fakebox.url} === {fakebox.fakeboxDomainCategory}
+            </div>
+          </div>
           <Toggle>
             {({ on, toggle }) => (
               <div className="rating-btn-container">
@@ -264,17 +292,13 @@ export default function CenteredGrid({ match }) {
               </div>
             )}
           </Toggle>
-          
-          <div  className="instruction-container">
+          <div className="instruction-container">
             <h2>Instructions</h2>
             <Instruction />
           </div>
-          
-          <div className="tag-list-container" >
+          <div className="tag-list-container">
             <TagsList article_id={match.params.id} />
           </div>
-
-
         </Grid>
         <Grid id="pine" item xs={1} /> {/* PINE */}
       </Grid>
