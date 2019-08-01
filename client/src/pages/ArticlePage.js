@@ -10,10 +10,7 @@ import Axios from "axios";
 import Word from "../components/Word";
 import TagsList from "../components/tagsList";
 import Instruction from "../components/Instruction";
-// import { Popover } from "@material-ui/core";
 import LoadingSpinner from "../components/LoadingSpinner";
-
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,6 +40,8 @@ export default function CenteredGrid({ match }) {
     category: [],
     url: ""
   });
+
+  const [domCat, setDomCat] = useState(false);
 
   const [message, setMessage] = useState({
     title: "",
@@ -79,6 +78,10 @@ export default function CenteredGrid({ match }) {
 
   function setFakeboxBarRating() {
     setProgressBar({ fakeboxBar: "fill", userBar: progressBar.userBar })
+  }
+
+  function onDomCatEnter() {
+    setDomCat(true)
   }
 
   useEffect(() => {
@@ -238,10 +241,12 @@ export default function CenteredGrid({ match }) {
               </div>
           </div>
 
-          <div className="domain-decision-cont">
+            <div className="domain-decision-cont" onMouseEnter={onDomCatEnter}>
             <h4>Hover to check if it's fake</h4>
+          {domCat && (
             <div className="domain-name">{fakebox.url} === {fakebox.fakeboxDomainCategory}</div>
-          </div> 
+            )}
+            </div> 
 
           <Toggle>
             {({ on, toggle }) => (
