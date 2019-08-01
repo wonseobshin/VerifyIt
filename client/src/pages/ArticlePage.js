@@ -112,7 +112,7 @@ export default function CenteredGrid({ match }) {
         const title = res.data.title;
         const content = res.data.content.split(" ");
         const highlight = "";
-        const rating = res.data.rating;
+        const rating = Math.round(res.data.rating);
         const fakeboxRating = res.data.fakebox_rating;
         const fakeboxDecision = res.data.fakebox_decision;
         const fakeboxDomainCategory = res.data.fakebox_domain_category;
