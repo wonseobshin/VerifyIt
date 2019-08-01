@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Annotation(params) {
+export default function Annotation(props) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     age: "",
@@ -62,7 +62,7 @@ export default function Annotation(params) {
   useEffect(() => {
     // console.log("article id from annotation component:", params.params.id)
     Axios.get(
-      `/api/articles/${params.params.id}/annotations/${params.annotation_id}`
+      `/api/articles/${props.params.id}/annotations/${props.annotation_id}`
     )
       .then(res => {
         const resAnnotation = res.data;
@@ -79,14 +79,16 @@ export default function Annotation(params) {
   const handleUpVote = e => {
     let addVote = annotation.point + 1;
     Axios.put(
-      `/api/articles/${params.params.id}/annotations/${params.annotation_id}`,
+      `/api/articles/${props.params.id}/annotations/${props.annotation_id}`,
       {
         point: addVote
       }
     )
       .then(response => {
+        console.log("RES DATA", response.data);
         const newVote = response.data.point.point;
         setAnnotation({ ...annotation, point: newVote });
+        props.handlePoints(newVote);
       })
       .catch(err => console.log("Error", err));
   };
@@ -94,8 +96,8 @@ export default function Annotation(params) {
   const handleComment = e => {
     e.preventDefault();
     Axios.post(
-      `/api/articles/${params.params.id}/annotations/${
-        params.annotation_id
+      `/api/articles/${props.params.id}/annotations/${
+        props.annotation_id
       }/comments`,
       {
         content: commentText
@@ -113,8 +115,8 @@ export default function Annotation(params) {
 
   useEffect(() => {
     Axios.get(
-      `/api/articles/${params.params.id}/annotations/${
-        params.annotation_id
+      `/api/articles/${props.params.id}/annotations/${
+        props.annotation_id
       }/comments`
     ).then(res => {
       console.log("Comments", res.data);

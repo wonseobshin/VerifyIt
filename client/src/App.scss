@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  .MuiIconButton-root:hover{
+  .MuiIconButton-root:hover {
     // background-color: inherit;
   }
 }
@@ -49,17 +49,17 @@ a {
 // }
 
 .nav-bar.nav-container::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0px;
   height: 1.5px;
   left: 50%;
-  bottom:0;
+  bottom: 0;
   background-color: rgb(92, 92, 92);
   transition: all ease-in-out 1s;
 }
 
-.nav-bar.scrolled::after{
+.nav-bar.scrolled::after {
   width: 100%;
   left: 0;
 }
@@ -144,7 +144,7 @@ a {
 }
 
 .rating-container {
-  position:sticky;
+  position: sticky;
   color: #666;
   text-align: center;
 }
@@ -153,21 +153,20 @@ a {
   padding-left: 20px;
 }
 
-#pear { 
+#pear {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  padding:30px 
+  padding: 30px;
 }
 
 #peach {
-  padding:30px
+  padding: 30px;
 }
 
-#pear button{
-  margin:30px auto 30px;
+#pear button {
+  margin: 30px auto 30px;
 }
-
 #pear .tag-list-container {
   margin: 20px;
   display: inline;
@@ -200,7 +199,6 @@ a {
 .annotation-content {
   border-bottom: solid 1px grey;
 }
-
 
 .comment-text {
   padding-left: 10px;
@@ -322,7 +320,7 @@ a {
   position: absolute;
   text-align: left;
   z-index: 10;
-  height: 100%;
+  height: 30px;
   width: 100%;
   padding-left: 0.5em;
   margin: 4px;

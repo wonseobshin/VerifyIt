@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function CreateNewAnnotation(prop, { params }) {
+  console.log("PROP", prop);
   const classes = useStyles();
   const [values, setValues] = React.useState({
     category: "cate",
