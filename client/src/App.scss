@@ -1,14 +1,14 @@
 * {
   box-sizing: border-box;
   .MuiIconButton-root:hover{
-    background-color: inherit;
+    // background-color: inherit;
   }
 }
 
 body {
   margin: 0;
   padding: 0;
-
+  background-color: white !important;
   font-family: "Noto Serif", serif;
   ul {
     padding: 0 0 0 1em;
@@ -42,6 +42,26 @@ a {
   top: 0;
   z-index: 7;
   background-color: white;
+}
+
+// .nav-bar:hover {
+//   border-bottom: 3px solid black;
+// }
+
+.nav-bar.nav-container::after {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 1.5px;
+  left: 50%;
+  bottom:0;
+  background-color: rgb(92, 92, 92);
+  transition: all ease-in-out 1s;
+}
+
+.nav-bar.scrolled::after{
+  width: 100%;
+  left: 0;
 }
 
 .nav-bar {
@@ -217,7 +237,7 @@ a {
 
 .fakebox-bar-cont {
   background: gainsboro;
-  width: 32em;
+  width: 100%;
   height: 2em;
   // padding: 0.5em;
   // border-radius: 50px;
@@ -327,7 +347,7 @@ a {
 
 .user-bar-cont {
   background: gainsboro;
-  width: 32em;
+  width: 100%;
   height: 2em;
   // padding: 0.5em;
   // border-radius: 50px;
@@ -417,6 +437,7 @@ a {
 }
 .rating-display {
   padding-left: 0.5em;
+  display: none;
 }
 
 #tag-button {
