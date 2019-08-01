@@ -297,6 +297,28 @@ a {
   }
 }
 
+.bias-label {
+  color: black;
+  position: absolute;
+  text-align: left;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  padding-left: 6px;
+  margin: 4px;
+}
+
+.impartial-label {
+  color: black;
+  position: absolute;
+  text-align: right;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  padding-right: 14px;
+  margin: 4px;
+}
+
 .flex-user-cont {
   display: flex;
   padding-right: 4px;
@@ -367,6 +389,7 @@ a {
       }
     }
   }
+
   &:hover {
     .user-bar {
       .user-bar-background {
@@ -385,6 +408,13 @@ a {
   }
 }
 
+.user-rating-text {
+  color: gainsboro;
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+}
 .rating-display {
   padding-left: 0.5em;
 }
