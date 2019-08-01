@@ -80,3 +80,7 @@ To make your app work properly with React Router (if you end up using it) on Her
 ## Contact
 
 Please contact me at `nima@lighthouselabs.com` if you have any questions or requests, or post an issue to this repo.
+
+# verify it.
+
+False information is nothing new. Propaganda, doctored content, and even outright made up stories have long existed within the realm of information sharing. However, over the past few years, the conception and distribution of the term 'fake news', combined with the rapid mass-sharing capabilities of social media, has given false information  

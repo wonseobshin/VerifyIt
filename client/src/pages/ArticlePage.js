@@ -89,7 +89,7 @@ export default function CenteredGrid({ match }) {
   }
 
   function onDomCatEnter() {
-    setDomCat(true)
+    setDomCat(true);
   }
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export default function CenteredGrid({ match }) {
         const title = res.data.title;
         const content = res.data.content.split(" ");
         const highlight = "";
-        const rating = res.data.rating;
+        const rating = Math.round(res.data.rating);
         const fakeboxRating = res.data.fakebox_rating;
         const fakeboxDecision = res.data.fakebox_decision;
         const fakeboxDomainCategory = res.data.fakebox_domain_category;
@@ -188,6 +188,61 @@ export default function CenteredGrid({ match }) {
     }
   }
 
+  function setViewFalse() {
+    setAnnotation({ new: false, view: false });
+    //next few lines are completely unrelated to setting views
+    Axios.all([
+      getArticle(match.params.id),
+      getAnnotations(match.params.id)
+    ]).then(
+      Axios.spread(function(res, annotations) {
+        const annotationData = annotations.data.map(
+          ({ anchorId, focusId, id }) => {
+            return {
+              start: Number(anchorId),
+              end: Number(focusId),
+              id
+            };
+          }
+        );
+
+        const title = res.data.title;
+        const content = res.data.content.split(" ");
+        const highlight = "";
+        const rating = res.data.rating;
+        const fakeboxRating = res.data.fakebox_rating;
+        const fakeboxDecision = res.data.fakebox_decision;
+        const fakeboxDomainCategory = res.data.fakebox_domain_category;
+        const url = res.data.url.split("/")[2];
+
+        const overlappedAnnotations = content.map((word, index) => {
+          const overlappingAnnotation = annotationData.find(
+            ({ start, end }) => {
+              return index >= start && index <= end;
+            }
+          );
+          return overlappingAnnotation ? overlappingAnnotation.id : undefined;
+        });
+        setIsLoading(false);
+        setMessage({ title, content, highlight, overlappedAnnotations });
+        setRating({ rating });
+        setFakebox({
+          fakeboxRating,
+          fakeboxDecision,
+          fakeboxDomainCategory,
+          url
+        });
+        console.log(
+          "Heylo",
+          res.data.fakebox_rating,
+          res.data.fakebox_decision,
+          res.data.fakebox_domain_category,
+          res.data.url.split("/")[2]
+        );
+      })
+    );
+  }
+
   return (
     <>
       {(annotation.view || annotation.new) && (
@@ -200,7 +255,12 @@ export default function CenteredGrid({ match }) {
             />
           )}
           {annotation.new && (
-            <CreateNewAnnotation upVotes={upVotes} selected={sel} {...match} />
+            <CreateNewAnnotation
+              upVotes={upVotes}
+              setViewFalse={setViewFalse}
+              selected={sel}
+              {...match}
+            />
           )}
         </div>
       )}
@@ -227,7 +287,6 @@ export default function CenteredGrid({ match }) {
                   // console.log("upvotes", upVotes);
                   return (
                     <Word
-                      // clickAnnotationHandler={clickAnnotationHandler}
                       match={match}
                       overlappedAnnotation={message.overlappedAnnotations[pos]}
                       key={pos}
@@ -270,14 +329,14 @@ export default function CenteredGrid({ match }) {
             </div>
             <div className="rating-display">{rating.rating}</div>
           </div>
-
-            <div className="domain-decision-cont" onMouseEnter={onDomCatEnter}>
+          <div className="domain-decision-cont" onMouseEnter={onDomCatEnter}>
             <h4>Hover to check if it's fake</h4>
-          {domCat && (
-            <div className="domain-name">{fakebox.url} === {fakebox.fakeboxDomainCategory}</div>
+            {domCat && (
+              <div className="domain-name">
+                {fakebox.url} === {fakebox.fakeboxDomainCategory}
+              </div>
             )}
-            </div> 
-
+          </div>
           <Toggle>
             {({ on, toggle }) => (
               <div className="rating-btn-container">

@@ -319,7 +319,7 @@ a {
   z-index: 10;
   height: 30px;
   width: 100%;
-  padding-left: 6px;
+  padding-left: 0.5em;
   margin: 4px;
 }
 
@@ -330,7 +330,7 @@ a {
   z-index: 10;
   height: 100%;
   width: 100%;
-  padding-right: 14px;
+  padding-right: 1em;
   margin: 4px;
 }
 
@@ -424,7 +424,8 @@ a {
 }
 
 .user-rating-text {
-  color: gainsboro;
+  color: black;
+  padding-left: 0.7em;
   position: absolute;
   z-index: 10;
   height: 100%;
