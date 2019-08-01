@@ -13,7 +13,7 @@ class Word extends React.Component {
       annotationFormOpen: false,
       selectionStarted: false,
 
-      color: undefined
+      backgroundColor: ""
     };
   }
 
@@ -60,21 +60,21 @@ class Word extends React.Component {
       ).then(res => {
         // console.log("GET", res.data);
         const points = res.data.point;
-        let number = 100 - points * 0.055 * 100;
-        const colors = `hsl(0, 100%, ${number}%)`;
-        console.log(colors);
+        let number = 100 - points * 0.077 * 100;
+        const colors = `hsla(0, 100%, ${number}%, .9)`;
+        console.log("GET", colors);
         this.setState({ backgroundColor: colors });
       });
     }
   }
 
-  componentWillReceiveProps() {
-    console.log("PROPS", this.props.upVotes);
-    let number = 100 - this.state.points * 0.055 * 100;
-    const colors = `hsl(0, 100%, ${number}%)`;
-    console.log(colors);
-    this.setState({ backgroundColor: colors });
-  }
+  // componentWillReceiveProps() {
+  //   console.log("PROPS", this.props.upVotes);
+  //   let number = 100 - this.props.upVotes * 0.066 * 100;
+  //   const colors = `hsl(0, 100%, ${number}%)`;
+  //   console.log("PROPS", colors);
+  //   this.setState({ backgroundColor: colors });
+  // }
   render() {
     return (
       <span>
