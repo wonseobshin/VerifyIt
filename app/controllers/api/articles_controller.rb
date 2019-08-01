@@ -1,25 +1,43 @@
+require 'nokogiri'
+
+require "open-uri"
+
 class Api::ArticlesController < ApplicationController
   def index
     if params[:extension] 
       puts params[:extension]
       @article = Article.find_by(url: params[:extension])
-      # if !@articletest
+      if !@article
 
-      #   #add the sccrapping thing here
+        page = Nokogiri::HTML(open(params[:extension]))
+        
+        @scraped_title = page.at_css("h1").text
+        
+        content = page.css("p")
 
-      #   @article = Article.create(#add params here)
-      #   if @article.save
-      #     redirect_to "http://localhost:3000/article/#{@article.id}"
-      #   else
-      #     head(:internal_server_error)
-      #   end
-      # else
-      redirect_to "http://localhost:3000/article/#{@article.id}"
+        @scraped_content = ""
+
+        content.each do |paragraph|
+            @scraped_content += paragraph.text
+        end
+
+        puts @scraped_title
+        puts @scraped_content
+
+        @article = Article.create(:title => @scraped_title, :url => params[:extension], :content => @scraped_content)
+
+        if @article.save
+          redirect_to "http://localhost:3000/article/#{@article.id}"
+        else
+          head(:internal_server_error)
+        end
+      else
+        redirect_to "http://localhost:3000/article/#{@article.id}"
 
         # render :json => {
         #   article_id: @articletest.id
         # }
-      # end
+      end
       # return 
     else
     # end
