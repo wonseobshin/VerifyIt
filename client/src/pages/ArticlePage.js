@@ -13,8 +13,6 @@ import Instruction from "../components/Instruction";
 // import { Popover } from "@material-ui/core";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -56,14 +54,13 @@ export default function CenteredGrid({ match }) {
     new: false
   });
 
-  const [upVotes, setUpVotes] = useState({
-    upVotes: 0
-  });
+  const [upVotes, setUpVotes] = useState(0);
 
   function handlePoints(points) {
     console.log("NEW VOTES", points);
     setUpVotes(points);
   }
+  console.log("YO", upVotes);
 
   const [sel, setSel] = useState({});
 
@@ -101,7 +98,7 @@ export default function CenteredGrid({ match }) {
         const fakeboxRating = res.data.fakebox_rating;
         const fakeboxDecision = res.data.fakebox_decision;
         const fakeboxDomainCategory = res.data.fakebox_domain_category;
-        const url = res.data.url.split("/")[2]
+        const url = res.data.url.split("/")[2];
 
         const overlappedAnnotations = content.map((word, index) => {
           const overlappingAnnotation = annotationData.find(
@@ -114,7 +111,12 @@ export default function CenteredGrid({ match }) {
         setIsLoading(false);
         setMessage({ title, content, highlight, overlappedAnnotations });
         setRating({ rating });
-        setFakebox({ fakeboxRating, fakeboxDecision, fakeboxDomainCategory, url });
+        setFakebox({
+          fakeboxRating,
+          fakeboxDecision,
+          fakeboxDomainCategory,
+          url
+        });
         console.log(
           "Heylo",
           res.data.fakebox_rating,
@@ -186,7 +188,9 @@ export default function CenteredGrid({ match }) {
       )}
       <Grid container spacing={3}>
         <Grid id="palm" item xs={1} /> {/*s PALM */}
-        <Grid id="peach" item xs={7}> {/* PEACH */}
+        <Grid id="peach" item xs={7}>
+          {" "}
+          {/* PEACH */}
           <div
             className="article-container"
             onMouseUp={onMouseUpHandler}
@@ -201,6 +205,8 @@ export default function CenteredGrid({ match }) {
                 <h2>{message.title}</h2>
 
                 {message.content.map((word, pos) => {
+                  // console.log("inside map");
+                  // console.log("upvotes", upVotes);
                   return (
                     <Word
                       // clickAnnotationHandler={clickAnnotationHandler}
@@ -218,8 +224,10 @@ export default function CenteredGrid({ match }) {
             )}
           </div>
         </Grid>
-        <Grid id="pear" item xs={3}> {/* PEAR */}
-        <h5>Try hovering over the progress bars...</h5>
+        <Grid id="pear" item xs={3}>
+          {" "}
+          {/* PEAR */}
+          <h5>Try hovering over the progress bars...</h5>
           <div className="flex-container">
             <div className="bias-label">Fakebox: </div>
             <div className="fakebox-bar-cont">
@@ -244,12 +252,12 @@ export default function CenteredGrid({ match }) {
             </div>
             <div className="rating-display">{rating.rating}</div>
           </div>
-
           <div className="domain-decision-cont">
             <h3>Hover to check if it's fake</h3>
-            <div className="domain-name">{fakebox.url} === {fakebox.fakeboxDomainCategory}</div>
-          </div> 
-
+            <div className="domain-name">
+              {fakebox.url} === {fakebox.fakeboxDomainCategory}
+            </div>
+          </div>
           <Toggle>
             {({ on, toggle }) => (
               <div className="rating-btn-container">
@@ -271,13 +279,11 @@ export default function CenteredGrid({ match }) {
               </div>
             )}
           </Toggle>
-          
-          <div  className="instruction-container">
+          <div className="instruction-container">
             <h2>Instructions</h2>
             <Instruction />
           </div>
-          
-          <div className="tag-list-container" >
+          <div className="tag-list-container">
             <TagsList article_id={match.params.id} />
           </div>
         </Grid>
